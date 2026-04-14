@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "proto:generate": "make -C api generate",
+    "genProtos": "make -C api generate",
     "proto:clean": "make -C api clean",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"

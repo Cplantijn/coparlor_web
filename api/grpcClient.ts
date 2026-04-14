@@ -6,9 +6,10 @@ import { createConnectTransport } from "@connectrpc/connect-web";
 import {
   type StartGameSessionResponse,
   GameSessionService,
-  GameType,
   StartGameSessionRequestSchema,
 } from "@api/generated/game_session_pb";
+
+import { GameType } from "@api/generated/game_type_pb";
 
 // The plain-data shape accepted as input — matches proto fields without internal brands
 export type StartGameSessionInput = MessageInitShape<
@@ -23,7 +24,7 @@ export { GameType };
 
 const transport = createConnectTransport({
   baseUrl: import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8080",
-  useBinaryFormat: true,
+  useBinaryFormat: false,
 });
 
 const gameSessionClient = createClient(GameSessionService, transport);

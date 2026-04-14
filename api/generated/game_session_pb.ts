@@ -2,15 +2,17 @@
 // @generated from file game_session.proto (package com.coparlor.app, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GameType } from "./game_type_pb";
+import { file_game_type } from "./game_type_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file game_session.proto.
  */
 export const file_game_session: GenFile = /*@__PURE__*/
-  fileDesc("ChJnYW1lX3Nlc3Npb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiSAoXU3RhcnRHYW1lU2Vzc2lvblJlcXVlc3QSLQoJZ2FtZV90eXBlGAEgASgOMhouY29tLmNvcGFybG9yLmFwcC5HYW1lVHlwZSIpChhTdGFydEdhbWVTZXNzaW9uUmVzcG9uc2USDQoFdG9rZW4YASABKAkqNAoIR2FtZVR5cGUSEgoOR0FNRV9UWVBFX05PTkUQABIUChBHQU1FX1RZUEVfRVVDSFJFEAEyfwoSR2FtZVNlc3Npb25TZXJ2aWNlEmkKEFN0YXJ0R2FtZVNlc3Npb24SKS5jb20uY29wYXJsb3IuYXBwLlN0YXJ0R2FtZVNlc3Npb25SZXF1ZXN0GiouY29tLmNvcGFybG9yLmFwcC5TdGFydEdhbWVTZXNzaW9uUmVzcG9uc2VCLAoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IQR2FtZVNlc3Npb25Qcm90b1ABYgZwcm90bzM");
+  fileDesc("ChJnYW1lX3Nlc3Npb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiSAoXU3RhcnRHYW1lU2Vzc2lvblJlcXVlc3QSLQoJZ2FtZV90eXBlGAEgASgOMhouY29tLmNvcGFybG9yLmFwcC5HYW1lVHlwZSJLChhTdGFydEdhbWVTZXNzaW9uUmVzcG9uc2USFgoOZ2FtZV9yb29tX25hbWUYASABKAkSFwoPZ2FtZV9zZXNzaW9uX2lkGAIgASgJMn8KEkdhbWVTZXNzaW9uU2VydmljZRJpChBTdGFydEdhbWVTZXNzaW9uEikuY29tLmNvcGFybG9yLmFwcC5TdGFydEdhbWVTZXNzaW9uUmVxdWVzdBoqLmNvbS5jb3Bhcmxvci5hcHAuU3RhcnRHYW1lU2Vzc2lvblJlc3BvbnNlQiwKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEEdhbWVTZXNzaW9uUHJvdG9QAWIGcHJvdG8z", [file_game_type]);
 
 /**
  * @generated from message com.coparlor.app.StartGameSessionRequest
@@ -34,9 +36,14 @@ export const StartGameSessionRequestSchema: GenMessage<StartGameSessionRequest> 
  */
 export type StartGameSessionResponse = Message<"com.coparlor.app.StartGameSessionResponse"> & {
   /**
-   * @generated from field: string token = 1;
+   * @generated from field: string game_room_name = 1;
    */
-  token: string;
+  gameRoomName: string;
+
+  /**
+   * @generated from field: string game_session_id = 2;
+   */
+  gameSessionId: string;
 };
 
 /**
@@ -45,27 +52,6 @@ export type StartGameSessionResponse = Message<"com.coparlor.app.StartGameSessio
  */
 export const StartGameSessionResponseSchema: GenMessage<StartGameSessionResponse> = /*@__PURE__*/
   messageDesc(file_game_session, 1);
-
-/**
- * @generated from enum com.coparlor.app.GameType
- */
-export enum GameType {
-  /**
-   * @generated from enum value: GAME_TYPE_NONE = 0;
-   */
-  NONE = 0,
-
-  /**
-   * @generated from enum value: GAME_TYPE_EUCHRE = 1;
-   */
-  EUCHRE = 1,
-}
-
-/**
- * Describes the enum com.coparlor.app.GameType.
- */
-export const GameTypeSchema: GenEnum<GameType> = /*@__PURE__*/
-  enumDesc(file_game_session, 0);
 
 /**
  * @generated from service com.coparlor.app.GameSessionService
