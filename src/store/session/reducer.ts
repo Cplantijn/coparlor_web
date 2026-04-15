@@ -30,7 +30,7 @@ const sessionSlice = createSlice({
         console.log("startGameSessionActions.fulfilled", action.payload);
         state.loading = false;
         state.gameSessionId = action.payload.gameSessionId;
-        state.gameRoomName = action.payload.roomName;
+        state.gameRoomName = action.payload.gameRoomName;
       })
       .addCase(startGameSessionActions.rejected, (state, action) => {
         console.log("startGameSessionActions.rejected", action.payload);

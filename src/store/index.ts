@@ -3,12 +3,14 @@ import { createEpicMiddleware } from "redux-observable";
 import type { Action } from "@reduxjs/toolkit";
 import { rootEpic } from "./rootEpic";
 import { sessionReducer } from "./session/reducer";
+import { authReducer } from "./auth/reducer";
 
 const epicMiddleware = createEpicMiddleware<Action>();
 
 export const store = configureStore({
   reducer: {
     session: sessionReducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(epicMiddleware),

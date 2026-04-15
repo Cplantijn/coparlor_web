@@ -3,6 +3,7 @@ import { create } from "@bufbuild/protobuf";
 import type { MessageInitShape } from "@bufbuild/protobuf";
 import { createClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
+import { getIdToken } from "@auth/firebase";
 import {
   type StartGameSessionResponse,
   GameSessionService,
@@ -24,7 +25,16 @@ export { GameType };
 
 const transport = createConnectTransport({
   baseUrl: import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8080",
-  useBinaryFormat: false,
+  useBinaryFormat: true,
+  interceptors: [
+    (next) => async (req) => {
+      const token = await getIdToken();
+      if (token) {
+        req.header.set("Authorization", `Bearer ${token}`);
+      }
+      return next(req);
+    },
+  ],
 });
 
 const gameSessionClient = createClient(GameSessionService, transport);

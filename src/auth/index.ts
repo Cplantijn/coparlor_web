@@ -1,3 +1,1 @@
-export function isAuthenticated(): boolean {
-  return false;
-}
+export * from "./firebase";

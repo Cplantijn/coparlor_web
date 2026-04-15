@@ -1,11 +1,15 @@
-import path from "node:path"
-import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
-import tailwindcss from "@tailwindcss/vite"
-import { tanstackRouter } from "@tanstack/router-plugin/vite"
+import path from "node:path";
+import { defineConfig } from "vite";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import babel from "@rolldown/plugin-babel";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 
 export default defineConfig({
   plugins: [
+    babel({
+      presets: [reactCompilerPreset()],
+    }),
     tanstackRouter({ target: "react", autoCodeSplitting: true }),
     react(),
     tailwindcss(),
@@ -13,9 +17,10 @@ export default defineConfig({
   resolve: {
     alias: {
       "@api": path.resolve(__dirname, "api"),
+      "@auth": path.resolve(__dirname, "src/auth"),
     },
   },
   server: {
     port: 3000,
   },
-})
+});

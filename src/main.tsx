@@ -3,8 +3,12 @@ import { createRoot } from "react-dom/client"
 import { RouterProvider, createRouter } from "@tanstack/react-router"
 import { Provider } from "react-redux"
 import { store } from "./store"
+import { initAuthAction } from "./store/auth/actions"
 import { routeTree } from "./routeTree.gen"
 import "./styles.css"
+
+// Initialize authentication
+store.dispatch(initAuthAction());
 
 const router = createRouter({ routeTree })
 
