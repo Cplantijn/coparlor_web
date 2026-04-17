@@ -2,8 +2,8 @@ import { filter, switchMap, catchError, mergeMap } from "rxjs/operators";
 import { EMPTY } from "rxjs";
 import type { Epic } from "redux-observable";
 import type { Action } from "@reduxjs/toolkit";
-import { authStateChanged } from "../auth/actions";
-import { gameRoomCreatedNotificationReceived } from "../gameRoom/actions";
+import { authStateChanged } from "@store/auth";
+import { gameRoomCreatedNotificationReceived } from "@store/gameRoom";
 import { subscribeToNotifications } from "@api/notificationClient";
 import { NotificationType } from "@api";
 

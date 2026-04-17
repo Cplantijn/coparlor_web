@@ -18,6 +18,7 @@ export default defineConfig({
     alias: {
       "@api": path.resolve(__dirname, "api"),
       "@auth": path.resolve(__dirname, "src/auth"),
+      "@store": path.resolve(__dirname, "src/store"),
     },
   },
   server: {

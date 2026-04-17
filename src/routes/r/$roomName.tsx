@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useSelector } from "react-redux";
-import { store } from "../../store";
-import { gameRoomActions } from "../../store/gameRoom/actions";
+import { store } from "@store";
 import {
+  gameRoomActions,
   selectGameRoomError,
   selectGameRoomLoading,
   selectGameRoomName,
   selectGameRoomOccupants,
-} from "../../store/gameRoom/selectors";
+} from "@store/gameRoom";
 
 export const Route = createFileRoute("/r/$roomName")({
   loader: ({ params }) => {

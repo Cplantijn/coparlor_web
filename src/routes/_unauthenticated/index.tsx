@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useDispatch } from "react-redux";
-import type { AppDispatch } from "../../store";
-import { gameSessionActions } from "../../store/gameSession/actions";
+import type { AppDispatch } from "@store";
+import { gameSessionActions } from "@store/gameSession";
 import { GameType } from "@api";
 
 export const Route = createFileRoute("/_unauthenticated/")({

@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import type { RootState } from "../index";
+import type { RootState } from "@store";
 
 const selectGameRoom = (state: RootState) => state.gameRoom;
 
