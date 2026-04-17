@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UnauthenticatedRouteImport } from './routes/_unauthenticated'
 import { Route as UnauthenticatedIndexRouteImport } from './routes/_unauthenticated/index'
+import { Route as RRoomNameRouteImport } from './routes/r/$roomName'
 
 const UnauthenticatedRoute = UnauthenticatedRouteImport.update({
   id: '/_unauthenticated',
@@ -21,28 +22,37 @@ const UnauthenticatedIndexRoute = UnauthenticatedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => UnauthenticatedRoute,
 } as any)
+const RRoomNameRoute = RRoomNameRouteImport.update({
+  id: '/r/$roomName',
+  path: '/r/$roomName',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof UnauthenticatedIndexRoute
+  '/r/$roomName': typeof RRoomNameRoute
 }
 export interface FileRoutesByTo {
+  '/r/$roomName': typeof RRoomNameRoute
   '/': typeof UnauthenticatedIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_unauthenticated': typeof UnauthenticatedRouteWithChildren
+  '/r/$roomName': typeof RRoomNameRoute
   '/_unauthenticated/': typeof UnauthenticatedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/r/$roomName'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_unauthenticated' | '/_unauthenticated/'
+  to: '/r/$roomName' | '/'
+  id: '__root__' | '/_unauthenticated' | '/r/$roomName' | '/_unauthenticated/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   UnauthenticatedRoute: typeof UnauthenticatedRouteWithChildren
+  RRoomNameRoute: typeof RRoomNameRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -61,6 +71,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UnauthenticatedIndexRouteImport
       parentRoute: typeof UnauthenticatedRoute
     }
+    '/r/$roomName': {
+      id: '/r/$roomName'
+      path: '/r/$roomName'
+      fullPath: '/r/$roomName'
+      preLoaderRoute: typeof RRoomNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -78,6 +95,7 @@ const UnauthenticatedRouteWithChildren = UnauthenticatedRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   UnauthenticatedRoute: UnauthenticatedRouteWithChildren,
+  RRoomNameRoute: RRoomNameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

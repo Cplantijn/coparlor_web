@@ -18,6 +18,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
+      "@api": ["./api/index.ts"],
       "@api/*": ["./api/*"],
       "@auth/*": ["./src/auth/*"]
     }

@@ -1,5 +1,7 @@
 import { combineEpics } from "redux-observable";
-import { sessionEpics } from "./session/epics";
+import { gameSessionEpics } from "./gameSession/epics";
+import { gameRoomEpics } from "./gameRoom/epics";
 import { authEpics } from "./auth/epics";
+import { notificationEpics } from "./notifications/epics";
 
-export const rootEpic = combineEpics(...sessionEpics, ...authEpics);
+export const rootEpic = combineEpics(...gameSessionEpics, ...gameRoomEpics, ...authEpics, ...notificationEpics);

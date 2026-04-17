@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../../store";
-import { startGameSessionActions } from "../../store/session/actions";
-import { GameType } from "@api/grpcClient";
+import { gameSessionActions } from "../../store/gameSession/actions";
+import { GameType } from "@api";
 
 export const Route = createFileRoute("/_unauthenticated/")({
   component: Index,
@@ -11,8 +11,8 @@ export const Route = createFileRoute("/_unauthenticated/")({
 function Index() {
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleStartSession = () => {
-    dispatch(startGameSessionActions.request({ gameType: GameType.EUCHRE }));
+  const handleStartGameSession = () => {
+    dispatch(gameSessionActions.createGameSession.request({ gameType: GameType.EUCHRE }));
   };
 
   return (
@@ -28,7 +28,7 @@ function Index() {
         </div>
 
         <button
-          onClick={handleStartSession}
+          onClick={handleStartGameSession}
           className="mt-8 px-6 py-3 bg-white text-black font-semibold rounded-xl shadow-lg hover:bg-yellow-100 active:scale-95 transition-all cursor-pointer"
         >
           ♣️♥️ Play Euchre ♦️♠️

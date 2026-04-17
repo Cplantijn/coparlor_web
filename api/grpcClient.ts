@@ -5,21 +5,12 @@ import { createClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
 import { getIdToken } from "@auth/firebase";
 import {
-  type StartGameSessionResponse,
+  type CreateGameSessionResponse,
   GameSessionService,
-  StartGameSessionRequestSchema,
-} from "@api/generated/game_session_pb";
-
-import { GameType } from "@api/generated/game_type_pb";
-
-// The plain-data shape accepted as input — matches proto fields without internal brands
-export type StartGameSessionInput = MessageInitShape<
-  typeof StartGameSessionRequestSchema
->;
-
-// Re-export types and enums so consumers never need to import from generated/
-export type { StartGameSessionResponse };
-export { GameType };
+  CreateGameSessionRequestSchema,
+} from "./generated/game_session_pb";
+import { GameRoomService, JoinGameRoomRequestSchema } from "./generated/game_room_pb";
+import type { JoinGameRoomResponse } from "./generated/game_room_pb";
 
 // --- Transport & private service clients ---
 
@@ -38,13 +29,22 @@ const transport = createConnectTransport({
 });
 
 const gameSessionClient = createClient(GameSessionService, transport);
+const gameRoomClient = createClient(GameRoomService, transport);
 
 // --- Endpoints ---
 
-export async function startGameSession(
-  payload: StartGameSessionInput,
-): Promise<StartGameSessionResponse> {
-  return gameSessionClient.startGameSession(
-    create(StartGameSessionRequestSchema, payload),
+export async function createGameSession(
+  payload: MessageInitShape<typeof CreateGameSessionRequestSchema>,
+): Promise<CreateGameSessionResponse> {
+  return gameSessionClient.createGameSession(
+    create(CreateGameSessionRequestSchema, payload),
+  );
+}
+
+export async function joinGameRoom(
+  payload: MessageInitShape<typeof JoinGameRoomRequestSchema>,
+): Promise<JoinGameRoomResponse> {
+  return gameRoomClient.joinGameRoom(
+    create(JoinGameRoomRequestSchema, payload),
   );
 }

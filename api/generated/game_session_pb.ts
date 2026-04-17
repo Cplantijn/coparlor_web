@@ -12,12 +12,12 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file game_session.proto.
  */
 export const file_game_session: GenFile = /*@__PURE__*/
-  fileDesc("ChJnYW1lX3Nlc3Npb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiSAoXU3RhcnRHYW1lU2Vzc2lvblJlcXVlc3QSLQoJZ2FtZV90eXBlGAEgASgOMhouY29tLmNvcGFybG9yLmFwcC5HYW1lVHlwZSJLChhTdGFydEdhbWVTZXNzaW9uUmVzcG9uc2USFgoOZ2FtZV9yb29tX25hbWUYASABKAkSFwoPZ2FtZV9zZXNzaW9uX2lkGAIgASgJMn8KEkdhbWVTZXNzaW9uU2VydmljZRJpChBTdGFydEdhbWVTZXNzaW9uEikuY29tLmNvcGFybG9yLmFwcC5TdGFydEdhbWVTZXNzaW9uUmVxdWVzdBoqLmNvbS5jb3Bhcmxvci5hcHAuU3RhcnRHYW1lU2Vzc2lvblJlc3BvbnNlQiwKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEEdhbWVTZXNzaW9uUHJvdG9QAWIGcHJvdG8z", [file_game_type]);
+  fileDesc("ChJnYW1lX3Nlc3Npb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiSQoYQ3JlYXRlR2FtZVNlc3Npb25SZXF1ZXN0Ei0KCWdhbWVfdHlwZRgBIAEoDjIaLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVR5cGUiMwoZQ3JlYXRlR2FtZVNlc3Npb25SZXNwb25zZRIWCg5nYW1lX3Jvb21fbmFtZRgBIAEoCSI8CgtHYW1lU2Vzc2lvbhItCglnYW1lX3R5cGUYASABKA4yGi5jb20uY29wYXJsb3IuYXBwLkdhbWVUeXBlMoIBChJHYW1lU2Vzc2lvblNlcnZpY2USbAoRQ3JlYXRlR2FtZVNlc3Npb24SKi5jb20uY29wYXJsb3IuYXBwLkNyZWF0ZUdhbWVTZXNzaW9uUmVxdWVzdBorLmNvbS5jb3Bhcmxvci5hcHAuQ3JlYXRlR2FtZVNlc3Npb25SZXNwb25zZUIsChZjb20uY29wYXJsb3IuYXBwLnByb3RvQhBHYW1lU2Vzc2lvblByb3RvUAFiBnByb3RvMw", [file_game_type]);
 
 /**
- * @generated from message com.coparlor.app.StartGameSessionRequest
+ * @generated from message com.coparlor.app.CreateGameSessionRequest
  */
-export type StartGameSessionRequest = Message<"com.coparlor.app.StartGameSessionRequest"> & {
+export type CreateGameSessionRequest = Message<"com.coparlor.app.CreateGameSessionRequest"> & {
   /**
    * @generated from field: com.coparlor.app.GameType game_type = 1;
    */
@@ -25,45 +25,57 @@ export type StartGameSessionRequest = Message<"com.coparlor.app.StartGameSession
 };
 
 /**
- * Describes the message com.coparlor.app.StartGameSessionRequest.
- * Use `create(StartGameSessionRequestSchema)` to create a new message.
+ * Describes the message com.coparlor.app.CreateGameSessionRequest.
+ * Use `create(CreateGameSessionRequestSchema)` to create a new message.
  */
-export const StartGameSessionRequestSchema: GenMessage<StartGameSessionRequest> = /*@__PURE__*/
+export const CreateGameSessionRequestSchema: GenMessage<CreateGameSessionRequest> = /*@__PURE__*/
   messageDesc(file_game_session, 0);
 
 /**
- * @generated from message com.coparlor.app.StartGameSessionResponse
+ * @generated from message com.coparlor.app.CreateGameSessionResponse
  */
-export type StartGameSessionResponse = Message<"com.coparlor.app.StartGameSessionResponse"> & {
+export type CreateGameSessionResponse = Message<"com.coparlor.app.CreateGameSessionResponse"> & {
   /**
    * @generated from field: string game_room_name = 1;
    */
   gameRoomName: string;
-
-  /**
-   * @generated from field: string game_session_id = 2;
-   */
-  gameSessionId: string;
 };
 
 /**
- * Describes the message com.coparlor.app.StartGameSessionResponse.
- * Use `create(StartGameSessionResponseSchema)` to create a new message.
+ * Describes the message com.coparlor.app.CreateGameSessionResponse.
+ * Use `create(CreateGameSessionResponseSchema)` to create a new message.
  */
-export const StartGameSessionResponseSchema: GenMessage<StartGameSessionResponse> = /*@__PURE__*/
+export const CreateGameSessionResponseSchema: GenMessage<CreateGameSessionResponse> = /*@__PURE__*/
   messageDesc(file_game_session, 1);
+
+/**
+ * @generated from message com.coparlor.app.GameSession
+ */
+export type GameSession = Message<"com.coparlor.app.GameSession"> & {
+  /**
+   * @generated from field: com.coparlor.app.GameType game_type = 1;
+   */
+  gameType: GameType;
+};
+
+/**
+ * Describes the message com.coparlor.app.GameSession.
+ * Use `create(GameSessionSchema)` to create a new message.
+ */
+export const GameSessionSchema: GenMessage<GameSession> = /*@__PURE__*/
+  messageDesc(file_game_session, 2);
 
 /**
  * @generated from service com.coparlor.app.GameSessionService
  */
 export const GameSessionService: GenService<{
   /**
-   * @generated from rpc com.coparlor.app.GameSessionService.StartGameSession
+   * @generated from rpc com.coparlor.app.GameSessionService.CreateGameSession
    */
-  startGameSession: {
+  createGameSession: {
     methodKind: "unary";
-    input: typeof StartGameSessionRequestSchema;
-    output: typeof StartGameSessionResponseSchema;
+    input: typeof CreateGameSessionRequestSchema;
+    output: typeof CreateGameSessionResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_game_session, 0);
