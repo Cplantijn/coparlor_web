@@ -1,15 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { gameSessionActions } from "./actions";
-import type { GameType } from "@api";
+import { emitGameSessionStarted, gameSessionActions } from "./actions";
+import type { GameSession, GameType } from "@api";
 
 export interface GameSessionState {
   gameType: GameType | null;
+  session: GameSession | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: GameSessionState = {
   gameType: null,
+  session: null,
   loading: false,
   error: null,
 };
@@ -33,7 +35,11 @@ const gameSessionSlice = createSlice({
           state.loading = false;
           state.error = action.payload;
         },
-      );
+      )
+      .addCase(emitGameSessionStarted, (state, action) => {
+        state.loading = false;
+        state.session = action.payload.gameSession;
+      });
   },
 });
 

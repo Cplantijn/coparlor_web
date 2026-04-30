@@ -12,29 +12,12 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file notification.proto.
  */
 export const file_notification: GenFile = /*@__PURE__*/
-  fileDesc("ChJub3RpZmljYXRpb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiLgoWR2FtZVJvb21DcmVhdGVkUGF5bG9hZBIUCgxnYW1lX3Jvb21faWQYASABKAkiWwoVSm9pbmVkR2FtZVJvb21QYXlsb2FkEhQKDGdhbWVfcm9vbV9pZBgBIAEoCRIsCghvY2N1cGFudBgCIAEoCzIaLmNvbS5jb3Bhcmxvci5hcHAuT2NjdXBhbnQi3wEKFE5vdGlmaWNhdGlvblJlc3BvbnNlEjAKBHR5cGUYASABKA4yIi5jb20uY29wYXJsb3IuYXBwLk5vdGlmaWNhdGlvblR5cGUSRQoRZ2FtZV9yb29tX2NyZWF0ZWQYAiABKAsyKC5jb20uY29wYXJsb3IuYXBwLkdhbWVSb29tQ3JlYXRlZFBheWxvYWRIABJDChBqb2luZWRfZ2FtZV9yb29tGAMgASgLMicuY29tLmNvcGFybG9yLmFwcC5Kb2luZWRHYW1lUm9vbVBheWxvYWRIAEIJCgdwYXlsb2FkKmYKEE5vdGlmaWNhdGlvblR5cGUSIQodTk9USUZJQ0FUSU9OX1RZUEVfVU5TUEVDSUZJRUQQABIVChFHQU1FX1JPT01fQ1JFQVRFRBABEhgKFE9DQ1VQQU5UX0pPSU5FRF9ST09NEAJCLQoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IRTm90aWZpY2F0aW9uUHJvdG9QAWIGcHJvdG8z", [file_occupant]);
+  fileDesc("ChJub3RpZmljYXRpb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiXwoZT2NjdXBhbnRKb2luZWRSb29tUGF5bG9hZBIUCgxnYW1lX3Jvb21faWQYASABKAkSLAoIb2NjdXBhbnQYAiABKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50IqgBChROb3RpZmljYXRpb25SZXNwb25zZRIwCgR0eXBlGAEgASgOMiIuY29tLmNvcGFybG9yLmFwcC5Ob3RpZmljYXRpb25UeXBlElMKHG9jY3VwYW50X2pvaW5lZF9yb29tX3BheWxvYWQYAiABKAsyKy5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50Sm9pbmVkUm9vbVBheWxvYWRIAEIJCgdwYXlsb2FkKk8KEE5vdGlmaWNhdGlvblR5cGUSIQodTk9USUZJQ0FUSU9OX1RZUEVfVU5TUEVDSUZJRUQQABIYChRPQ0NVUEFOVF9KT0lORURfUk9PTRABQi0KFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEU5vdGlmaWNhdGlvblByb3RvUAFiBnByb3RvMw", [file_occupant]);
 
 /**
- * @generated from message com.coparlor.app.GameRoomCreatedPayload
+ * @generated from message com.coparlor.app.OccupantJoinedRoomPayload
  */
-export type GameRoomCreatedPayload = Message<"com.coparlor.app.GameRoomCreatedPayload"> & {
-  /**
-   * @generated from field: string game_room_id = 1;
-   */
-  gameRoomId: string;
-};
-
-/**
- * Describes the message com.coparlor.app.GameRoomCreatedPayload.
- * Use `create(GameRoomCreatedPayloadSchema)` to create a new message.
- */
-export const GameRoomCreatedPayloadSchema: GenMessage<GameRoomCreatedPayload> = /*@__PURE__*/
-  messageDesc(file_notification, 0);
-
-/**
- * @generated from message com.coparlor.app.JoinedGameRoomPayload
- */
-export type JoinedGameRoomPayload = Message<"com.coparlor.app.JoinedGameRoomPayload"> & {
+export type OccupantJoinedRoomPayload = Message<"com.coparlor.app.OccupantJoinedRoomPayload"> & {
   /**
    * @generated from field: string game_room_id = 1;
    */
@@ -47,11 +30,11 @@ export type JoinedGameRoomPayload = Message<"com.coparlor.app.JoinedGameRoomPayl
 };
 
 /**
- * Describes the message com.coparlor.app.JoinedGameRoomPayload.
- * Use `create(JoinedGameRoomPayloadSchema)` to create a new message.
+ * Describes the message com.coparlor.app.OccupantJoinedRoomPayload.
+ * Use `create(OccupantJoinedRoomPayloadSchema)` to create a new message.
  */
-export const JoinedGameRoomPayloadSchema: GenMessage<JoinedGameRoomPayload> = /*@__PURE__*/
-  messageDesc(file_notification, 1);
+export const OccupantJoinedRoomPayloadSchema: GenMessage<OccupantJoinedRoomPayload> = /*@__PURE__*/
+  messageDesc(file_notification, 0);
 
 /**
  * @generated from message com.coparlor.app.NotificationResponse
@@ -67,16 +50,10 @@ export type NotificationResponse = Message<"com.coparlor.app.NotificationRespons
    */
   payload: {
     /**
-     * @generated from field: com.coparlor.app.GameRoomCreatedPayload game_room_created = 2;
+     * @generated from field: com.coparlor.app.OccupantJoinedRoomPayload occupant_joined_room_payload = 2;
      */
-    value: GameRoomCreatedPayload;
-    case: "gameRoomCreated";
-  } | {
-    /**
-     * @generated from field: com.coparlor.app.JoinedGameRoomPayload joined_game_room = 3;
-     */
-    value: JoinedGameRoomPayload;
-    case: "joinedGameRoom";
+    value: OccupantJoinedRoomPayload;
+    case: "occupantJoinedRoomPayload";
   } | { case: undefined; value?: undefined };
 };
 
@@ -85,7 +62,7 @@ export type NotificationResponse = Message<"com.coparlor.app.NotificationRespons
  * Use `create(NotificationResponseSchema)` to create a new message.
  */
 export const NotificationResponseSchema: GenMessage<NotificationResponse> = /*@__PURE__*/
-  messageDesc(file_notification, 2);
+  messageDesc(file_notification, 1);
 
 /**
  * @generated from enum com.coparlor.app.NotificationType
@@ -97,14 +74,9 @@ export enum NotificationType {
   NOTIFICATION_TYPE_UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: GAME_ROOM_CREATED = 1;
+   * @generated from enum value: OCCUPANT_JOINED_ROOM = 1;
    */
-  GAME_ROOM_CREATED = 1,
-
-  /**
-   * @generated from enum value: OCCUPANT_JOINED_ROOM = 2;
-   */
-  OCCUPANT_JOINED_ROOM = 2,
+  OCCUPANT_JOINED_ROOM = 1,
 }
 
 /**

@@ -9,8 +9,13 @@ import {
   GameSessionService,
   CreateGameSessionRequestSchema,
 } from "./generated/game_session_pb";
-import { GameRoomService, JoinGameRoomRequestSchema } from "./generated/game_room_pb";
-import type { JoinGameRoomResponse } from "./generated/game_room_pb";
+import {
+  CreateGameRoomRequestSchema,
+  type CreateGameRoomResponse,
+  GameRoomService,
+  JoinGameRoomRequestSchema,
+} from "./generated/game_room_pb";
+import { type JoinGameRoomResponse } from "./generated/game_room_pb";
 
 // --- Transport & private service clients ---
 
@@ -46,5 +51,13 @@ export async function joinGameRoom(
 ): Promise<JoinGameRoomResponse> {
   return gameRoomClient.joinGameRoom(
     create(JoinGameRoomRequestSchema, payload),
+  );
+}
+
+export async function createGameRoom(
+  payload: MessageInitShape<typeof CreateGameRoomRequestSchema>,
+): Promise<CreateGameRoomResponse> {
+  return gameRoomClient.createGameRoom(
+    create(CreateGameRoomRequestSchema, payload),
   );
 }

@@ -8,13 +8,48 @@ import type { GameSession } from "./game_session_pb";
 import { file_game_session } from "./game_session_pb";
 import type { Occupant } from "./occupant_pb";
 import { file_occupant } from "./occupant_pb";
+import { file_game_type } from "./game_type_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file game_room.proto.
  */
 export const file_game_room: GenFile = /*@__PURE__*/
-  fileDesc("Cg9nYW1lX3Jvb20ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiIwoTSm9pbkdhbWVSb29tUmVxdWVzdBIMCgRuYW1lGAEgASgJIkQKFEpvaW5HYW1lUm9vbVJlc3BvbnNlEiwKCGdhbWVSb29tGAEgASgLMhouY29tLmNvcGFybG9yLmFwcC5HYW1lUm9vbSKIAQoIR2FtZVJvb20SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRItCglvY2N1cGFudHMYAyADKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50EjMKDGdhbWVfc2Vzc2lvbhgEIAEoCzIdLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVNlc3Npb24ycAoPR2FtZVJvb21TZXJ2aWNlEl0KDEpvaW5HYW1lUm9vbRIlLmNvbS5jb3Bhcmxvci5hcHAuSm9pbkdhbWVSb29tUmVxdWVzdBomLmNvbS5jb3Bhcmxvci5hcHAuSm9pbkdhbWVSb29tUmVzcG9uc2VCKQoWY29tLmNvcGFybG9yLmFwcC5wcm90b0INR2FtZVJvb21Qcm90b1ABYgZwcm90bzM", [file_game_session, file_occupant]);
+  fileDesc("Cg9nYW1lX3Jvb20ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiTAoVQ3JlYXRlR2FtZVJvb21SZXF1ZXN0EjMKDGdhbWVfc2Vzc2lvbhgBIAEoCzIdLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVNlc3Npb24iRgoWQ3JlYXRlR2FtZVJvb21SZXNwb25zZRIsCghnYW1lUm9vbRgBIAEoCzIaLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVJvb20iIwoTSm9pbkdhbWVSb29tUmVxdWVzdBIMCgRuYW1lGAEgASgJIkQKFEpvaW5HYW1lUm9vbVJlc3BvbnNlEiwKCGdhbWVSb29tGAEgASgLMhouY29tLmNvcGFybG9yLmFwcC5HYW1lUm9vbSJTCghHYW1lUm9vbRIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEi0KCW9jY3VwYW50cxgDIAMoCzIaLmNvbS5jb3Bhcmxvci5hcHAuT2NjdXBhbnQy1QEKD0dhbWVSb29tU2VydmljZRJdCgxKb2luR2FtZVJvb20SJS5jb20uY29wYXJsb3IuYXBwLkpvaW5HYW1lUm9vbVJlcXVlc3QaJi5jb20uY29wYXJsb3IuYXBwLkpvaW5HYW1lUm9vbVJlc3BvbnNlEmMKDkNyZWF0ZUdhbWVSb29tEicuY29tLmNvcGFybG9yLmFwcC5DcmVhdGVHYW1lUm9vbVJlcXVlc3QaKC5jb20uY29wYXJsb3IuYXBwLkNyZWF0ZUdhbWVSb29tUmVzcG9uc2VCKQoWY29tLmNvcGFybG9yLmFwcC5wcm90b0INR2FtZVJvb21Qcm90b1ABYgZwcm90bzM", [file_game_session, file_occupant, file_game_type]);
+
+/**
+ * @generated from message com.coparlor.app.CreateGameRoomRequest
+ */
+export type CreateGameRoomRequest = Message<"com.coparlor.app.CreateGameRoomRequest"> & {
+  /**
+   * @generated from field: com.coparlor.app.GameSession game_session = 1;
+   */
+  gameSession?: GameSession;
+};
+
+/**
+ * Describes the message com.coparlor.app.CreateGameRoomRequest.
+ * Use `create(CreateGameRoomRequestSchema)` to create a new message.
+ */
+export const CreateGameRoomRequestSchema: GenMessage<CreateGameRoomRequest> = /*@__PURE__*/
+  messageDesc(file_game_room, 0);
+
+/**
+ * @generated from message com.coparlor.app.CreateGameRoomResponse
+ */
+export type CreateGameRoomResponse = Message<"com.coparlor.app.CreateGameRoomResponse"> & {
+  /**
+   * @generated from field: com.coparlor.app.GameRoom gameRoom = 1;
+   */
+  gameRoom?: GameRoom;
+};
+
+/**
+ * Describes the message com.coparlor.app.CreateGameRoomResponse.
+ * Use `create(CreateGameRoomResponseSchema)` to create a new message.
+ */
+export const CreateGameRoomResponseSchema: GenMessage<CreateGameRoomResponse> = /*@__PURE__*/
+  messageDesc(file_game_room, 1);
 
 /**
  * @generated from message com.coparlor.app.JoinGameRoomRequest
@@ -31,7 +66,7 @@ export type JoinGameRoomRequest = Message<"com.coparlor.app.JoinGameRoomRequest"
  * Use `create(JoinGameRoomRequestSchema)` to create a new message.
  */
 export const JoinGameRoomRequestSchema: GenMessage<JoinGameRoomRequest> = /*@__PURE__*/
-  messageDesc(file_game_room, 0);
+  messageDesc(file_game_room, 2);
 
 /**
  * @generated from message com.coparlor.app.JoinGameRoomResponse
@@ -48,7 +83,7 @@ export type JoinGameRoomResponse = Message<"com.coparlor.app.JoinGameRoomRespons
  * Use `create(JoinGameRoomResponseSchema)` to create a new message.
  */
 export const JoinGameRoomResponseSchema: GenMessage<JoinGameRoomResponse> = /*@__PURE__*/
-  messageDesc(file_game_room, 1);
+  messageDesc(file_game_room, 3);
 
 /**
  * @generated from message com.coparlor.app.GameRoom
@@ -68,11 +103,6 @@ export type GameRoom = Message<"com.coparlor.app.GameRoom"> & {
    * @generated from field: repeated com.coparlor.app.Occupant occupants = 3;
    */
   occupants: Occupant[];
-
-  /**
-   * @generated from field: com.coparlor.app.GameSession game_session = 4;
-   */
-  gameSession?: GameSession;
 };
 
 /**
@@ -80,7 +110,7 @@ export type GameRoom = Message<"com.coparlor.app.GameRoom"> & {
  * Use `create(GameRoomSchema)` to create a new message.
  */
 export const GameRoomSchema: GenMessage<GameRoom> = /*@__PURE__*/
-  messageDesc(file_game_room, 2);
+  messageDesc(file_game_room, 4);
 
 /**
  * @generated from service com.coparlor.app.GameRoomService
@@ -93,6 +123,14 @@ export const GameRoomService: GenService<{
     methodKind: "unary";
     input: typeof JoinGameRoomRequestSchema;
     output: typeof JoinGameRoomResponseSchema;
+  },
+  /**
+   * @generated from rpc com.coparlor.app.GameRoomService.CreateGameRoom
+   */
+  createGameRoom: {
+    methodKind: "unary";
+    input: typeof CreateGameRoomRequestSchema;
+    output: typeof CreateGameRoomResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_game_room, 0);

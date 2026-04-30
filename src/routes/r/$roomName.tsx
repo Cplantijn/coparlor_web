@@ -12,7 +12,9 @@ import {
 export const Route = createFileRoute("/r/$roomName")({
   loader: ({ params }) => {
     store.dispatch(
-      gameRoomActions.joinGameRoom.request({ name: params.roomName }),
+      gameRoomActions.joinGameRoom.request({
+        name: params.roomName ?? "",
+      }),
     );
   },
   component: GameRoomPage,
@@ -27,8 +29,8 @@ function GameRoomPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-white text-xl">Joining room…</p>
+      <div className="min-h-screen flex items-center justify-center bg-transparent">
+        <p className="text-xl">Joining room…</p>
       </div>
     );
   }
@@ -50,12 +52,14 @@ function GameRoomPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center text-purple-500">
-        <h1 className="text-4xl font-bold mb-4">{roomName}</h1>
-        <p className="text-lg text-orange-500">
-          {occupants.length} occupant{occupants.length !== 1 ? "s" : ""}
-        </p>
+    <div className="relative min-h-screen">
+      <div className="relative z-10 min-h-screen flex justify-center pt-4">
+        <div className="text-center text-purple-500">
+          <h1 className="text-4xl font-bold">{roomName}</h1>
+          <p className="text-lg text-orange-500">
+            {occupants.length} occupant{occupants.length !== 1 ? "s" : ""}
+          </p>
+        </div>
       </div>
     </div>
   );

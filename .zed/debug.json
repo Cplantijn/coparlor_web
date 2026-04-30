@@ -1,0 +1,10 @@
+[
+  {
+    "label": "Debug: Chrome",
+    "adapter": "JavaScript",
+    "request": "launch",
+    "type": "chrome",
+    "url": "http://localhost:3000",
+    "webRoot": "${ZED_WORKTREE_ROOT}/src"
+  }
+]

@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RRouteImport } from './routes/r'
 import { Route as UnauthenticatedRouteImport } from './routes/_unauthenticated'
 import { Route as UnauthenticatedIndexRouteImport } from './routes/_unauthenticated/index'
 import { Route as RRoomNameRouteImport } from './routes/r/$roomName'
 
+const RRoute = RRouteImport.update({
+  id: '/r',
+  path: '/r',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UnauthenticatedRoute = UnauthenticatedRouteImport.update({
   id: '/_unauthenticated',
   getParentRoute: () => rootRouteImport,
@@ -23,40 +29,55 @@ const UnauthenticatedIndexRoute = UnauthenticatedIndexRouteImport.update({
   getParentRoute: () => UnauthenticatedRoute,
 } as any)
 const RRoomNameRoute = RRoomNameRouteImport.update({
-  id: '/r/$roomName',
-  path: '/r/$roomName',
-  getParentRoute: () => rootRouteImport,
+  id: '/$roomName',
+  path: '/$roomName',
+  getParentRoute: () => RRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof UnauthenticatedIndexRoute
+  '/r': typeof RRouteWithChildren
   '/r/$roomName': typeof RRoomNameRoute
 }
 export interface FileRoutesByTo {
+  '/r': typeof RRouteWithChildren
   '/r/$roomName': typeof RRoomNameRoute
   '/': typeof UnauthenticatedIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_unauthenticated': typeof UnauthenticatedRouteWithChildren
+  '/r': typeof RRouteWithChildren
   '/r/$roomName': typeof RRoomNameRoute
   '/_unauthenticated/': typeof UnauthenticatedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/r/$roomName'
+  fullPaths: '/' | '/r' | '/r/$roomName'
   fileRoutesByTo: FileRoutesByTo
-  to: '/r/$roomName' | '/'
-  id: '__root__' | '/_unauthenticated' | '/r/$roomName' | '/_unauthenticated/'
+  to: '/r' | '/r/$roomName' | '/'
+  id:
+    | '__root__'
+    | '/_unauthenticated'
+    | '/r'
+    | '/r/$roomName'
+    | '/_unauthenticated/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   UnauthenticatedRoute: typeof UnauthenticatedRouteWithChildren
-  RRoomNameRoute: typeof RRoomNameRoute
+  RRoute: typeof RRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/r': {
+      id: '/r'
+      path: '/r'
+      fullPath: '/r'
+      preLoaderRoute: typeof RRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_unauthenticated': {
       id: '/_unauthenticated'
       path: ''
@@ -73,10 +94,10 @@ declare module '@tanstack/react-router' {
     }
     '/r/$roomName': {
       id: '/r/$roomName'
-      path: '/r/$roomName'
+      path: '/$roomName'
       fullPath: '/r/$roomName'
       preLoaderRoute: typeof RRoomNameRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof RRoute
     }
   }
 }
@@ -93,9 +114,19 @@ const UnauthenticatedRouteWithChildren = UnauthenticatedRoute._addFileChildren(
   UnauthenticatedRouteChildren,
 )
 
+interface RRouteChildren {
+  RRoomNameRoute: typeof RRoomNameRoute
+}
+
+const RRouteChildren: RRouteChildren = {
+  RRoomNameRoute: RRoomNameRoute,
+}
+
+const RRouteWithChildren = RRoute._addFileChildren(RRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   UnauthenticatedRoute: UnauthenticatedRouteWithChildren,
-  RRoomNameRoute: RRoomNameRoute,
+  RRoute: RRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

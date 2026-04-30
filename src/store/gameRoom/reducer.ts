@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { gameRoomActions } from "./actions";
+import { emitOccupantJoinedRoom, gameRoomActions } from "./actions";
+import type { Occupant } from "@api";
 
 export interface GameRoomState {
   name: string | null;
-  occupants: string[];
+  occupants: Occupant[];
   loading: boolean;
   error: string | null;
 }
@@ -28,10 +29,10 @@ const gameRoomSlice = createSlice({
       .addCase(gameRoomActions.joinGameRoom.fulfilled, (state, action) => {
         state.loading = false;
         state.name = action.payload.gameRoom?.name ?? null;
+        state.occupants = action.payload.gameRoom?.occupants ?? [];
       })
-      .addCase(gameRoomActions.joinGameRoom.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+      .addCase(emitOccupantJoinedRoom, (state, action) => {
+        state.occupants = action.payload;
       });
   },
 });

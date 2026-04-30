@@ -6,13 +6,15 @@ import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegen
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import type { GameType } from "./game_type_pb";
 import { file_game_type } from "./game_type_pb";
+import type { Occupant } from "./occupant_pb";
+import { file_occupant } from "./occupant_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file game_session.proto.
  */
 export const file_game_session: GenFile = /*@__PURE__*/
-  fileDesc("ChJnYW1lX3Nlc3Npb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiSQoYQ3JlYXRlR2FtZVNlc3Npb25SZXF1ZXN0Ei0KCWdhbWVfdHlwZRgBIAEoDjIaLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVR5cGUiMwoZQ3JlYXRlR2FtZVNlc3Npb25SZXNwb25zZRIWCg5nYW1lX3Jvb21fbmFtZRgBIAEoCSI8CgtHYW1lU2Vzc2lvbhItCglnYW1lX3R5cGUYASABKA4yGi5jb20uY29wYXJsb3IuYXBwLkdhbWVUeXBlMoIBChJHYW1lU2Vzc2lvblNlcnZpY2USbAoRQ3JlYXRlR2FtZVNlc3Npb24SKi5jb20uY29wYXJsb3IuYXBwLkNyZWF0ZUdhbWVTZXNzaW9uUmVxdWVzdBorLmNvbS5jb3Bhcmxvci5hcHAuQ3JlYXRlR2FtZVNlc3Npb25SZXNwb25zZUIsChZjb20uY29wYXJsb3IuYXBwLnByb3RvQhBHYW1lU2Vzc2lvblByb3RvUAFiBnByb3RvMw", [file_game_type]);
+  fileDesc("ChJnYW1lX3Nlc3Npb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiSQoYQ3JlYXRlR2FtZVNlc3Npb25SZXF1ZXN0Ei0KCWdhbWVfdHlwZRgBIAEoDjIaLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVR5cGUilwEKGUNyZWF0ZUdhbWVTZXNzaW9uUmVzcG9uc2USFgoOZ2FtZV9yb29tX25hbWUYASABKAkSMwoMZ2FtZV9zZXNzaW9uGAIgASgLMh0uY29tLmNvcGFybG9yLmFwcC5HYW1lU2Vzc2lvbhItCglvY2N1cGFudHMYAyADKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50IjwKC0dhbWVTZXNzaW9uEi0KCWdhbWVfdHlwZRgBIAEoDjIaLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVR5cGUyggEKEkdhbWVTZXNzaW9uU2VydmljZRJsChFDcmVhdGVHYW1lU2Vzc2lvbhIqLmNvbS5jb3Bhcmxvci5hcHAuQ3JlYXRlR2FtZVNlc3Npb25SZXF1ZXN0GisuY29tLmNvcGFybG9yLmFwcC5DcmVhdGVHYW1lU2Vzc2lvblJlc3BvbnNlQiwKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEEdhbWVTZXNzaW9uUHJvdG9QAWIGcHJvdG8z", [file_game_type, file_occupant]);
 
 /**
  * @generated from message com.coparlor.app.CreateGameSessionRequest
@@ -39,6 +41,16 @@ export type CreateGameSessionResponse = Message<"com.coparlor.app.CreateGameSess
    * @generated from field: string game_room_name = 1;
    */
   gameRoomName: string;
+
+  /**
+   * @generated from field: com.coparlor.app.GameSession game_session = 2;
+   */
+  gameSession?: GameSession;
+
+  /**
+   * @generated from field: repeated com.coparlor.app.Occupant occupants = 3;
+   */
+  occupants: Occupant[];
 };
 
 /**

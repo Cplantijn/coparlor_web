@@ -3,9 +3,8 @@ import { EMPTY } from "rxjs";
 import type { Epic } from "redux-observable";
 import type { Action } from "@reduxjs/toolkit";
 import { authStateChanged } from "@store/auth";
-import { gameRoomCreatedNotificationReceived } from "@store/gameRoom";
+import { emitOccupantJoinedRoom } from "@store/gameRoom";
 import { subscribeToNotifications } from "@api/notificationClient";
-import { NotificationType } from "@api";
 
 /**
  * Subscribes to the server notification stream once the user is authenticated.
@@ -22,13 +21,14 @@ const notificationSubscriptionEpic: Epic<Action> = (action$) =>
     switchMap(() =>
       subscribeToNotifications().pipe(
         mergeMap((notification) => {
-          switch (notification.type) {
-            case NotificationType.GAME_ROOM_CREATED: {
-              if (notification.payload.case === "gameRoomCreated") {
-                return [gameRoomCreatedNotificationReceived(notification.payload.value)];
+          switch (notification.payload.case) {
+            case "occupantJoinedRoomPayload":
+              if (notification.payload.value.occupant) {
+                return [
+                  emitOccupantJoinedRoom([notification.payload.value.occupant]),
+                ];
               }
               return EMPTY;
-            }
             default:
               return EMPTY;
           }

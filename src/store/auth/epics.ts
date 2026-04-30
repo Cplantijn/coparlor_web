@@ -59,15 +59,14 @@ const signInAnonymouslyEpic: Epic<Action> = (action$) =>
         of(signInAnonymouslyActions.pending()),
         from(signInAnonymously(auth)).pipe(
           map(({ user }) =>
-            signInAnonymouslyActions.fulfilled({
-              uid: user.uid,
-              isAnonymous: user.isAnonymous,
-            })
+            signInAnonymouslyActions.fulfilled(
+              { uid: user.uid, isAnonymous: user.isAnonymous },
+            )
           ),
           catchError((err: unknown) =>
             of(
               signInAnonymouslyActions.rejected(
-                err instanceof Error ? err.message : "Auth sign-in failed"
+                err instanceof Error ? err.message : "Auth sign-in failed",
               )
             )
           )
