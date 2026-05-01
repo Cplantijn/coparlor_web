@@ -21,7 +21,6 @@ const joinGameRoomEpic: Epic<Action> = (action$) =>
             of(gameRoomActions.joinGameRoom.fulfilled(response, payload)),
           ),
           catchError((err: unknown) => {
-            console.log("Error:", err);
             alert(err instanceof Error ? err.message : "Unknown error");
             return of(
               gameRoomActions.joinGameRoom.rejected(
