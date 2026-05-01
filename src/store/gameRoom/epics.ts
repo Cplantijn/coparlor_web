@@ -20,14 +20,16 @@ const joinGameRoomEpic: Epic<Action> = (action$) =>
           switchMap((response) =>
             of(gameRoomActions.joinGameRoom.fulfilled(response, payload)),
           ),
-          catchError((err: unknown) =>
-            of(
+          catchError((err: unknown) => {
+            console.log("Error:", err);
+            alert(err instanceof Error ? err.message : "Unknown error");
+            return of(
               gameRoomActions.joinGameRoom.rejected(
                 err instanceof Error ? err.message : "Unknown error",
                 payload,
               ),
-            ),
-          ),
+            );
+          }),
         ),
       ),
     ),
