@@ -14,24 +14,28 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 let currentUser: User | null = null;
-let authReadyPromise: Promise<void>;
 
-// This promise resolves once the first auth state check is finished.
-authReadyPromise = new Promise((resolve) => {
-  onIdTokenChanged(auth, (user) => {
-    currentUser = user;
-    resolve();
-    // We only need to wait for the first event to know if we are authenticated or not.
-    // Subsequent updates are handled by the listener naturally.
-  });
+// Resolves only once a user (anonymous or existing) is available.
+// The first onIdTokenChanged event may fire with null (no session), so we
+// wait for a non-null user — which will arrive once anonymous sign-in completes.
+let resolveUserReady!: () => void;
+const userReadyPromise = new Promise<void>((resolve) => {
+  resolveUserReady = resolve;
+});
+
+onIdTokenChanged(auth, (user) => {
+  currentUser = user;
+  if (user) {
+    resolveUserReady();
+  }
 });
 
 /**
- * Returns the current Firebase ID token, or waits for auth to be ready.
+ * Returns the current Firebase ID token, waiting until a user session exists.
  * If forceRefresh is true, a fresh token will be requested.
  */
 export async function getIdToken(forceRefresh = false): Promise<string | null> {
-  await authReadyPromise;
+  await userReadyPromise;
   if (!currentUser) {
     return null;
   }

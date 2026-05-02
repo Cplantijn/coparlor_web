@@ -12,28 +12,28 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file notification.proto.
  */
 export const file_notification: GenFile = /*@__PURE__*/
-  fileDesc("ChJub3RpZmljYXRpb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiXwoZT2NjdXBhbnRKb2luZWRSb29tUGF5bG9hZBIUCgxnYW1lX3Jvb21faWQYASABKAkSLAoIb2NjdXBhbnQYAiABKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50IqgBChROb3RpZmljYXRpb25SZXNwb25zZRIwCgR0eXBlGAEgASgOMiIuY29tLmNvcGFybG9yLmFwcC5Ob3RpZmljYXRpb25UeXBlElMKHG9jY3VwYW50X2pvaW5lZF9yb29tX3BheWxvYWQYAiABKAsyKy5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50Sm9pbmVkUm9vbVBheWxvYWRIAEIJCgdwYXlsb2FkKk8KEE5vdGlmaWNhdGlvblR5cGUSIQodTk9USUZJQ0FUSU9OX1RZUEVfVU5TUEVDSUZJRUQQABIYChRPQ0NVUEFOVF9KT0lORURfUk9PTRABQi0KFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEU5vdGlmaWNhdGlvblByb3RvUAFiBnByb3RvMw", [file_occupant]);
+  fileDesc("ChJub3RpZmljYXRpb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiYgobUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkEhQKDGdhbWVfcm9vbV9pZBgBIAEoCRItCglvY2N1cGFudHMYAiADKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50IqwBChROb3RpZmljYXRpb25SZXNwb25zZRIwCgR0eXBlGAEgASgOMiIuY29tLmNvcGFybG9yLmFwcC5Ob3RpZmljYXRpb25UeXBlElcKHnJvb21fb2NjdXBhbnRzX3VwZGF0ZWRfcGF5bG9hZBgCIAEoCzItLmNvbS5jb3Bhcmxvci5hcHAuUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkSABCCQoHcGF5bG9hZCpRChBOb3RpZmljYXRpb25UeXBlEiEKHU5PVElGSUNBVElPTl9UWVBFX1VOU1BFQ0lGSUVEEAASGgoWUk9PTV9PQ0NVUEFOVFNfVVBEQVRFRBABQi0KFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEU5vdGlmaWNhdGlvblByb3RvUAFiBnByb3RvMw", [file_occupant]);
 
 /**
- * @generated from message com.coparlor.app.OccupantJoinedRoomPayload
+ * @generated from message com.coparlor.app.RoomOccupantsUpdatedPayload
  */
-export type OccupantJoinedRoomPayload = Message<"com.coparlor.app.OccupantJoinedRoomPayload"> & {
+export type RoomOccupantsUpdatedPayload = Message<"com.coparlor.app.RoomOccupantsUpdatedPayload"> & {
   /**
    * @generated from field: string game_room_id = 1;
    */
   gameRoomId: string;
 
   /**
-   * @generated from field: com.coparlor.app.Occupant occupant = 2;
+   * @generated from field: repeated com.coparlor.app.Occupant occupants = 2;
    */
-  occupant?: Occupant;
+  occupants: Occupant[];
 };
 
 /**
- * Describes the message com.coparlor.app.OccupantJoinedRoomPayload.
- * Use `create(OccupantJoinedRoomPayloadSchema)` to create a new message.
+ * Describes the message com.coparlor.app.RoomOccupantsUpdatedPayload.
+ * Use `create(RoomOccupantsUpdatedPayloadSchema)` to create a new message.
  */
-export const OccupantJoinedRoomPayloadSchema: GenMessage<OccupantJoinedRoomPayload> = /*@__PURE__*/
+export const RoomOccupantsUpdatedPayloadSchema: GenMessage<RoomOccupantsUpdatedPayload> = /*@__PURE__*/
   messageDesc(file_notification, 0);
 
 /**
@@ -50,10 +50,10 @@ export type NotificationResponse = Message<"com.coparlor.app.NotificationRespons
    */
   payload: {
     /**
-     * @generated from field: com.coparlor.app.OccupantJoinedRoomPayload occupant_joined_room_payload = 2;
+     * @generated from field: com.coparlor.app.RoomOccupantsUpdatedPayload room_occupants_updated_payload = 2;
      */
-    value: OccupantJoinedRoomPayload;
-    case: "occupantJoinedRoomPayload";
+    value: RoomOccupantsUpdatedPayload;
+    case: "roomOccupantsUpdatedPayload";
   } | { case: undefined; value?: undefined };
 };
 
@@ -74,9 +74,9 @@ export enum NotificationType {
   NOTIFICATION_TYPE_UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: OCCUPANT_JOINED_ROOM = 1;
+   * @generated from enum value: ROOM_OCCUPANTS_UPDATED = 1;
    */
-  OCCUPANT_JOINED_ROOM = 1,
+  ROOM_OCCUPANTS_UPDATED = 1,
 }
 
 /**

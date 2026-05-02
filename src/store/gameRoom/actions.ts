@@ -9,8 +9,8 @@ import type {
 
 import { createActionSet } from "../createActionSet";
 
-export const emitOccupantJoinedRoom = createAction<Occupant[]>(
-  "gameRoom/emitOccupantJoinedRoom",
+export const emitRoomOccupantsUpdated = createAction<Occupant[]>(
+  "gameRoom/emitRoomOccupantsUpdated",
 );
 
 export const gameRoomActions = {

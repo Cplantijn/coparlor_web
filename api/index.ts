@@ -14,7 +14,7 @@ import type {
 } from "./generated/game_room_pb";
 import type { OccupantSchema } from "./generated/occupant_pb";
 import type {
-  OccupantJoinedRoomPayloadSchema,
+  RoomOccupantsUpdatedPayloadSchema,
   NotificationResponseSchema,
 } from "./generated/notification_pb";
 
@@ -43,8 +43,8 @@ export type CreateGameRoomResponse = MessageInitShape<
   typeof CreateGameRoomResponseSchema
 >;
 export type Occupant = MessageInitShape<typeof OccupantSchema>;
-export type OccupantJoinedRoomPayload = MessageInitShape<
-  typeof OccupantJoinedRoomPayloadSchema
+export type RoomOccupantsUpdatedPayload = MessageInitShape<
+  typeof RoomOccupantsUpdatedPayloadSchema
 >;
 export type NotificationResponse = MessageInitShape<
   typeof NotificationResponseSchema

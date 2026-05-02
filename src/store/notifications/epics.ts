@@ -3,7 +3,7 @@ import { EMPTY } from "rxjs";
 import type { Epic } from "redux-observable";
 import type { Action } from "@reduxjs/toolkit";
 import { authStateChanged } from "@store/auth";
-import { emitOccupantJoinedRoom } from "@store/gameRoom";
+import { emitRoomOccupantsUpdated } from "@store/gameRoom";
 import { subscribeToNotifications } from "@api/notificationClient";
 
 /**
@@ -22,10 +22,12 @@ const notificationSubscriptionEpic: Epic<Action> = (action$) =>
       subscribeToNotifications().pipe(
         mergeMap((notification) => {
           switch (notification.payload.case) {
-            case "occupantJoinedRoomPayload":
-              if (notification.payload.value.occupant) {
+            case "roomOccupantsUpdatedPayload":
+              if (notification.payload.value.occupants) {
                 return [
-                  emitOccupantJoinedRoom([notification.payload.value.occupant]),
+                  emitRoomOccupantsUpdated(
+                    notification.payload.value.occupants,
+                  ),
                 ];
               }
               return EMPTY;
@@ -34,7 +36,8 @@ const notificationSubscriptionEpic: Epic<Action> = (action$) =>
           }
         }),
         catchError((err: unknown) => {
-          console.error("[notifications] stream error:", err);
+          // eslint-disable-next-line no-console
+          console.warn("[notifications] stream error:", err);
           return EMPTY;
         }),
       ),

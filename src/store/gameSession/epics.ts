@@ -5,7 +5,7 @@ import type { Action } from "@reduxjs/toolkit";
 import { createGameSession } from "@api/grpcClient";
 import { router } from "../../router";
 import { emitGameSessionStarted, gameSessionActions } from "./actions";
-import { emitOccupantJoinedRoom } from "../gameRoom/actions";
+import { emitRoomOccupantsUpdated } from "../gameRoom/actions";
 
 const createGameSessionEpic: Epic<Action> = (action$) =>
   action$.pipe(

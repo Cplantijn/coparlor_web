@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { emitOccupantJoinedRoom, gameRoomActions } from "./actions";
+import { emitRoomOccupantsUpdated, gameRoomActions } from "./actions";
 import type { Occupant } from "@api";
 
 export interface GameRoomState {
@@ -31,7 +31,7 @@ const gameRoomSlice = createSlice({
         state.name = action.payload.gameRoom?.name ?? null;
         state.occupants = action.payload.gameRoom?.occupants ?? [];
       })
-      .addCase(emitOccupantJoinedRoom, (state, action) => {
+      .addCase(emitRoomOccupantsUpdated, (state, action) => {
         state.occupants = action.payload;
       });
   },
