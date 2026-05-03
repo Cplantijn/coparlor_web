@@ -21,6 +21,7 @@
       "@api": ["./api/index.ts"],
       "@api/*": ["./api/*"],
       "@auth/*": ["./src/auth/*"],
+      "@utils/*": ["./src/utils/*"],
       "@store": ["./src/store/index.ts"],
       "@store/*": ["./src/store/*"]
     }

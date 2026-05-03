@@ -8,6 +8,7 @@ import {
   selectGameRoomName,
   selectGameRoomOccupants,
 } from "@store/gameRoom";
+import { timestampToMomentString } from "@utils/timestamp";
 
 export const Route = createFileRoute("/r/$roomName")({
   loader: ({ params }) => {
@@ -58,6 +59,20 @@ function GameRoomPage() {
           <h1 className="text-4xl font-bold">{roomName}</h1>
           <p className="text-lg text-orange-500">
             {occupants.length} occupant{occupants.length !== 1 ? "s" : ""}
+            <ul>
+              {occupants.map((occ, idx) => (
+                <li key={idx}>
+                  {occ.publicAccountSession?.displayName}
+                  {occ.disconnectedAt && (
+                    <span>
+                      {" "}
+                      (disconnected at{" "}
+                      {timestampToMomentString(occ.disconnectedAt)})
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
           </p>
         </div>
       </div>

@@ -10,9 +10,7 @@ import type {
   CreateGameRoomRequestSchema,
   CreateGameRoomResponseSchema,
   JoinGameRoomRequestSchema,
-  JoinGameRoomResponseSchema,
 } from "./generated/game_room_pb";
-import type { OccupantSchema } from "./generated/occupant_pb";
 import type {
   RoomOccupantsUpdatedPayloadSchema,
   NotificationResponseSchema,
@@ -33,16 +31,16 @@ export type GameSession = MessageInitShape<typeof GameSessionSchema>;
 export type JoinGameRoomRequest = MessageInitShape<
   typeof JoinGameRoomRequestSchema
 >;
-export type JoinGameRoomResponse = MessageInitShape<
-  typeof JoinGameRoomResponseSchema
->;
+// Response types are re-exported as their generated pb types (not MessageInitShape)
+// because they arrive from the server as real Message instances, not plain init objects.
+export type { JoinGameRoomResponse } from "./generated/game_room_pb";
 export type CreateGameRoomRequest = MessageInitShape<
   typeof CreateGameRoomRequestSchema
 >;
 export type CreateGameRoomResponse = MessageInitShape<
   typeof CreateGameRoomResponseSchema
 >;
-export type Occupant = MessageInitShape<typeof OccupantSchema>;
+export type { Occupant } from "./generated/occupant_pb";
 export type RoomOccupantsUpdatedPayload = MessageInitShape<
   typeof RoomOccupantsUpdatedPayloadSchema
 >;

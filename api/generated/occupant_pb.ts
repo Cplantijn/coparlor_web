@@ -6,13 +6,15 @@ import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2"
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { PublicAccountSession } from "./account_session_pb";
 import { file_account_session } from "./account_session_pb";
+import type { Timestamp } from "./timestamp_pb";
+import { file_timestamp } from "./timestamp_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file occupant.proto.
  */
 export const file_occupant: GenFile = /*@__PURE__*/
-  fileDesc("Cg5vY2N1cGFudC5wcm90bxIQY29tLmNvcGFybG9yLmFwcCKOAQoIT2NjdXBhbnQSRgoWcHVibGljX2FjY291bnRfc2Vzc2lvbhgBIAEoCzImLmNvbS5jb3Bhcmxvci5hcHAuUHVibGljQWNjb3VudFNlc3Npb24SLAoEcm9sZRgCIAEoDjIeLmNvbS5jb3Bhcmxvci5hcHAuT2NjdXBhbnRSb2xlEgwKBHNlYXQYBCABKAUqdwoMT2NjdXBhbnRSb2xlEhQKEE9jY3VwYW50Um9sZU5vbmUQABIbChdPY2N1cGFudFJvbGVIdW1hblBsYXllchABEhkKFU9jY3VwYW50Um9sZUJvdFBsYXllchACEhkKFU9jY3VwYW50Um9sZVNwZWN0YXRvchADQikKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CDU9jY3VwYW50UHJvdG9QAWIGcHJvdG8z", [file_account_session]);
+  fileDesc("Cg5vY2N1cGFudC5wcm90bxIQY29tLmNvcGFybG9yLmFwcCLdAQoIT2NjdXBhbnQSRgoWcHVibGljX2FjY291bnRfc2Vzc2lvbhgBIAEoCzImLmNvbS5jb3Bhcmxvci5hcHAuUHVibGljQWNjb3VudFNlc3Npb24SLAoEcm9sZRgCIAEoDjIeLmNvbS5jb3Bhcmxvci5hcHAuT2NjdXBhbnRSb2xlEgwKBHNlYXQYBCABKAUSOQoPZGlzY29ubmVjdGVkX2F0GAUgASgLMhsuY29tLmNvcGFybG9yLmFwcC5UaW1lc3RhbXBIAIgBAUISChBfZGlzY29ubmVjdGVkX2F0KncKDE9jY3VwYW50Um9sZRIUChBPY2N1cGFudFJvbGVOb25lEAASGwoXT2NjdXBhbnRSb2xlSHVtYW5QbGF5ZXIQARIZChVPY2N1cGFudFJvbGVCb3RQbGF5ZXIQAhIZChVPY2N1cGFudFJvbGVTcGVjdGF0b3IQA0IpChZjb20uY29wYXJsb3IuYXBwLnByb3RvQg1PY2N1cGFudFByb3RvUAFiBnByb3RvMw", [file_account_session, file_timestamp]);
 
 /**
  * @generated from message com.coparlor.app.Occupant
@@ -32,6 +34,11 @@ export type Occupant = Message<"com.coparlor.app.Occupant"> & {
    * @generated from field: int32 seat = 4;
    */
   seat: number;
+
+  /**
+   * @generated from field: optional com.coparlor.app.Timestamp disconnected_at = 5;
+   */
+  disconnectedAt?: Timestamp;
 };
 
 /**
