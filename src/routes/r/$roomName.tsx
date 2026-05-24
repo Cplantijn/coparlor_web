@@ -6,8 +6,10 @@ import {
   selectGameRoomError,
   selectGameRoomLoading,
   selectGameRoomName,
-  selectGameRoomOccupants,
 } from "@store/gameRoom";
+import { selectSessionId } from "@store/auth";
+
+import { getAllOccupants } from "@store/occupants";
 import { timestampToMomentString } from "@utils/timestamp";
 
 export const Route = createFileRoute("/r/$roomName")({
@@ -26,7 +28,8 @@ function GameRoomPage() {
   const loading = useSelector(selectGameRoomLoading);
   const error = useSelector(selectGameRoomError);
   const roomName = useSelector(selectGameRoomName);
-  const occupants = useSelector(selectGameRoomOccupants);
+  const occupants = useSelector(getAllOccupants);
+  const selfSessionId = useSelector(selectSessionId);
 
   if (loading) {
     return (
@@ -52,17 +55,27 @@ function GameRoomPage() {
     );
   }
 
+  const roomOwner = occupants.find((occ) => occ.isRoomOwner);
   return (
     <div className="relative min-h-screen">
       <div className="relative z-10 min-h-screen flex justify-center pt-4">
         <div className="text-center text-purple-500">
           <h1 className="text-4xl font-bold">{roomName}</h1>
-          <p className="text-lg text-orange-500">
+          <div className="text-lg text-orange-500">
             {occupants.length} occupant{occupants.length !== 1 ? "s" : ""}
             <ul>
               {occupants.map((occ, idx) => (
                 <li key={idx}>
                   {occ.publicAccountSession?.displayName}
+                  {occ.publicAccountSession?.sessionAccountId ===
+                    selfSessionId && (
+                    <span className="text-blue-500 underline ml-2">(Me)</span>
+                  )}
+                  {occ.isRoomOwner && (
+                    <span className="text-orange-500 underline ml-2">
+                      Owner
+                    </span>
+                  )}
                   {occ.disconnectedAt && (
                     <span>
                       {" "}
@@ -73,7 +86,11 @@ function GameRoomPage() {
                 </li>
               ))}
             </ul>
-          </p>
+            {selfSessionId ===
+              roomOwner?.publicAccountSession?.sessionAccountId && (
+              <div className="mt-4 px-4 py-2 bg-amber-200">Start Session</div>
+            )}
+          </div>
         </div>
       </div>
     </div>

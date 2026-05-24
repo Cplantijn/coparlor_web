@@ -4,7 +4,6 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
-import type { GameSession } from "./game_session_pb";
 import { file_game_session } from "./game_session_pb";
 import type { Occupant } from "./occupant_pb";
 import { file_occupant } from "./occupant_pb";
@@ -15,16 +14,12 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file game_room.proto.
  */
 export const file_game_room: GenFile = /*@__PURE__*/
-  fileDesc("Cg9nYW1lX3Jvb20ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiTAoVQ3JlYXRlR2FtZVJvb21SZXF1ZXN0EjMKDGdhbWVfc2Vzc2lvbhgBIAEoCzIdLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVNlc3Npb24iRgoWQ3JlYXRlR2FtZVJvb21SZXNwb25zZRIsCghnYW1lUm9vbRgBIAEoCzIaLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVJvb20iIwoTSm9pbkdhbWVSb29tUmVxdWVzdBIMCgRuYW1lGAEgASgJIkQKFEpvaW5HYW1lUm9vbVJlc3BvbnNlEiwKCGdhbWVSb29tGAEgASgLMhouY29tLmNvcGFybG9yLmFwcC5HYW1lUm9vbSJTCghHYW1lUm9vbRIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEi0KCW9jY3VwYW50cxgDIAMoCzIaLmNvbS5jb3Bhcmxvci5hcHAuT2NjdXBhbnQy1QEKD0dhbWVSb29tU2VydmljZRJdCgxKb2luR2FtZVJvb20SJS5jb20uY29wYXJsb3IuYXBwLkpvaW5HYW1lUm9vbVJlcXVlc3QaJi5jb20uY29wYXJsb3IuYXBwLkpvaW5HYW1lUm9vbVJlc3BvbnNlEmMKDkNyZWF0ZUdhbWVSb29tEicuY29tLmNvcGFybG9yLmFwcC5DcmVhdGVHYW1lUm9vbVJlcXVlc3QaKC5jb20uY29wYXJsb3IuYXBwLkNyZWF0ZUdhbWVSb29tUmVzcG9uc2VCKQoWY29tLmNvcGFybG9yLmFwcC5wcm90b0INR2FtZVJvb21Qcm90b1ABYgZwcm90bzM", [file_game_session, file_occupant, file_game_type]);
+  fileDesc("Cg9nYW1lX3Jvb20ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiFwoVQ3JlYXRlR2FtZVJvb21SZXF1ZXN0IkYKFkNyZWF0ZUdhbWVSb29tUmVzcG9uc2USLAoIZ2FtZVJvb20YASABKAsyGi5jb20uY29wYXJsb3IuYXBwLkdhbWVSb29tIiMKE0pvaW5HYW1lUm9vbVJlcXVlc3QSDAoEbmFtZRgBIAEoCSJEChRKb2luR2FtZVJvb21SZXNwb25zZRIsCghnYW1lUm9vbRgBIAEoCzIaLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVJvb20iUwoIR2FtZVJvb20SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRItCglvY2N1cGFudHMYAyADKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50MtUBCg9HYW1lUm9vbVNlcnZpY2USXQoMSm9pbkdhbWVSb29tEiUuY29tLmNvcGFybG9yLmFwcC5Kb2luR2FtZVJvb21SZXF1ZXN0GiYuY29tLmNvcGFybG9yLmFwcC5Kb2luR2FtZVJvb21SZXNwb25zZRJjCg5DcmVhdGVHYW1lUm9vbRInLmNvbS5jb3Bhcmxvci5hcHAuQ3JlYXRlR2FtZVJvb21SZXF1ZXN0GiguY29tLmNvcGFybG9yLmFwcC5DcmVhdGVHYW1lUm9vbVJlc3BvbnNlQikKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CDUdhbWVSb29tUHJvdG9QAWIGcHJvdG8z", [file_game_session, file_occupant, file_game_type]);
 
 /**
  * @generated from message com.coparlor.app.CreateGameRoomRequest
  */
 export type CreateGameRoomRequest = Message<"com.coparlor.app.CreateGameRoomRequest"> & {
-  /**
-   * @generated from field: com.coparlor.app.GameSession game_session = 1;
-   */
-  gameSession?: GameSession;
 };
 
 /**

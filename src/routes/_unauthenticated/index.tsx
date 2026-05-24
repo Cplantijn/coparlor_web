@@ -12,13 +12,7 @@ function Index() {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleCreateGameRoom = (gameType: GameType) => {
-    dispatch(
-      gameRoomActions.createGameRoom.request({
-        gameSession: {
-          gameType,
-        },
-      }),
-    );
+    dispatch(gameRoomActions.createGameRoom.request({ gameType }));
   };
 
   return (

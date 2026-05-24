@@ -18,7 +18,7 @@ export const selectGameRoomError = createSelector(
   (gameRoom) => gameRoom.error,
 );
 
-export const selectGameRoomOccupants = createSelector(
+export const selectPendingGameType = createSelector(
   selectGameRoom,
-  (gameRoom) => gameRoom.occupants,
+  (gameRoom) => gameRoom.pendingGameType,
 );

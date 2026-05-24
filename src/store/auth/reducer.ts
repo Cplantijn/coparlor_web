@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signInAnonymouslyActions, authStateChanged } from "./actions";
+import { signInAnonymouslyActions, authStateChanged, sessionResolved } from "./actions";
 
 export interface AuthState {
   uid: string | null;
   isAnonymous: boolean | null;
+  sessionId: string | null;
   loading: boolean;
   error: string | null;
   initialized: boolean;
@@ -12,6 +13,7 @@ export interface AuthState {
 const initialState: AuthState = {
   uid: null,
   isAnonymous: null,
+  sessionId: null,
   loading: false,
   error: null,
   initialized: false,
@@ -24,9 +26,15 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(authStateChanged, (state, action) => {
+        if (action.payload.uid !== state.uid) {
+          state.sessionId = null;
+        }
         state.uid = action.payload.uid;
         state.isAnonymous = action.payload.isAnonymous;
         state.initialized = true;
+      })
+      .addCase(sessionResolved, (state, action) => {
+        state.sessionId = action.payload.sessionId;
       })
       .addCase(signInAnonymouslyActions.pending, (state) => {
         state.loading = true;

@@ -1,4 +1,4 @@
-import { Observable, concat, from, map, of, switchMap, filter } from "rxjs";
+import { Observable, concat, from, map, of, switchMap, filter, withLatestFrom } from "rxjs";
 import { catchError } from "rxjs/operators";
 import type { Epic } from "redux-observable";
 import type { Action } from "@reduxjs/toolkit";
@@ -8,7 +8,10 @@ import {
   initAuthAction,
   authStateChanged,
   signInAnonymouslyActions,
+  sessionResolved,
 } from "./actions";
+import { getMySession } from "@api/grpcClient";
+import type { RootState } from "@store";
 
 /**
  * An observable that emits whenever the Firebase Auth state changes.
@@ -75,4 +78,21 @@ const signInAnonymouslyEpic: Epic<Action> = (action$) =>
     )
   );
 
-export const authEpics = [initAuthEpic, autoSignInEpic, signInAnonymouslyEpic];
+const fetchSessionEpic: Epic<Action, Action, RootState> = (action$, state$) =>
+  action$.pipe(
+    filter(authStateChanged.match),
+    filter((action) => action.payload.uid !== null),
+    withLatestFrom(state$),
+    filter(([, state]) => state.auth.sessionId === null),
+    switchMap(() =>
+      from(getMySession()).pipe(
+        map((response) => sessionResolved({ sessionId: response.sessionId })),
+        catchError((err: unknown) => {
+          console.warn("[auth] failed to resolve session ID:", err);
+          return of<Action>();
+        }),
+      )
+    ),
+  );
+
+export const authEpics = [initAuthEpic, autoSignInEpic, signInAnonymouslyEpic, fetchSessionEpic];

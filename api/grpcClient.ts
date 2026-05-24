@@ -5,6 +5,11 @@ import { createClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
 import { getIdToken } from "@auth/firebase";
 import {
+  AuthService,
+  GetMySessionRequestSchema,
+  type GetMySessionResponse,
+} from "./generated/auth_pb";
+import {
   type CreateGameSessionResponse,
   GameSessionService,
   CreateGameSessionRequestSchema,
@@ -33,10 +38,17 @@ const transport = createConnectTransport({
   ],
 });
 
+const authServiceClient = createClient(AuthService, transport);
 const gameSessionClient = createClient(GameSessionService, transport);
 const gameRoomClient = createClient(GameRoomService, transport);
 
 // --- Endpoints ---
+
+export async function getMySession(): Promise<GetMySessionResponse> {
+  return authServiceClient.getMySession(
+    create(GetMySessionRequestSchema, {}),
+  );
+}
 
 export async function createGameSession(
   payload: MessageInitShape<typeof CreateGameSessionRequestSchema>,

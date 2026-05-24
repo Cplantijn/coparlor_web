@@ -43,9 +43,11 @@ const createGameRoomEpic: Epic<Action> = (action$) =>
         from(createGameRoom(payload)).pipe(
           switchMap((response) => {
             const roomName = response.gameRoom?.name;
+
             if (roomName) {
               router.navigate({ to: "/r/$roomName", params: { roomName } });
             }
+
             return of(
               gameRoomActions.createGameRoom.fulfilled(response, payload),
             );
@@ -62,4 +64,5 @@ const createGameRoomEpic: Epic<Action> = (action$) =>
       ),
     ),
   );
+
 export const gameRoomEpics = [joinGameRoomEpic, createGameRoomEpic];

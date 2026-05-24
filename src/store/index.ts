@@ -4,6 +4,7 @@ import { rootEpic } from "./rootEpic";
 import { authReducer } from "./auth/reducer";
 import { gameSessionReducer } from "./gameSession/reducer";
 import { gameRoomReducer } from "./gameRoom/reducer";
+import { occupantsReducer } from "./occupants/reducer";
 
 const epicMiddleware = createEpicMiddleware();
 
@@ -12,6 +13,7 @@ export const store = configureStore({
     auth: authReducer,
     gameSession: gameSessionReducer,
     gameRoom: gameRoomReducer,
+    occupants: occupantsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: false }).concat(epicMiddleware),

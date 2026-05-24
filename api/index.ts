@@ -33,6 +33,7 @@ export type JoinGameRoomRequest = MessageInitShape<
 >;
 // Response types are re-exported as their generated pb types (not MessageInitShape)
 // because they arrive from the server as real Message instances, not plain init objects.
+export type { GetMySessionResponse } from "./generated/auth_pb";
 export type { JoinGameRoomResponse } from "./generated/game_room_pb";
 export type CreateGameRoomRequest = MessageInitShape<
   typeof CreateGameRoomRequestSchema

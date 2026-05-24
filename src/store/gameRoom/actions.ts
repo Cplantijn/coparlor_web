@@ -1,11 +1,12 @@
 import { createAction } from "@reduxjs/toolkit";
 import type {
   CreateGameRoomResponse,
-  CreateGameRoomRequest,
   JoinGameRoomRequest,
   JoinGameRoomResponse,
   Occupant,
 } from "@api";
+
+import type { CreateGameRoomClientRequest } from "./model";
 
 import { createActionSet } from "../createActionSet";
 
@@ -15,7 +16,7 @@ export const emitRoomOccupantsUpdated = createAction<Occupant[]>(
 
 export const gameRoomActions = {
   createGameRoom: createActionSet<
-    CreateGameRoomRequest,
+    CreateGameRoomClientRequest,
     CreateGameRoomResponse
   >("gameRoom/create"),
   joinGameRoom: createActionSet<JoinGameRoomRequest, JoinGameRoomResponse>(

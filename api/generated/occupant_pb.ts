@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file occupant.proto.
  */
 export const file_occupant: GenFile = /*@__PURE__*/
-  fileDesc("Cg5vY2N1cGFudC5wcm90bxIQY29tLmNvcGFybG9yLmFwcCLdAQoIT2NjdXBhbnQSRgoWcHVibGljX2FjY291bnRfc2Vzc2lvbhgBIAEoCzImLmNvbS5jb3Bhcmxvci5hcHAuUHVibGljQWNjb3VudFNlc3Npb24SLAoEcm9sZRgCIAEoDjIeLmNvbS5jb3Bhcmxvci5hcHAuT2NjdXBhbnRSb2xlEgwKBHNlYXQYBCABKAUSOQoPZGlzY29ubmVjdGVkX2F0GAUgASgLMhsuY29tLmNvcGFybG9yLmFwcC5UaW1lc3RhbXBIAIgBAUISChBfZGlzY29ubmVjdGVkX2F0KncKDE9jY3VwYW50Um9sZRIUChBPY2N1cGFudFJvbGVOb25lEAASGwoXT2NjdXBhbnRSb2xlSHVtYW5QbGF5ZXIQARIZChVPY2N1cGFudFJvbGVCb3RQbGF5ZXIQAhIZChVPY2N1cGFudFJvbGVTcGVjdGF0b3IQA0IpChZjb20uY29wYXJsb3IuYXBwLnByb3RvQg1PY2N1cGFudFByb3RvUAFiBnByb3RvMw", [file_account_session, file_timestamp]);
+  fileDesc("Cg5vY2N1cGFudC5wcm90bxIQY29tLmNvcGFybG9yLmFwcCL0AQoIT2NjdXBhbnQSRgoWcHVibGljX2FjY291bnRfc2Vzc2lvbhgBIAEoCzImLmNvbS5jb3Bhcmxvci5hcHAuUHVibGljQWNjb3VudFNlc3Npb24SLAoEcm9sZRgCIAEoDjIeLmNvbS5jb3Bhcmxvci5hcHAuT2NjdXBhbnRSb2xlEhUKDWlzX3Jvb21fb3duZXIYAyABKAgSDAoEc2VhdBgEIAEoBRI5Cg9kaXNjb25uZWN0ZWRfYXQYBSABKAsyGy5jb20uY29wYXJsb3IuYXBwLlRpbWVzdGFtcEgAiAEBQhIKEF9kaXNjb25uZWN0ZWRfYXQqdwoMT2NjdXBhbnRSb2xlEhQKEE9jY3VwYW50Um9sZU5vbmUQABIbChdPY2N1cGFudFJvbGVIdW1hblBsYXllchABEhkKFU9jY3VwYW50Um9sZUJvdFBsYXllchACEhkKFU9jY3VwYW50Um9sZVNwZWN0YXRvchADQikKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CDU9jY3VwYW50UHJvdG9QAWIGcHJvdG8z", [file_account_session, file_timestamp]);
 
 /**
  * @generated from message com.coparlor.app.Occupant
@@ -29,6 +29,11 @@ export type Occupant = Message<"com.coparlor.app.Occupant"> & {
    * @generated from field: com.coparlor.app.OccupantRole role = 2;
    */
   role: OccupantRole;
+
+  /**
+   * @generated from field: bool is_room_owner = 3;
+   */
+  isRoomOwner: boolean;
 
   /**
    * @generated from field: int32 seat = 4;

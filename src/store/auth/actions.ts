@@ -13,3 +13,8 @@ export const initAuthAction = createAction("auth/initAuth");
 export const authStateChanged = createAction<{ uid: string | null; isAnonymous: boolean | null }>(
   "auth/authStateChanged"
 );
+
+// Dispatched when the backend AccountSession.id has been resolved for the current uid
+export const sessionResolved = createAction<{ sessionId: string }>(
+  "auth/sessionResolved"
+);

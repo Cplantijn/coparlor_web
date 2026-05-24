@@ -6,13 +6,15 @@ import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2"
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Occupant } from "./occupant_pb";
 import { file_occupant } from "./occupant_pb";
+import type { GamePhase } from "./game_phase_pb";
+import { file_game_phase } from "./game_phase_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file notification.proto.
  */
 export const file_notification: GenFile = /*@__PURE__*/
-  fileDesc("ChJub3RpZmljYXRpb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiYgobUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkEhQKDGdhbWVfcm9vbV9pZBgBIAEoCRItCglvY2N1cGFudHMYAiADKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50IqwBChROb3RpZmljYXRpb25SZXNwb25zZRIwCgR0eXBlGAEgASgOMiIuY29tLmNvcGFybG9yLmFwcC5Ob3RpZmljYXRpb25UeXBlElcKHnJvb21fb2NjdXBhbnRzX3VwZGF0ZWRfcGF5bG9hZBgCIAEoCzItLmNvbS5jb3Bhcmxvci5hcHAuUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkSABCCQoHcGF5bG9hZCpRChBOb3RpZmljYXRpb25UeXBlEiEKHU5PVElGSUNBVElPTl9UWVBFX1VOU1BFQ0lGSUVEEAASGgoWUk9PTV9PQ0NVUEFOVFNfVVBEQVRFRBABQi0KFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEU5vdGlmaWNhdGlvblByb3RvUAFiBnByb3RvMw", [file_occupant]);
+  fileDesc("ChJub3RpZmljYXRpb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiYgobUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkEhQKDGdhbWVfcm9vbV9pZBgBIAEoCRItCglvY2N1cGFudHMYAiADKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50Il4KF0dhbWVTdGF0ZVVwZGF0ZWRQYXlsb2FkEi8KCmdhbWVfcGhhc2UYASABKA4yGy5jb20uY29wYXJsb3IuYXBwLkdhbWVQaGFzZRISCgpnYW1lX3N0YXRlGAIgASgJIv0BChROb3RpZmljYXRpb25SZXNwb25zZRIwCgR0eXBlGAEgASgOMiIuY29tLmNvcGFybG9yLmFwcC5Ob3RpZmljYXRpb25UeXBlElcKHnJvb21fb2NjdXBhbnRzX3VwZGF0ZWRfcGF5bG9hZBgCIAEoCzItLmNvbS5jb3Bhcmxvci5hcHAuUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkSAASTwoaZ2FtZV9zdGF0ZV91cGRhdGVkX3BheWxvYWQYAyABKAsyKS5jb20uY29wYXJsb3IuYXBwLkdhbWVTdGF0ZVVwZGF0ZWRQYXlsb2FkSABCCQoHcGF5bG9hZCppChBOb3RpZmljYXRpb25UeXBlEiEKHU5PVElGSUNBVElPTl9UWVBFX1VOU1BFQ0lGSUVEEAASGgoWUk9PTV9PQ0NVUEFOVFNfVVBEQVRFRBABEhYKEkdBTUVfU1RBVEVfVVBEQVRFRBACQi0KFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEU5vdGlmaWNhdGlvblByb3RvUAFiBnByb3RvMw", [file_occupant, file_game_phase]);
 
 /**
  * @generated from message com.coparlor.app.RoomOccupantsUpdatedPayload
@@ -37,6 +39,28 @@ export const RoomOccupantsUpdatedPayloadSchema: GenMessage<RoomOccupantsUpdatedP
   messageDesc(file_notification, 0);
 
 /**
+ * @generated from message com.coparlor.app.GameStateUpdatedPayload
+ */
+export type GameStateUpdatedPayload = Message<"com.coparlor.app.GameStateUpdatedPayload"> & {
+  /**
+   * @generated from field: com.coparlor.app.GamePhase game_phase = 1;
+   */
+  gamePhase: GamePhase;
+
+  /**
+   * @generated from field: string game_state = 2;
+   */
+  gameState: string;
+};
+
+/**
+ * Describes the message com.coparlor.app.GameStateUpdatedPayload.
+ * Use `create(GameStateUpdatedPayloadSchema)` to create a new message.
+ */
+export const GameStateUpdatedPayloadSchema: GenMessage<GameStateUpdatedPayload> = /*@__PURE__*/
+  messageDesc(file_notification, 1);
+
+/**
  * @generated from message com.coparlor.app.NotificationResponse
  */
 export type NotificationResponse = Message<"com.coparlor.app.NotificationResponse"> & {
@@ -54,6 +78,12 @@ export type NotificationResponse = Message<"com.coparlor.app.NotificationRespons
      */
     value: RoomOccupantsUpdatedPayload;
     case: "roomOccupantsUpdatedPayload";
+  } | {
+    /**
+     * @generated from field: com.coparlor.app.GameStateUpdatedPayload game_state_updated_payload = 3;
+     */
+    value: GameStateUpdatedPayload;
+    case: "gameStateUpdatedPayload";
   } | { case: undefined; value?: undefined };
 };
 
@@ -62,7 +92,7 @@ export type NotificationResponse = Message<"com.coparlor.app.NotificationRespons
  * Use `create(NotificationResponseSchema)` to create a new message.
  */
 export const NotificationResponseSchema: GenMessage<NotificationResponse> = /*@__PURE__*/
-  messageDesc(file_notification, 1);
+  messageDesc(file_notification, 2);
 
 /**
  * @generated from enum com.coparlor.app.NotificationType
@@ -77,6 +107,11 @@ export enum NotificationType {
    * @generated from enum value: ROOM_OCCUPANTS_UPDATED = 1;
    */
   ROOM_OCCUPANTS_UPDATED = 1,
+
+  /**
+   * @generated from enum value: GAME_STATE_UPDATED = 2;
+   */
+  GAME_STATE_UPDATED = 2,
 }
 
 /**
