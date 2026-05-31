@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file playing_card.proto.
  */
 export const file_playing_card: GenFile = /*@__PURE__*/
-  fileDesc("ChJwbGF5aW5nX2NhcmQucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiPgoERGVjaxIPCgdkZWNrX2lkGAEgASgNEiUKBWNhcmRzGAIgAygLMhYuY29tLmNvcGFybG9yLmFwcC5DYXJkIlIKBENhcmQSJAoEcmFuaxgBIAEoDjIWLmNvbS5jb3Bhcmxvci5hcHAuUmFuaxIkCgRzdWl0GAIgASgOMhYuY29tLmNvcGFybG9yLmFwcC5TdWl0Kk0KBFN1aXQSFAoQU1VJVF9VTlNQRUNJRklFRBAAEgkKBUNMVUJTEAESDAoIRElBTU9ORFMQAhIKCgZIRUFSVFMQAxIKCgZTUEFERVMQBCqpAQoEUmFuaxIUChBSQU5LX1VOU1BFQ0lGSUVEEAASBwoDVFdPEAESCQoFVEhSRUUQAhIICgRGT1VSEAMSCAoERklWRRAEEgcKA1NJWBAFEgkKBVNFVkVOEAYSCQoFRUlHSFQQBxIICgROSU5FEAgSBwoDVEVOEAkSCAoESkFDSxAKEgkKBVFVRUVOEAsSCAoES0lORxAMEgcKA0FDRRANEgkKBUpPS0VSEA5CLAoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IQUGxheWluZ0NhcmRQcm90b1ABYgZwcm90bzM");
+  fileDesc("ChJwbGF5aW5nX2NhcmQucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiPgoERGVjaxIPCgdkZWNrX2lkGAEgASgNEiUKBWNhcmRzGAIgAygLMhYuY29tLmNvcGFybG9yLmFwcC5DYXJkIlIKBENhcmQSJAoEcmFuaxgBIAEoDjIWLmNvbS5jb3Bhcmxvci5hcHAuUmFuaxIkCgRzdWl0GAIgASgOMhYuY29tLmNvcGFybG9yLmFwcC5TdWl0IkkKBEhhbmQSGwoTb2NjdXBhbnRfc2Vzc2lvbl9pZBgBIAEoCRIkCgRjYXJkGAIgAygLMhYuY29tLmNvcGFybG9yLmFwcC5DYXJkKk0KBFN1aXQSFAoQU1VJVF9VTlNQRUNJRklFRBAAEgkKBUNMVUJTEAESDAoIRElBTU9ORFMQAhIKCgZIRUFSVFMQAxIKCgZTUEFERVMQBCqpAQoEUmFuaxIUChBSQU5LX1VOU1BFQ0lGSUVEEAASBwoDVFdPEAESCQoFVEhSRUUQAhIICgRGT1VSEAMSCAoERklWRRAEEgcKA1NJWBAFEgkKBVNFVkVOEAYSCQoFRUlHSFQQBxIICgROSU5FEAgSBwoDVEVOEAkSCAoESkFDSxAKEgkKBVFVRUVOEAsSCAoES0lORxAMEgcKA0FDRRANEgkKBUpPS0VSEA5CLAoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IQUGxheWluZ0NhcmRQcm90b1ABYgZwcm90bzM");
 
 /**
  * @generated from message com.coparlor.app.Deck
@@ -55,6 +55,28 @@ export type Card = Message<"com.coparlor.app.Card"> & {
  */
 export const CardSchema: GenMessage<Card> = /*@__PURE__*/
   messageDesc(file_playing_card, 1);
+
+/**
+ * @generated from message com.coparlor.app.Hand
+ */
+export type Hand = Message<"com.coparlor.app.Hand"> & {
+  /**
+   * @generated from field: string occupant_session_id = 1;
+   */
+  occupantSessionId: string;
+
+  /**
+   * @generated from field: repeated com.coparlor.app.Card card = 2;
+   */
+  card: Card[];
+};
+
+/**
+ * Describes the message com.coparlor.app.Hand.
+ * Use `create(HandSchema)` to create a new message.
+ */
+export const HandSchema: GenMessage<Hand> = /*@__PURE__*/
+  messageDesc(file_playing_card, 2);
 
 /**
  * @generated from enum com.coparlor.app.Suit

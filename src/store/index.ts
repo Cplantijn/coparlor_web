@@ -1,18 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
+import type { Action } from "@reduxjs/toolkit";
 import { createEpicMiddleware } from "redux-observable";
 import { rootEpic } from "./rootEpic";
 import { authReducer } from "./auth/reducer";
 import { gameSessionReducer } from "./gameSession/reducer";
 import { gameRoomReducer } from "./gameRoom/reducer";
+import { gameStateReducer } from "./gameState/reducer";
+import { gameMessageReducer } from "./gameMessage/reducer";
 import { occupantsReducer } from "./occupants/reducer";
 
-const epicMiddleware = createEpicMiddleware();
+const epicMiddleware = createEpicMiddleware<Action, Action, any>();
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     gameSession: gameSessionReducer,
     gameRoom: gameRoomReducer,
+    gameState: gameStateReducer,
+    gameMessage: gameMessageReducer,
     occupants: occupantsReducer,
   },
   middleware: (getDefaultMiddleware) =>

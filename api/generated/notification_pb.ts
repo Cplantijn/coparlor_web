@@ -4,17 +4,23 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { Occupant } from "./occupant_pb";
-import { file_occupant } from "./occupant_pb";
 import type { GamePhase } from "./game_phase_pb";
 import { file_game_phase } from "./game_phase_pb";
+import type { GameState } from "./game_state_pb";
+import { file_game_state } from "./game_state_pb";
+import type { Occupant } from "./occupant_pb";
+import { file_occupant } from "./occupant_pb";
+import type { GameAction } from "./game_action_pb";
+import { file_game_action } from "./game_action_pb";
+import type { Timestamp } from "./timestamp_pb";
+import { file_timestamp } from "./timestamp_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file notification.proto.
  */
 export const file_notification: GenFile = /*@__PURE__*/
-  fileDesc("ChJub3RpZmljYXRpb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiYgobUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkEhQKDGdhbWVfcm9vbV9pZBgBIAEoCRItCglvY2N1cGFudHMYAiADKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50Il4KF0dhbWVTdGF0ZVVwZGF0ZWRQYXlsb2FkEi8KCmdhbWVfcGhhc2UYASABKA4yGy5jb20uY29wYXJsb3IuYXBwLkdhbWVQaGFzZRISCgpnYW1lX3N0YXRlGAIgASgJIv0BChROb3RpZmljYXRpb25SZXNwb25zZRIwCgR0eXBlGAEgASgOMiIuY29tLmNvcGFybG9yLmFwcC5Ob3RpZmljYXRpb25UeXBlElcKHnJvb21fb2NjdXBhbnRzX3VwZGF0ZWRfcGF5bG9hZBgCIAEoCzItLmNvbS5jb3Bhcmxvci5hcHAuUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkSAASTwoaZ2FtZV9zdGF0ZV91cGRhdGVkX3BheWxvYWQYAyABKAsyKS5jb20uY29wYXJsb3IuYXBwLkdhbWVTdGF0ZVVwZGF0ZWRQYXlsb2FkSABCCQoHcGF5bG9hZCppChBOb3RpZmljYXRpb25UeXBlEiEKHU5PVElGSUNBVElPTl9UWVBFX1VOU1BFQ0lGSUVEEAASGgoWUk9PTV9PQ0NVUEFOVFNfVVBEQVRFRBABEhYKEkdBTUVfU1RBVEVfVVBEQVRFRBACQi0KFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEU5vdGlmaWNhdGlvblByb3RvUAFiBnByb3RvMw", [file_occupant, file_game_phase]);
+  fileDesc("ChJub3RpZmljYXRpb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiYgobUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkEhQKDGdhbWVfcm9vbV9pZBgBIAEoCRItCglvY2N1cGFudHMYAiADKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50IrMBChdHYW1lU3RhdGVVcGRhdGVkUGF5bG9hZBIvCgpnYW1lX3BoYXNlGAEgASgOMhsuY29tLmNvcGFybG9yLmFwcC5HYW1lUGhhc2USLwoKZ2FtZV9zdGF0ZRgCIAEoCzIbLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVN0YXRlEjYKEGxhc3RfZ2FtZV9hY3Rpb24YAyABKAsyHC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb24ihgEKEkdhbWVNZXNzYWdlUGF5bG9hZBIvCgR0eXBlGAEgASgOMiEuY29tLmNvcGFybG9yLmFwcC5HYW1lTWVzc2FnZVR5cGUSDwoHbWVzc2FnZRgCIAEoCRIuCgl0aW1lc3RhbXAYAyABKAsyGy5jb20uY29wYXJsb3IuYXBwLlRpbWVzdGFtcCLDAgoUTm90aWZpY2F0aW9uUmVzcG9uc2USMAoEdHlwZRgBIAEoDjIiLmNvbS5jb3Bhcmxvci5hcHAuTm90aWZpY2F0aW9uVHlwZRJXCh5yb29tX29jY3VwYW50c191cGRhdGVkX3BheWxvYWQYAiABKAsyLS5jb20uY29wYXJsb3IuYXBwLlJvb21PY2N1cGFudHNVcGRhdGVkUGF5bG9hZEgAEk8KGmdhbWVfc3RhdGVfdXBkYXRlZF9wYXlsb2FkGAMgASgLMikuY29tLmNvcGFybG9yLmFwcC5HYW1lU3RhdGVVcGRhdGVkUGF5bG9hZEgAEkQKFGdhbWVfbWVzc2FnZV9wYXlsb2FkGAQgASgLMiQuY29tLmNvcGFybG9yLmFwcC5HYW1lTWVzc2FnZVBheWxvYWRIAEIJCgdwYXlsb2FkKnsKEE5vdGlmaWNhdGlvblR5cGUSIQodTk9USUZJQ0FUSU9OX1RZUEVfVU5TUEVDSUZJRUQQABIaChZST09NX09DQ1VQQU5UU19VUERBVEVEEAESFgoSR0FNRV9TVEFURV9VUERBVEVEEAISEAoMR0FNRV9NRVNTQUdFEAMqrQEKD0dhbWVNZXNzYWdlVHlwZRIhCh1HQU1FX01FU1NBR0VfVFlQRV9VTlNQRUNJRklFRBAAEhkKFUdBTUVfTUVTU0FHRV9UWVBFX1RJUBABEhwKGEdBTUVfTUVTU0FHRV9UWVBFX05PVElDRRACEh0KGUdBTUVfTUVTU0FHRV9UWVBFX1dBUk5JTkcQAxIfChtHQU1FX01FU1NBR0VfVFlQRV9FWENFUFRJT04QBEItChZjb20uY29wYXJsb3IuYXBwLnByb3RvQhFOb3RpZmljYXRpb25Qcm90b1ABYgZwcm90bzM", [file_game_phase, file_game_state, file_occupant, file_game_action, file_timestamp]);
 
 /**
  * @generated from message com.coparlor.app.RoomOccupantsUpdatedPayload
@@ -48,9 +54,14 @@ export type GameStateUpdatedPayload = Message<"com.coparlor.app.GameStateUpdated
   gamePhase: GamePhase;
 
   /**
-   * @generated from field: string game_state = 2;
+   * @generated from field: com.coparlor.app.GameState game_state = 2;
    */
-  gameState: string;
+  gameState?: GameState;
+
+  /**
+   * @generated from field: com.coparlor.app.GameAction last_game_action = 3;
+   */
+  lastGameAction?: GameAction;
 };
 
 /**
@@ -59,6 +70,33 @@ export type GameStateUpdatedPayload = Message<"com.coparlor.app.GameStateUpdated
  */
 export const GameStateUpdatedPayloadSchema: GenMessage<GameStateUpdatedPayload> = /*@__PURE__*/
   messageDesc(file_notification, 1);
+
+/**
+ * @generated from message com.coparlor.app.GameMessagePayload
+ */
+export type GameMessagePayload = Message<"com.coparlor.app.GameMessagePayload"> & {
+  /**
+   * @generated from field: com.coparlor.app.GameMessageType type = 1;
+   */
+  type: GameMessageType;
+
+  /**
+   * @generated from field: string message = 2;
+   */
+  message: string;
+
+  /**
+   * @generated from field: com.coparlor.app.Timestamp timestamp = 3;
+   */
+  timestamp?: Timestamp;
+};
+
+/**
+ * Describes the message com.coparlor.app.GameMessagePayload.
+ * Use `create(GameMessagePayloadSchema)` to create a new message.
+ */
+export const GameMessagePayloadSchema: GenMessage<GameMessagePayload> = /*@__PURE__*/
+  messageDesc(file_notification, 2);
 
 /**
  * @generated from message com.coparlor.app.NotificationResponse
@@ -84,6 +122,12 @@ export type NotificationResponse = Message<"com.coparlor.app.NotificationRespons
      */
     value: GameStateUpdatedPayload;
     case: "gameStateUpdatedPayload";
+  } | {
+    /**
+     * @generated from field: com.coparlor.app.GameMessagePayload game_message_payload = 4;
+     */
+    value: GameMessagePayload;
+    case: "gameMessagePayload";
   } | { case: undefined; value?: undefined };
 };
 
@@ -92,7 +136,7 @@ export type NotificationResponse = Message<"com.coparlor.app.NotificationRespons
  * Use `create(NotificationResponseSchema)` to create a new message.
  */
 export const NotificationResponseSchema: GenMessage<NotificationResponse> = /*@__PURE__*/
-  messageDesc(file_notification, 2);
+  messageDesc(file_notification, 3);
 
 /**
  * @generated from enum com.coparlor.app.NotificationType
@@ -112,6 +156,11 @@ export enum NotificationType {
    * @generated from enum value: GAME_STATE_UPDATED = 2;
    */
   GAME_STATE_UPDATED = 2,
+
+  /**
+   * @generated from enum value: GAME_MESSAGE = 3;
+   */
+  GAME_MESSAGE = 3,
 }
 
 /**
@@ -119,4 +168,40 @@ export enum NotificationType {
  */
 export const NotificationTypeSchema: GenEnum<NotificationType> = /*@__PURE__*/
   enumDesc(file_notification, 0);
+
+/**
+ * @generated from enum com.coparlor.app.GameMessageType
+ */
+export enum GameMessageType {
+  /**
+   * @generated from enum value: GAME_MESSAGE_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: GAME_MESSAGE_TYPE_TIP = 1;
+   */
+  TIP = 1,
+
+  /**
+   * @generated from enum value: GAME_MESSAGE_TYPE_NOTICE = 2;
+   */
+  NOTICE = 2,
+
+  /**
+   * @generated from enum value: GAME_MESSAGE_TYPE_WARNING = 3;
+   */
+  WARNING = 3,
+
+  /**
+   * @generated from enum value: GAME_MESSAGE_TYPE_EXCEPTION = 4;
+   */
+  EXCEPTION = 4,
+}
+
+/**
+ * Describes the enum com.coparlor.app.GameMessageType.
+ */
+export const GameMessageTypeSchema: GenEnum<GameMessageType> = /*@__PURE__*/
+  enumDesc(file_notification, 1);
 

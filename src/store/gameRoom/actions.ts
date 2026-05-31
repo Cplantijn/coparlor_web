@@ -1,6 +1,8 @@
 import { createAction } from "@reduxjs/toolkit";
 import type {
   CreateGameRoomResponse,
+  OccupySeatRequest,
+  OccupySeatResponse,
   JoinGameRoomRequest,
   JoinGameRoomResponse,
   Occupant,
@@ -21,5 +23,8 @@ export const gameRoomActions = {
   >("gameRoom/create"),
   joinGameRoom: createActionSet<JoinGameRoomRequest, JoinGameRoomResponse>(
     "gameRoom/join",
+  ),
+  occupySeat: createActionSet<OccupySeatRequest, OccupySeatResponse>(
+    "gameRoom/occupySeat",
   ),
 };

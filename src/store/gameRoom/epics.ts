@@ -2,7 +2,7 @@ import { concat, from, of } from "rxjs";
 import { catchError, filter, switchMap } from "rxjs/operators";
 import type { Epic } from "redux-observable";
 import type { Action } from "@reduxjs/toolkit";
-import { createGameRoom, joinGameRoom } from "@api/grpcClient";
+import { createGameRoom, joinGameRoom, occupySeat } from "@api/grpcClient";
 import { gameRoomActions } from "./actions";
 import { router } from "../../router";
 
@@ -65,4 +65,28 @@ const createGameRoomEpic: Epic<Action> = (action$) =>
     ),
   );
 
-export const gameRoomEpics = [joinGameRoomEpic, createGameRoomEpic];
+const occupySeatEpic: Epic<Action> = (action$) =>
+  action$.pipe(
+    filter(gameRoomActions.occupySeat.request.match),
+    switchMap(({ payload }) =>
+      concat(
+        of(gameRoomActions.occupySeat.pending(payload)),
+        from(occupySeat(payload)).pipe(
+          switchMap((response) =>
+            of(gameRoomActions.occupySeat.fulfilled(response, payload)),
+          ),
+          catchError((err: unknown) => {
+            alert(err instanceof Error ? err.message : "Unknown error");
+            return of(
+              gameRoomActions.occupySeat.rejected(
+                err instanceof Error ? err.message : "Unknown error",
+                payload,
+              ),
+            );
+          }),
+        ),
+      ),
+    ),
+  );
+
+export const gameRoomEpics = [joinGameRoomEpic, createGameRoomEpic, occupySeatEpic];

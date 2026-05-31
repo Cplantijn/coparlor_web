@@ -6,6 +6,10 @@ import type {
   GameSession,
 } from "@api";
 
+export const emitGameStateUpdated = createAction<string>(
+  "gameState/emitGameStateUpdated",
+);
+
 export const gameSessionActions = {
   createGameSession: createActionSet<
     CreateGameSessionRequest,

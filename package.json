@@ -16,10 +16,15 @@
     "@bufbuild/protobuf": "^2.11.0",
     "@connectrpc/connect": "^2.0.0",
     "@connectrpc/connect-web": "^2.0.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.0.1",
+    "@mui/material": "^9.0.1",
     "@pixi/react": "^8.0.5",
     "@reduxjs/toolkit": "^2.5.1",
     "@tanstack/react-router": "^1.168.0",
     "@tanstack/react-router-devtools": "^1.166.13",
+    "clsx": "^2.1.1",
     "firebase": "^12.12.0",
     "moment-timezone": "^0.6.2",
     "pixi.js": "^8.18.1",
@@ -27,7 +32,8 @@
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "redux-observable": "^3.0.0-rc.3",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@bufbuild/buf": "^1.67.0",

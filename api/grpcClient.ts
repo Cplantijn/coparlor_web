@@ -19,6 +19,8 @@ import {
   type CreateGameRoomResponse,
   GameRoomService,
   JoinGameRoomRequestSchema,
+  OccupySeatRequestSchema,
+  type OccupySeatResponse,
 } from "./generated/game_room_pb";
 import { type JoinGameRoomResponse } from "./generated/game_room_pb";
 
@@ -71,5 +73,13 @@ export async function createGameRoom(
 ): Promise<CreateGameRoomResponse> {
   return gameRoomClient.createGameRoom(
     create(CreateGameRoomRequestSchema, payload),
+  );
+}
+
+export async function occupySeat(
+  payload: MessageInitShape<typeof OccupySeatRequestSchema>,
+): Promise<OccupySeatResponse> {
+  return gameRoomClient.occupySeat(
+    create(OccupySeatRequestSchema, payload),
   );
 }

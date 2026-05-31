@@ -4,6 +4,8 @@ import type { Epic } from "redux-observable";
 import type { Action } from "@reduxjs/toolkit";
 import { authStateChanged } from "@store/auth";
 import { emitRoomOccupantsUpdated } from "@store/gameRoom";
+import { emitGameMessage } from "@store/gameMessage";
+import { emitGameStateUpdated } from "@store/gameState";
 import { subscribeToNotifications } from "@api/notificationClient";
 
 /**
@@ -31,6 +33,13 @@ const notificationSubscriptionEpic: Epic<Action> = (action$) =>
                 ];
               }
               return EMPTY;
+            case "gameStateUpdatedPayload":
+              if (notification.payload.value.gamePhase) {
+                return [emitGameStateUpdated(notification.payload.value)];
+              }
+              return EMPTY;
+            case "gameMessagePayload":
+              return [emitGameMessage(notification.payload.value)];
             default:
               return EMPTY;
           }

@@ -4,17 +4,19 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { Deck } from "./playing_card_pb";
-import { file_playing_card } from "./playing_card_pb";
 import type { GamePhase } from "./game_phase_pb";
 import { file_game_phase } from "./game_phase_pb";
+import type { Deck, Hand } from "./playing_card_pb";
+import { file_playing_card } from "./playing_card_pb";
+import type { GameAction } from "./game_action_pb";
+import { file_game_action } from "./game_action_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file game_state.proto.
  */
 export const file_game_state: GenFile = /*@__PURE__*/
-  fileDesc("ChBnYW1lX3N0YXRlLnByb3RvEhBjb20uY29wYXJsb3IuYXBwImMKCUdhbWVTdGF0ZRIvCgpnYW1lX3BoYXNlGAEgASgOMhsuY29tLmNvcGFybG9yLmFwcC5HYW1lUGhhc2USJQoFZGVja3MYAiADKAsyFi5jb20uY29wYXJsb3IuYXBwLkRlY2tCKwoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IPQm9hcmRTdGF0ZVByb3RvUAFiBnByb3RvMw", [file_playing_card, file_game_phase]);
+  fileDesc("ChBnYW1lX3N0YXRlLnByb3RvEhBjb20uY29wYXJsb3IuYXBwIr0BCglHYW1lU3RhdGUSLwoKZ2FtZV9waGFzZRgBIAEoDjIbLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVBoYXNlEiUKBWRlY2tzGAIgAygLMhYuY29tLmNvcGFybG9yLmFwcC5EZWNrEiUKBWhhbmRzGAMgAygLMhYuY29tLmNvcGFybG9yLmFwcC5IYW5kEjEKC2dhbWVfYWN0aW9uGAQgASgLMhwuY29tLmNvcGFybG9yLmFwcC5HYW1lQWN0aW9uQioKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CDkdhbWVTdGF0ZVByb3RvUAFiBnByb3RvMw", [file_game_phase, file_playing_card, file_game_action]);
 
 /**
  * @generated from message com.coparlor.app.GameState
@@ -29,6 +31,16 @@ export type GameState = Message<"com.coparlor.app.GameState"> & {
    * @generated from field: repeated com.coparlor.app.Deck decks = 2;
    */
   decks: Deck[];
+
+  /**
+   * @generated from field: repeated com.coparlor.app.Hand hands = 3;
+   */
+  hands: Hand[];
+
+  /**
+   * @generated from field: com.coparlor.app.GameAction game_action = 4;
+   */
+  gameAction?: GameAction;
 };
 
 /**
