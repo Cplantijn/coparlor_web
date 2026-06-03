@@ -9,7 +9,7 @@ import {
   selectVisibleGameMessages,
   type GameMessage,
 } from "@store/gameMessage";
-import { cn } from "@utils/classnames";
+import { cn } from "@utils";
 
 const AUTO_DISMISS_MS = 5_000;
 const AUTO_DISMISS_FADE_MS = 200;

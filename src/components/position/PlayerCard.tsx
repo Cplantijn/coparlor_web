@@ -1,6 +1,7 @@
 import { OccupantRole } from "@api";
 import type { OccupantEntity, OccupiedSeatPosition } from "@store/occupants";
 import { PlayingCard } from "../PlayingCard";
+import { cn } from "@utils";
 
 export function PlayerCard(props: {
   occupant: OccupantEntity;
@@ -9,9 +10,25 @@ export function PlayerCard(props: {
   isSelf: boolean;
 }) {
   const cards = props.hand?.card ?? [];
+  const isBot =
+    props.occupant.role === OccupantRole.OccupantRoleBotPlayer ||
+    props.occupant.role === OccupantRole.OccupantRoleBotDealer;
+  const isDealer =
+    props.occupant.role === OccupantRole.OccupantRoleHumanDealer ||
+    props.occupant.role === OccupantRole.OccupantRoleBotDealer;
 
   return (
-    <div className="relative p-2 py-3 border rounded-sm w-48 flex flex-col items-center gap-2 border-gray-200 cursor-pointer hover:bg-gray-100 bg-gray-50">
+    <div
+      className={cn(
+        "relative p-2 py-3 border rounded-sm w-48 flex flex-col items-center gap-2 cursor-pointer",
+        {
+          "border-gray-200 hover:bg-gray-100 bg-gray-50": !isBot && !isDealer,
+          "border-yellow-200 hover:bg-yellow-100 bg-yellow-50":
+            isBot && !isDealer,
+          "border-purple-200 hover:bg-purple-100 bg-purple-50": isDealer,
+        },
+      )}
+    >
       <span className="gap-0.5 font-bold text-orange-500">
         {props.occupant.publicAccountSession.displayName}
       </span>
@@ -36,9 +53,14 @@ export function PlayerCard(props: {
             Me
           </span>
         )}
-        {props.occupant.role === OccupantRole.OccupantRoleBotPlayer && (
+        {isDealer && (
+          <span className="bg-purple-600 border border-purple-700 text-white rounded-sm p-1 text-[10px]">
+            Dealer
+          </span>
+        )}
+        {isBot && (
           <span className="bg-yellow-500 border border-yellow-600 text-white rounded-sm p-1 text-[10px]">
-            Bot
+            🤖 Bot
           </span>
         )}
       </div>

@@ -21,7 +21,9 @@ function isOccupantEntity(occupant: Occupant): occupant is OccupantEntity {
 export function isPlayerOccupant(occupant: OccupantEntity): boolean {
   return (
     occupant.role === OccupantRole.OccupantRoleHumanPlayer ||
-    occupant.role === OccupantRole.OccupantRoleBotPlayer
+    occupant.role === OccupantRole.OccupantRoleHumanDealer ||
+    occupant.role === OccupantRole.OccupantRoleBotPlayer ||
+    occupant.role === OccupantRole.OccupantRoleBotDealer
   );
 }
 

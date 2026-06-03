@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file occupant.proto.
  */
 export const file_occupant: GenFile = /*@__PURE__*/
-  fileDesc("Cg5vY2N1cGFudC5wcm90bxIQY29tLmNvcGFybG9yLmFwcCL0AQoIT2NjdXBhbnQSRgoWcHVibGljX2FjY291bnRfc2Vzc2lvbhgBIAEoCzImLmNvbS5jb3Bhcmxvci5hcHAuUHVibGljQWNjb3VudFNlc3Npb24SLAoEcm9sZRgCIAEoDjIeLmNvbS5jb3Bhcmxvci5hcHAuT2NjdXBhbnRSb2xlEhUKDWlzX3Jvb21fb3duZXIYAyABKAgSDAoEc2VhdBgEIAEoBRI5Cg9kaXNjb25uZWN0ZWRfYXQYBSABKAsyGy5jb20uY29wYXJsb3IuYXBwLlRpbWVzdGFtcEgAiAEBQhIKEF9kaXNjb25uZWN0ZWRfYXQqdwoMT2NjdXBhbnRSb2xlEhQKEE9jY3VwYW50Um9sZU5vbmUQABIbChdPY2N1cGFudFJvbGVIdW1hblBsYXllchABEhkKFU9jY3VwYW50Um9sZUJvdFBsYXllchACEhkKFU9jY3VwYW50Um9sZVNwZWN0YXRvchADQikKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CDU9jY3VwYW50UHJvdG9QAWIGcHJvdG8z", [file_account_session, file_timestamp]);
+  fileDesc("Cg5vY2N1cGFudC5wcm90bxIQY29tLmNvcGFybG9yLmFwcCL0AQoIT2NjdXBhbnQSRgoWcHVibGljX2FjY291bnRfc2Vzc2lvbhgBIAEoCzImLmNvbS5jb3Bhcmxvci5hcHAuUHVibGljQWNjb3VudFNlc3Npb24SLAoEcm9sZRgCIAEoDjIeLmNvbS5jb3Bhcmxvci5hcHAuT2NjdXBhbnRSb2xlEhUKDWlzX3Jvb21fb3duZXIYAyABKAgSDAoEc2VhdBgEIAEoBRI5Cg9kaXNjb25uZWN0ZWRfYXQYBSABKAsyGy5jb20uY29wYXJsb3IuYXBwLlRpbWVzdGFtcEgAiAEBQhIKEF9kaXNjb25uZWN0ZWRfYXQqrwEKDE9jY3VwYW50Um9sZRIUChBPY2N1cGFudFJvbGVOb25lEAASGwoXT2NjdXBhbnRSb2xlSHVtYW5QbGF5ZXIQARIbChdPY2N1cGFudFJvbGVIdW1hbkRlYWxlchACEhkKFU9jY3VwYW50Um9sZUJvdFBsYXllchADEhkKFU9jY3VwYW50Um9sZUJvdERlYWxlchAEEhkKFU9jY3VwYW50Um9sZVNwZWN0YXRvchAFQikKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CDU9jY3VwYW50UHJvdG9QAWIGcHJvdG8z", [file_account_session, file_timestamp]);
 
 /**
  * @generated from message com.coparlor.app.Occupant
@@ -68,14 +68,24 @@ export enum OccupantRole {
   OccupantRoleHumanPlayer = 1,
 
   /**
-   * @generated from enum value: OccupantRoleBotPlayer = 2;
+   * @generated from enum value: OccupantRoleHumanDealer = 2;
    */
-  OccupantRoleBotPlayer = 2,
+  OccupantRoleHumanDealer = 2,
 
   /**
-   * @generated from enum value: OccupantRoleSpectator = 3;
+   * @generated from enum value: OccupantRoleBotPlayer = 3;
    */
-  OccupantRoleSpectator = 3,
+  OccupantRoleBotPlayer = 3,
+
+  /**
+   * @generated from enum value: OccupantRoleBotDealer = 4;
+   */
+  OccupantRoleBotDealer = 4,
+
+  /**
+   * @generated from enum value: OccupantRoleSpectator = 5;
+   */
+  OccupantRoleSpectator = 5,
 }
 
 /**

@@ -19,12 +19,14 @@
     "baseUrl": ".",
     "paths": {
       "@api": ["./api/index.ts"],
+      "@components/*": ["./src/components/*"],
       "@api/*": ["./api/*"],
       "@auth/*": ["./src/auth/*"],
       "@utils/*": ["./src/utils/*"],
+      "@utils": ["./src/utils/index.ts"],
       "@store": ["./src/store/index.ts"],
-      "@store/*": ["./src/store/*"]
-    }
+      "@store/*": ["./src/store/*"],
+    },
   },
-  "include": ["src"]
+  "include": ["src"],
 }
