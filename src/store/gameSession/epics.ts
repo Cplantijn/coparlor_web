@@ -2,7 +2,8 @@ import { concat, from, of } from "rxjs";
 import { catchError, filter, switchMap } from "rxjs/operators";
 import type { Epic } from "redux-observable";
 import type { Action } from "@reduxjs/toolkit";
-import { createGameSession } from "@api/grpcClient";
+import { commitGameAction, createGameSession } from "@api/grpcClient";
+import { legalActionActions } from "@store/legalAction";
 import { gameSessionActions } from "./actions";
 
 const createGameSessionEpic: Epic<Action> = (action$) =>
@@ -30,4 +31,27 @@ const createGameSessionEpic: Epic<Action> = (action$) =>
     ),
   );
 
-export const gameSessionEpics = [createGameSessionEpic];
+const commitGameActionEpic: Epic<Action> = (action$) =>
+  action$.pipe(
+    filter(legalActionActions.commitGameAction.request.match),
+    switchMap(({ payload }) =>
+      concat(
+        of(legalActionActions.commitGameAction.pending(payload)),
+        from(commitGameAction(payload)).pipe(
+          switchMap((response) =>
+            of(legalActionActions.commitGameAction.fulfilled(response, payload)),
+          ),
+          catchError((err: unknown) =>
+            of(
+              legalActionActions.commitGameAction.rejected(
+                err instanceof Error ? err.message : "Unknown error",
+                payload,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+
+export const gameSessionEpics = [createGameSessionEpic, commitGameActionEpic];

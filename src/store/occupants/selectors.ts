@@ -16,6 +16,33 @@ export const occupantsSelectors = occupantsAdapter.getSelectors(
 export const getAllOccupants = occupantsSelectors.selectAll;
 export const selectOccupantEntities = occupantsSelectors.selectEntities;
 
+const selectPublicSessionAccountId = (
+  _state: RootState,
+  sessionAccountId: string | null | undefined,
+) => sessionAccountId;
+
+const selectPublicSessionAccountIds = (
+  _state: RootState,
+  sessionAccountIds: readonly string[],
+) => sessionAccountIds;
+
+export const selectOccupantByPublicSessionAccountId = createSelector(
+  selectOccupantEntities,
+  selectPublicSessionAccountId,
+  (occupantsById, sessionAccountId) =>
+    sessionAccountId ? (occupantsById[sessionAccountId] ?? null) : null,
+);
+
+export const selectOccupantsByPublicSessionAccountIds = createSelector(
+  selectOccupantEntities,
+  selectPublicSessionAccountIds,
+  (occupantsById, sessionAccountIds) =>
+    sessionAccountIds.flatMap((sessionAccountId) => {
+      const occupant = occupantsById[sessionAccountId];
+      return occupant ? [occupant] : [];
+    }),
+);
+
 export const selectRoomOwnerId = createSelector(
   selectOccupantsState,
   (occupants) => occupants.roomOwnerId,

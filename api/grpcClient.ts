@@ -10,6 +10,8 @@ import {
   type GetMySessionResponse,
 } from "./generated/auth_pb";
 import {
+  type CommitGameActionResponse,
+  CommitGameActionRequestSchema,
   type CreateGameSessionResponse,
   GameSessionService,
   CreateGameSessionRequestSchema,
@@ -57,6 +59,14 @@ export async function createGameSession(
 ): Promise<CreateGameSessionResponse> {
   return gameSessionClient.createGameSession(
     create(CreateGameSessionRequestSchema, payload),
+  );
+}
+
+export async function commitGameAction(
+  payload: MessageInitShape<typeof CommitGameActionRequestSchema>,
+): Promise<CommitGameActionResponse> {
+  return gameSessionClient.commitAction(
+    create(CommitGameActionRequestSchema, payload),
   );
 }
 

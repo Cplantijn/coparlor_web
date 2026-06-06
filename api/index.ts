@@ -2,6 +2,8 @@ import type { MessageInitShape } from "@bufbuild/protobuf";
 import type { AccountSchema } from "./generated/account_pb";
 import type { PublicAccountSessionSchema } from "./generated/account_session_pb";
 import type {
+  CommitGameActionRequestSchema,
+  CommitGameActionResponseSchema,
   CreateGameSessionRequestSchema,
   CreateGameSessionResponseSchema,
   GameSessionSchema,
@@ -30,6 +32,12 @@ export type CreateGameSessionRequest = MessageInitShape<
 >;
 export type CreateGameSessionResponse = MessageInitShape<
   typeof CreateGameSessionResponseSchema
+>;
+export type CommitGameActionRequest = MessageInitShape<
+  typeof CommitGameActionRequestSchema
+>;
+export type CommitGameActionResponse = MessageInitShape<
+  typeof CommitGameActionResponseSchema
 >;
 export type GameSession = MessageInitShape<typeof GameSessionSchema>;
 export type JoinGameRoomRequest = MessageInitShape<
@@ -64,6 +72,10 @@ export type { Occupant } from "./generated/occupant_pb";
 export type { GameState } from "./generated/game_state_pb";
 export type { Card, Hand } from "./generated/playing_card_pb";
 export type { GameAction } from "./generated/game_action_pb";
+export type {
+  GameLegalAction,
+  GameLegalActionsPayload,
+} from "./generated/notification_pb";
 export type RoomOccupantsUpdatedPayload = MessageInitShape<
   typeof RoomOccupantsUpdatedPayloadSchema
 >;

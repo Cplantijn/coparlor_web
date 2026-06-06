@@ -10,8 +10,10 @@ import type { GameState } from "./game_state_pb";
 import { file_game_state } from "./game_state_pb";
 import type { Occupant } from "./occupant_pb";
 import { file_occupant } from "./occupant_pb";
-import type { GameAction } from "./game_action_pb";
+import type { GameAction, GameActionType } from "./game_action_pb";
 import { file_game_action } from "./game_action_pb";
+import type { Card } from "./playing_card_pb";
+import { file_playing_card } from "./playing_card_pb";
 import type { Timestamp } from "./timestamp_pb";
 import { file_timestamp } from "./timestamp_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -20,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file notification.proto.
  */
 export const file_notification: GenFile = /*@__PURE__*/
-  fileDesc("ChJub3RpZmljYXRpb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiYgobUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkEhQKDGdhbWVfcm9vbV9pZBgBIAEoCRItCglvY2N1cGFudHMYAiADKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50IrMBChdHYW1lU3RhdGVVcGRhdGVkUGF5bG9hZBIvCgpnYW1lX3BoYXNlGAEgASgOMhsuY29tLmNvcGFybG9yLmFwcC5HYW1lUGhhc2USLwoKZ2FtZV9zdGF0ZRgCIAEoCzIbLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVN0YXRlEjYKEGxhc3RfZ2FtZV9hY3Rpb24YAyABKAsyHC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb24ihgEKEkdhbWVNZXNzYWdlUGF5bG9hZBIvCgR0eXBlGAEgASgOMiEuY29tLmNvcGFybG9yLmFwcC5HYW1lTWVzc2FnZVR5cGUSDwoHbWVzc2FnZRgCIAEoCRIuCgl0aW1lc3RhbXAYAyABKAsyGy5jb20uY29wYXJsb3IuYXBwLlRpbWVzdGFtcCLDAgoUTm90aWZpY2F0aW9uUmVzcG9uc2USMAoEdHlwZRgBIAEoDjIiLmNvbS5jb3Bhcmxvci5hcHAuTm90aWZpY2F0aW9uVHlwZRJXCh5yb29tX29jY3VwYW50c191cGRhdGVkX3BheWxvYWQYAiABKAsyLS5jb20uY29wYXJsb3IuYXBwLlJvb21PY2N1cGFudHNVcGRhdGVkUGF5bG9hZEgAEk8KGmdhbWVfc3RhdGVfdXBkYXRlZF9wYXlsb2FkGAMgASgLMikuY29tLmNvcGFybG9yLmFwcC5HYW1lU3RhdGVVcGRhdGVkUGF5bG9hZEgAEkQKFGdhbWVfbWVzc2FnZV9wYXlsb2FkGAQgASgLMiQuY29tLmNvcGFybG9yLmFwcC5HYW1lTWVzc2FnZVBheWxvYWRIAEIJCgdwYXlsb2FkKnsKEE5vdGlmaWNhdGlvblR5cGUSIQodTk9USUZJQ0FUSU9OX1RZUEVfVU5TUEVDSUZJRUQQABIaChZST09NX09DQ1VQQU5UU19VUERBVEVEEAESFgoSR0FNRV9TVEFURV9VUERBVEVEEAISEAoMR0FNRV9NRVNTQUdFEAMqrQEKD0dhbWVNZXNzYWdlVHlwZRIhCh1HQU1FX01FU1NBR0VfVFlQRV9VTlNQRUNJRklFRBAAEhkKFUdBTUVfTUVTU0FHRV9UWVBFX1RJUBABEhwKGEdBTUVfTUVTU0FHRV9UWVBFX05PVElDRRACEh0KGUdBTUVfTUVTU0FHRV9UWVBFX1dBUk5JTkcQAxIfChtHQU1FX01FU1NBR0VfVFlQRV9FWENFUFRJT04QBEItChZjb20uY29wYXJsb3IuYXBwLnByb3RvQhFOb3RpZmljYXRpb25Qcm90b1ABYgZwcm90bzM", [file_game_phase, file_game_state, file_occupant, file_game_action, file_timestamp]);
+  fileDesc("ChJub3RpZmljYXRpb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiYgobUm9vbU9jY3VwYW50c1VwZGF0ZWRQYXlsb2FkEhQKDGdhbWVfcm9vbV9pZBgBIAEoCRItCglvY2N1cGFudHMYAiADKAsyGi5jb20uY29wYXJsb3IuYXBwLk9jY3VwYW50IrMBChdHYW1lU3RhdGVVcGRhdGVkUGF5bG9hZBIvCgpnYW1lX3BoYXNlGAEgASgOMhsuY29tLmNvcGFybG9yLmFwcC5HYW1lUGhhc2USLwoKZ2FtZV9zdGF0ZRgCIAEoCzIbLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVN0YXRlEjYKEGxhc3RfZ2FtZV9hY3Rpb24YAyABKAsyHC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb24ihgEKEkdhbWVNZXNzYWdlUGF5bG9hZBIvCgR0eXBlGAEgASgOMiEuY29tLmNvcGFybG9yLmFwcC5HYW1lTWVzc2FnZVR5cGUSDwoHbWVzc2FnZRgCIAEoCRIuCgl0aW1lc3RhbXAYAyABKAsyGy5jb20uY29wYXJsb3IuYXBwLlRpbWVzdGFtcCKNAQoPR2FtZUxlZ2FsQWN0aW9uEi4KBHR5cGUYASABKA4yIC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25UeXBlEiMKG3RhcmdldF9vY2N1cGFudF9zZXNzaW9uX2lkcxgCIAMoCRIlCgVjYXJkcxgDIAMoCzIWLmNvbS5jb3Bhcmxvci5hcHAuQ2FyZCJTChdHYW1lTGVnYWxBY3Rpb25zUGF5bG9hZBI4Cg1sZWdhbF9hY3Rpb25zGAEgAygLMiEuY29tLmNvcGFybG9yLmFwcC5HYW1lTGVnYWxBY3Rpb24ilAMKFE5vdGlmaWNhdGlvblJlc3BvbnNlEjAKBHR5cGUYASABKA4yIi5jb20uY29wYXJsb3IuYXBwLk5vdGlmaWNhdGlvblR5cGUSVwoecm9vbV9vY2N1cGFudHNfdXBkYXRlZF9wYXlsb2FkGAIgASgLMi0uY29tLmNvcGFybG9yLmFwcC5Sb29tT2NjdXBhbnRzVXBkYXRlZFBheWxvYWRIABJPChpnYW1lX3N0YXRlX3VwZGF0ZWRfcGF5bG9hZBgDIAEoCzIpLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVN0YXRlVXBkYXRlZFBheWxvYWRIABJEChRnYW1lX21lc3NhZ2VfcGF5bG9hZBgEIAEoCzIkLmNvbS5jb3Bhcmxvci5hcHAuR2FtZU1lc3NhZ2VQYXlsb2FkSAASTwoaZ2FtZV9sZWdhbF9hY3Rpb25zX3BheWxvYWQYBSABKAsyKS5jb20uY29wYXJsb3IuYXBwLkdhbWVMZWdhbEFjdGlvbnNQYXlsb2FkSABCCQoHcGF5bG9hZCqTAQoQTm90aWZpY2F0aW9uVHlwZRIhCh1OT1RJRklDQVRJT05fVFlQRV9VTlNQRUNJRklFRBAAEhoKFlJPT01fT0NDVVBBTlRTX1VQREFURUQQARIWChJHQU1FX1NUQVRFX1VQREFURUQQAhIQCgxHQU1FX01FU1NBR0UQAxIWChJHQU1FX0xFR0FMX0FDVElPTlMQBCqtAQoPR2FtZU1lc3NhZ2VUeXBlEiEKHUdBTUVfTUVTU0FHRV9UWVBFX1VOU1BFQ0lGSUVEEAASGQoVR0FNRV9NRVNTQUdFX1RZUEVfVElQEAESHAoYR0FNRV9NRVNTQUdFX1RZUEVfTk9USUNFEAISHQoZR0FNRV9NRVNTQUdFX1RZUEVfV0FSTklORxADEh8KG0dBTUVfTUVTU0FHRV9UWVBFX0VYQ0VQVElPThAEQi0KFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEU5vdGlmaWNhdGlvblByb3RvUAFiBnByb3RvMw", [file_game_phase, file_game_state, file_occupant, file_game_action, file_playing_card, file_timestamp]);
 
 /**
  * @generated from message com.coparlor.app.RoomOccupantsUpdatedPayload
@@ -99,6 +101,50 @@ export const GameMessagePayloadSchema: GenMessage<GameMessagePayload> = /*@__PUR
   messageDesc(file_notification, 2);
 
 /**
+ * @generated from message com.coparlor.app.GameLegalAction
+ */
+export type GameLegalAction = Message<"com.coparlor.app.GameLegalAction"> & {
+  /**
+   * @generated from field: com.coparlor.app.GameActionType type = 1;
+   */
+  type: GameActionType;
+
+  /**
+   * @generated from field: repeated string target_occupant_session_ids = 2;
+   */
+  targetOccupantSessionIds: string[];
+
+  /**
+   * @generated from field: repeated com.coparlor.app.Card cards = 3;
+   */
+  cards: Card[];
+};
+
+/**
+ * Describes the message com.coparlor.app.GameLegalAction.
+ * Use `create(GameLegalActionSchema)` to create a new message.
+ */
+export const GameLegalActionSchema: GenMessage<GameLegalAction> = /*@__PURE__*/
+  messageDesc(file_notification, 3);
+
+/**
+ * @generated from message com.coparlor.app.GameLegalActionsPayload
+ */
+export type GameLegalActionsPayload = Message<"com.coparlor.app.GameLegalActionsPayload"> & {
+  /**
+   * @generated from field: repeated com.coparlor.app.GameLegalAction legal_actions = 1;
+   */
+  legalActions: GameLegalAction[];
+};
+
+/**
+ * Describes the message com.coparlor.app.GameLegalActionsPayload.
+ * Use `create(GameLegalActionsPayloadSchema)` to create a new message.
+ */
+export const GameLegalActionsPayloadSchema: GenMessage<GameLegalActionsPayload> = /*@__PURE__*/
+  messageDesc(file_notification, 4);
+
+/**
  * @generated from message com.coparlor.app.NotificationResponse
  */
 export type NotificationResponse = Message<"com.coparlor.app.NotificationResponse"> & {
@@ -128,6 +174,12 @@ export type NotificationResponse = Message<"com.coparlor.app.NotificationRespons
      */
     value: GameMessagePayload;
     case: "gameMessagePayload";
+  } | {
+    /**
+     * @generated from field: com.coparlor.app.GameLegalActionsPayload game_legal_actions_payload = 5;
+     */
+    value: GameLegalActionsPayload;
+    case: "gameLegalActionsPayload";
   } | { case: undefined; value?: undefined };
 };
 
@@ -136,7 +188,7 @@ export type NotificationResponse = Message<"com.coparlor.app.NotificationRespons
  * Use `create(NotificationResponseSchema)` to create a new message.
  */
 export const NotificationResponseSchema: GenMessage<NotificationResponse> = /*@__PURE__*/
-  messageDesc(file_notification, 3);
+  messageDesc(file_notification, 5);
 
 /**
  * @generated from enum com.coparlor.app.NotificationType
@@ -161,6 +213,11 @@ export enum NotificationType {
    * @generated from enum value: GAME_MESSAGE = 3;
    */
   GAME_MESSAGE = 3,
+
+  /**
+   * @generated from enum value: GAME_LEGAL_ACTIONS = 4;
+   */
+  GAME_LEGAL_ACTIONS = 4,
 }
 
 /**

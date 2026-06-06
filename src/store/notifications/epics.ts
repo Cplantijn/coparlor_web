@@ -6,6 +6,7 @@ import { authStateChanged } from "@store/auth";
 import { emitRoomOccupantsUpdated } from "@store/gameRoom";
 import { emitGameMessage } from "@store/gameMessage";
 import { emitGameStateUpdated } from "@store/gameState";
+import { emitAvailableLegalActions } from "@store/legalAction";
 import { subscribeToNotifications } from "@api/notificationClient";
 
 /**
@@ -40,6 +41,8 @@ const notificationSubscriptionEpic: Epic<Action> = (action$) =>
               return EMPTY;
             case "gameMessagePayload":
               return [emitGameMessage(notification.payload.value)];
+            case "gameLegalActionsPayload":
+              return [emitAvailableLegalActions(notification.payload.value)];
             default:
               return EMPTY;
           }

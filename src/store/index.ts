@@ -8,6 +8,7 @@ import { gameRoomReducer } from "./gameRoom/reducer";
 import { gameStateReducer } from "./gameState/reducer";
 import { gameMessageReducer } from "./gameMessage/reducer";
 import { occupantsReducer } from "./occupants/reducer";
+import { legalActionReducer } from "./legalAction/reducer";
 
 const epicMiddleware = createEpicMiddleware<Action, Action, any>();
 
@@ -19,6 +20,7 @@ export const store = configureStore({
     gameState: gameStateReducer,
     gameMessage: gameMessageReducer,
     occupants: occupantsReducer,
+    legalAction: legalActionReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: false }).concat(epicMiddleware),

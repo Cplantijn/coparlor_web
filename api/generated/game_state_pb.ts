@@ -16,7 +16,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file game_state.proto.
  */
 export const file_game_state: GenFile = /*@__PURE__*/
-  fileDesc("ChBnYW1lX3N0YXRlLnByb3RvEhBjb20uY29wYXJsb3IuYXBwIr0BCglHYW1lU3RhdGUSLwoKZ2FtZV9waGFzZRgBIAEoDjIbLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVBoYXNlEiUKBWRlY2tzGAIgAygLMhYuY29tLmNvcGFybG9yLmFwcC5EZWNrEiUKBWhhbmRzGAMgAygLMhYuY29tLmNvcGFybG9yLmFwcC5IYW5kEjEKC2dhbWVfYWN0aW9uGAQgASgLMhwuY29tLmNvcGFybG9yLmFwcC5HYW1lQWN0aW9uQioKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CDkdhbWVTdGF0ZVByb3RvUAFiBnByb3RvMw", [file_game_phase, file_playing_card, file_game_action]);
+  fileDesc("ChBnYW1lX3N0YXRlLnByb3RvEhBjb20uY29wYXJsb3IuYXBwIsIBCglHYW1lU3RhdGUSLwoKZ2FtZV9waGFzZRgBIAEoDjIbLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVBoYXNlEiUKBWRlY2tzGAIgAygLMhYuY29tLmNvcGFybG9yLmFwcC5EZWNrEiUKBWhhbmRzGAMgAygLMhYuY29tLmNvcGFybG9yLmFwcC5IYW5kEjYKEGxhc3RfZ2FtZV9hY3Rpb24YBCABKAsyHC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25CKgoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IOR2FtZVN0YXRlUHJvdG9QAWIGcHJvdG8z", [file_game_phase, file_playing_card, file_game_action]);
 
 /**
  * @generated from message com.coparlor.app.GameState
@@ -38,9 +38,9 @@ export type GameState = Message<"com.coparlor.app.GameState"> & {
   hands: Hand[];
 
   /**
-   * @generated from field: com.coparlor.app.GameAction game_action = 4;
+   * @generated from field: com.coparlor.app.GameAction last_game_action = 4;
    */
-  gameAction?: GameAction;
+  lastGameAction?: GameAction;
 };
 
 /**

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { GameType } from "@api";
+import { GamePhase, GameType } from "@api";
 
 import { store, type AppDispatch } from "@store";
 import {
@@ -10,15 +10,18 @@ import {
   selectGameRoomName,
 } from "@store/gameRoom";
 import { gameSessionActions } from "@store/gameSession";
+import { selectGamePhase } from "@store/gameState";
 
 import {
   selectIsSelfRoomOwner,
   selectSpectatorPositions,
 } from "@store/occupants";
-import { MessageBanner } from "../../components/MessageBanner";
-import { SeatPosition } from "../../components/position/SeatPosition";
-import { Spectator } from "../../components/position/Spectator";
-import EuchrePlayingArea from "../../components/playingArea/EuchrePlayingArea";
+import { MessageBanner } from "@components/MessageBanner";
+import ActionBar from "@components/gameActions/ActionBar";
+
+import { SeatPosition } from "@components/position/SeatPosition";
+import { Spectator } from "@components/position/Spectator";
+import EuchrePlayingArea from "@components/playingArea/EuchrePlayingArea";
 
 export const Route = createFileRoute("/r/$roomName")({
   loader: ({ params }) => {
@@ -39,6 +42,7 @@ function GameRoomPage() {
   const roomName = useSelector(selectGameRoomName);
   const isSelfRoomOwner = useSelector(selectIsSelfRoomOwner);
   const spectators = useSelector(selectSpectatorPositions);
+  const gamePhase = useSelector(selectGamePhase);
 
   const handleRequestStartSession = () => {
     dispatch(
@@ -101,16 +105,16 @@ function GameRoomPage() {
               <SeatPosition seatNumber={0} />
             </div>
             <div className="flex gap-4 justify-between">
-              <SeatPosition seatNumber={1} />
+              <SeatPosition seatNumber={3} />
               <EuchrePlayingArea />
-              <SeatPosition seatNumber={2} />
+              <SeatPosition seatNumber={1} />
             </div>
             <div className="flex justify-center">
-              <SeatPosition seatNumber={3} />
+              <SeatPosition seatNumber={2} />
             </div>
           </div>
 
-          {isSelfRoomOwner && (
+          {isSelfRoomOwner && gamePhase === GamePhase.GamePhaseNone && (
             <button
               className="mt-4 px-4 py-2 bg-amber-400 cursor-pointer rounded-sm hover:bg-amber-600 hover:text-white relative hover:bottom-1 hover:shadow"
               onClick={handleRequestStartSession}
@@ -120,6 +124,7 @@ function GameRoomPage() {
           )}
         </div>
       </div>
+      <ActionBar />
     </div>
   );
 }

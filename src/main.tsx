@@ -5,6 +5,7 @@ import { Provider } from "react-redux"
 import { store } from "@store"
 import { initAuthAction } from "@store/auth"
 import { router } from "./router"
+import "./extensions"
 import "./styles.css"
 
 // Initialize authentication

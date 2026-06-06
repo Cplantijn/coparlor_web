@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file game_action.proto.
  */
 export const file_game_action: GenFile = /*@__PURE__*/
-  fileDesc("ChFnYW1lX2FjdGlvbi5wcm90bxIQY29tLmNvcGFybG9yLmFwcCJyCgpHYW1lQWN0aW9uEi4KBHR5cGUYASABKA4yIC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25UeXBlEjQKB3BheWxvYWQYAiABKAsyIy5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25QYXlsb2FkIoMBChFHYW1lQWN0aW9uUGF5bG9hZBIiChphY3Rpbmdfb2NjdXBhbnRfc2Vzc2lvbl9pZBgBIAEoCRIkChxhZmZlY3RlZF9vY2N1cGFudF9zZXNzaW9uX2lkGAIgASgJEiQKBGNhcmQYAyABKAsyFi5jb20uY29wYXJsb3IuYXBwLkNhcmQqPQoOR2FtZUFjdGlvblR5cGUSEgoOR2FtZUFjdGlvbk5vbmUQABIXChNHYW1lQWN0aW9uQ2FyZERlYWx0EAFCKwoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IPR2FtZUFjdGlvblByb3RvUAFiBnByb3RvMw", [file_playing_card]);
+  fileDesc("ChFnYW1lX2FjdGlvbi5wcm90bxIQY29tLmNvcGFybG9yLmFwcCJyCgpHYW1lQWN0aW9uEi4KBHR5cGUYASABKA4yIC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25UeXBlEjQKB3BheWxvYWQYAiABKAsyIy5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25QYXlsb2FkIoQBChFHYW1lQWN0aW9uUGF5bG9hZBIiChphY3Rpbmdfb2NjdXBhbnRfc2Vzc2lvbl9pZBgBIAEoCRIkChxhZmZlY3RlZF9vY2N1cGFudF9zZXNzaW9uX2lkGAIgASgJEiUKBWNhcmRzGAMgAygLMhYuY29tLmNvcGFybG9yLmFwcC5DYXJkKjwKDkdhbWVBY3Rpb25UeXBlEhIKDkdhbWVBY3Rpb25Ob25lEAASFgoSR2FtZUFjdGlvbkNhcmREZWFsEAFCKwoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IPR2FtZUFjdGlvblByb3RvUAFiBnByb3RvMw", [file_playing_card]);
 
 /**
  * @generated from message com.coparlor.app.GameAction
@@ -51,9 +51,9 @@ export type GameActionPayload = Message<"com.coparlor.app.GameActionPayload"> & 
   affectedOccupantSessionId: string;
 
   /**
-   * @generated from field: com.coparlor.app.Card card = 3;
+   * @generated from field: repeated com.coparlor.app.Card cards = 3;
    */
-  card?: Card;
+  cards: Card[];
 };
 
 /**
@@ -64,6 +64,8 @@ export const GameActionPayloadSchema: GenMessage<GameActionPayload> = /*@__PURE_
   messageDesc(file_game_action, 1);
 
 /**
+ * See Euchre Actions at https://github.com/google-deepmind/open_spiel/blob/master/open_spiel/games/euchre/euchre.h
+ *
  * @generated from enum com.coparlor.app.GameActionType
  */
 export enum GameActionType {
@@ -73,9 +75,9 @@ export enum GameActionType {
   GameActionNone = 0,
 
   /**
-   * @generated from enum value: GameActionCardDealt = 1;
+   * @generated from enum value: GameActionCardDeal = 1;
    */
-  GameActionCardDealt = 1,
+  GameActionCardDeal = 1,
 }
 
 /**
