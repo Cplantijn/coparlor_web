@@ -9,6 +9,10 @@ import type {
   GameSessionSchema,
 } from "./generated/game_session_pb";
 import type {
+  AskGameCoachRequestSchema,
+  AskGameCoachResponseSchema,
+} from "./generated/game_coach_pb";
+import type {
   CreateGameRoomRequestSchema,
   CreateGameRoomResponseSchema,
   JoinGameRoomRequestSchema,
@@ -20,6 +24,7 @@ import type {
   NotificationResponseSchema,
   GameStateUpdatedPayloadSchema,
   GameMessagePayloadSchema,
+  GameSessionUpdatedPayloadSchema,
 } from "./generated/notification_pb";
 
 // --- Messages ---
@@ -39,6 +44,12 @@ export type CommitGameActionRequest = MessageInitShape<
 export type CommitGameActionResponse = MessageInitShape<
   typeof CommitGameActionResponseSchema
 >;
+export type AskGameCoachRequest = MessageInitShape<
+  typeof AskGameCoachRequestSchema
+>;
+export type AskGameCoachResponse = MessageInitShape<
+  typeof AskGameCoachResponseSchema
+>;
 export type GameSession = MessageInitShape<typeof GameSessionSchema>;
 export type JoinGameRoomRequest = MessageInitShape<
   typeof JoinGameRoomRequestSchema
@@ -56,6 +67,10 @@ export type GameStateUpdatedPayload = MessageInitShape<
 
 export type GameMessagePayload = MessageInitShape<
   typeof GameMessagePayloadSchema
+>;
+
+export type GameSessionUpdatedPayload = MessageInitShape<
+  typeof GameSessionUpdatedPayloadSchema
 >;
 
 // Response types are re-exported as their generated pb types (not MessageInitShape)

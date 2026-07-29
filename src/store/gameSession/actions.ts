@@ -3,11 +3,11 @@ import { createActionSet } from "../createActionSet";
 import type {
   CreateGameSessionRequest,
   CreateGameSessionResponse,
-  GameSession,
+  GameSessionUpdatedPayload,
 } from "@api";
 
-export const emitGameStateUpdated = createAction<string>(
-  "gameState/emitGameStateUpdated",
+export const emitGameSessionUpdated = createAction<GameSessionUpdatedPayload>(
+  "gameSession/emitGameSessionUpdated",
 );
 
 export const gameSessionActions = {
@@ -16,7 +16,3 @@ export const gameSessionActions = {
     CreateGameSessionResponse
   >("gameSession/create"),
 };
-
-export const emitGameSessionStarted = createAction<{
-  gameSession: GameSession;
-}>("gameSession/emitGameSessionStarted");

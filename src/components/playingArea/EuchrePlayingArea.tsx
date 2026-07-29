@@ -1,7 +1,29 @@
+import { useSelector } from "react-redux";
+import { selectGamePhase, selectGameState } from "@store/gameState";
+import { GamePhase } from "@api";
+import { PlayingCard } from "@components/PlayingCard";
+
 export default function EuchrePlayingArea() {
+  const gamePhase = useSelector(selectGamePhase);
+  const gameState = useSelector(selectGameState);
+
+  console.log({ gameState });
+
   return (
     <div className="flex flex-1 min-w-3xs items-center justify-center">
-      <span className="text-center">PLAYING AREA!</span>
+      {gamePhase === GamePhase.GamePhaseBidding && <BiddingView />}
+    </div>
+  );
+}
+
+export function BiddingView() {
+  const gameState = useSelector(selectGameState);
+  return (
+    <div className="flex flex-col">
+      <span className="text-lg font-bold">Upturned</span>
+      {gameState?.upturnedCard && (
+        <PlayingCard card={gameState.upturnedCard} width={120} />
+      )}
     </div>
   );
 }

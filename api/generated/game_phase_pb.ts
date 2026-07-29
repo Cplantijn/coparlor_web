@@ -9,7 +9,7 @@ import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
  * Describes the file game_phase.proto.
  */
 export const file_game_phase: GenFile = /*@__PURE__*/
-  fileDesc("ChBnYW1lX3BoYXNlLnByb3RvEhBjb20uY29wYXJsb3IuYXBwKmgKCUdhbWVQaGFzZRIRCg1HYW1lUGhhc2VOb25lEAASGwoXR2FtZVBoYXNlQ2hvb3NpbmdEZWFsZXIQARIUChBHYW1lUGhhc2VCaWRkaW5nEAISFQoRR2FtZVBoYXNlQ2FyZFBsYXkQA0IqChZjb20uY29wYXJsb3IuYXBwLnByb3RvQg5HYW1lUGhhc2VQcm90b1ABYgZwcm90bzM");
+  fileDesc("ChBnYW1lX3BoYXNlLnByb3RvEhBjb20uY29wYXJsb3IuYXBwKn4KCUdhbWVQaGFzZRIRCg1HYW1lUGhhc2VOb25lEAASGwoXR2FtZVBoYXNlQ2hvb3NpbmdEZWFsZXIQARIUChBHYW1lUGhhc2VEZWFsaW5nEAISFAoQR2FtZVBoYXNlQmlkZGluZxADEhUKEUdhbWVQaGFzZUNhcmRQbGF5EARCKgoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IOR2FtZVBoYXNlUHJvdG9QAWIGcHJvdG8z");
 
 /**
  * @generated from enum com.coparlor.app.GamePhase
@@ -26,14 +26,19 @@ export enum GamePhase {
   GamePhaseChoosingDealer = 1,
 
   /**
-   * @generated from enum value: GamePhaseBidding = 2;
+   * @generated from enum value: GamePhaseDealing = 2;
    */
-  GamePhaseBidding = 2,
+  GamePhaseDealing = 2,
 
   /**
-   * @generated from enum value: GamePhaseCardPlay = 3;
+   * @generated from enum value: GamePhaseBidding = 3;
    */
-  GamePhaseCardPlay = 3,
+  GamePhaseBidding = 3,
+
+  /**
+   * @generated from enum value: GamePhaseCardPlay = 4;
+   */
+  GamePhaseCardPlay = 4,
 }
 
 /**

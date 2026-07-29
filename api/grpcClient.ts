@@ -17,6 +17,11 @@ import {
   CreateGameSessionRequestSchema,
 } from "./generated/game_session_pb";
 import {
+  AskGameCoachRequestSchema,
+  type AskGameCoachResponse,
+  GameCoachService,
+} from "./generated/game_coach_pb";
+import {
   CreateGameRoomRequestSchema,
   type CreateGameRoomResponse,
   GameRoomService,
@@ -45,6 +50,7 @@ const transport = createConnectTransport({
 const authServiceClient = createClient(AuthService, transport);
 const gameSessionClient = createClient(GameSessionService, transport);
 const gameRoomClient = createClient(GameRoomService, transport);
+const gameCoachClient = createClient(GameCoachService, transport);
 
 // --- Endpoints ---
 
@@ -67,6 +73,14 @@ export async function commitGameAction(
 ): Promise<CommitGameActionResponse> {
   return gameSessionClient.commitAction(
     create(CommitGameActionRequestSchema, payload),
+  );
+}
+
+export async function askGameCoach(
+  payload: MessageInitShape<typeof AskGameCoachRequestSchema>,
+): Promise<AskGameCoachResponse> {
+  return gameCoachClient.askGameCoach(
+    create(AskGameCoachRequestSchema, payload),
   );
 }
 

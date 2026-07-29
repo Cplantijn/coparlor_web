@@ -5,10 +5,8 @@ const CARD_ASSET_BASE = `${import.meta.env.BASE_URL}assets/standard_card_deck`;
 const CARD_WIDTH = 72;
 const CARD_VIEWBOX_WIDTH = 180.6;
 const CARD_VIEWBOX_HEIGHT = 252.6;
-const CARD_HEIGHT = Math.round(
-  (CARD_WIDTH * CARD_VIEWBOX_HEIGHT) / CARD_VIEWBOX_WIDTH,
-);
 const CARD_ASPECT_RATIO = `${CARD_VIEWBOX_WIDTH} / ${CARD_VIEWBOX_HEIGHT}`;
+const CARD_ASPECT_RATIO_NUM = CARD_VIEWBOX_WIDTH / CARD_VIEWBOX_HEIGHT;
 
 const ALL_CARD_ASSET_URLS = [
   Suit.CLUBS,
@@ -35,21 +33,22 @@ const ALL_CARD_ASSET_URLS = [
 
 let didWarmCardImageCache = false;
 
-export function PlayingCard(props: { card: Card }) {
+export function PlayingCard(props: { card: Card; width?: number }) {
   useEffect(() => {
     warmCardImageCache();
   }, []);
 
   const assetUrl = cardAssetUrl(props.card.rank, props.card.suit);
   const label = cardLabel(props.card);
+  const cardWidth = props.width ?? CARD_WIDTH;
 
   if (!assetUrl) {
     return (
       <span
         className="inline-flex items-center justify-center rounded-sm border border-gray-300 bg-white px-1.5 text-xs font-bold text-black shadow-sm"
         style={{
-          width: CARD_WIDTH,
-          height: CARD_HEIGHT,
+          width: cardWidth,
+          height: cardWidth * CARD_ASPECT_RATIO_NUM,
           aspectRatio: CARD_ASPECT_RATIO,
         }}
       >
@@ -62,14 +61,14 @@ export function PlayingCard(props: { card: Card }) {
     <img
       src={assetUrl}
       alt={label}
-      width={CARD_WIDTH}
-      height={CARD_HEIGHT}
+      width={cardWidth}
+      height={cardWidth * CARD_ASPECT_RATIO_NUM}
       decoding="async"
       loading="eager"
       fetchPriority="high"
       className="inline-block h-auto shrink-0 rounded-sm shadow-sm"
       style={{
-        width: CARD_WIDTH,
+        width: cardWidth,
         height: "auto",
         aspectRatio: CARD_ASPECT_RATIO,
       }}

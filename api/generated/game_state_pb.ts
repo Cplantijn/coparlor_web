@@ -6,7 +6,7 @@ import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { GamePhase } from "./game_phase_pb";
 import { file_game_phase } from "./game_phase_pb";
-import type { Deck, Hand } from "./playing_card_pb";
+import type { Card, Deck, Hand } from "./playing_card_pb";
 import { file_playing_card } from "./playing_card_pb";
 import type { GameAction } from "./game_action_pb";
 import { file_game_action } from "./game_action_pb";
@@ -16,7 +16,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file game_state.proto.
  */
 export const file_game_state: GenFile = /*@__PURE__*/
-  fileDesc("ChBnYW1lX3N0YXRlLnByb3RvEhBjb20uY29wYXJsb3IuYXBwIsIBCglHYW1lU3RhdGUSLwoKZ2FtZV9waGFzZRgBIAEoDjIbLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVBoYXNlEiUKBWRlY2tzGAIgAygLMhYuY29tLmNvcGFybG9yLmFwcC5EZWNrEiUKBWhhbmRzGAMgAygLMhYuY29tLmNvcGFybG9yLmFwcC5IYW5kEjYKEGxhc3RfZ2FtZV9hY3Rpb24YBCABKAsyHC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25CKgoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IOR2FtZVN0YXRlUHJvdG9QAWIGcHJvdG8z", [file_game_phase, file_playing_card, file_game_action]);
+  fileDesc("ChBnYW1lX3N0YXRlLnByb3RvEhBjb20uY29wYXJsb3IuYXBwIu8BCglHYW1lU3RhdGUSLwoKZ2FtZV9waGFzZRgBIAEoDjIbLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVBoYXNlEiUKBWRlY2tzGAIgAygLMhYuY29tLmNvcGFybG9yLmFwcC5EZWNrEiUKBWhhbmRzGAMgAygLMhYuY29tLmNvcGFybG9yLmFwcC5IYW5kEi0KDXVwdHVybmVkX2NhcmQYBCABKAsyFi5jb20uY29wYXJsb3IuYXBwLkNhcmQSNAoOYWN0aW9uX2hpc3RvcnkYBSADKAsyHC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25CKgoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IOR2FtZVN0YXRlUHJvdG9QAWIGcHJvdG8z", [file_game_phase, file_playing_card, file_game_action]);
 
 /**
  * @generated from message com.coparlor.app.GameState
@@ -38,9 +38,14 @@ export type GameState = Message<"com.coparlor.app.GameState"> & {
   hands: Hand[];
 
   /**
-   * @generated from field: com.coparlor.app.GameAction last_game_action = 4;
+   * @generated from field: com.coparlor.app.Card upturned_card = 4;
    */
-  lastGameAction?: GameAction;
+  upturnedCard?: Card;
+
+  /**
+   * @generated from field: repeated com.coparlor.app.GameAction action_history = 5;
+   */
+  actionHistory: GameAction[];
 };
 
 /**

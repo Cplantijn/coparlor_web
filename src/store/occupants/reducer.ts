@@ -12,6 +12,7 @@ const initialState = adapter.getInitialState({
   playerOccupantIdsBySeat: {} as Record<number, string | undefined>,
   spectatorIds: [] as string[],
   roomOwnerId: undefined as string | undefined,
+  availableActions: [] as string[],
 });
 
 const occupantsSlice = createSlice({

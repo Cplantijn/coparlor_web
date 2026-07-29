@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { emitGameStateUpdated } from "./actions";
 import { gameRoomActions } from "../gameRoom/actions";
-import type { GameAction, GamePhase, GameState, Hand } from "@api";
+import type { GameAction, GamePhase, GameState, Hand, Card } from "@api";
 import { GamePhase as GamePhaseEnum } from "@api";
 
 const handsAdapter = createEntityAdapter<Hand, string>({
@@ -13,6 +13,7 @@ export interface GameStateSliceState {
   gameState: GameState | null;
   hands: ReturnType<typeof handsAdapter.getInitialState>;
   lastGameAction: GameAction | null;
+  upturnedCard: Card | null;
 }
 
 const initialState: GameStateSliceState = {
@@ -20,6 +21,7 @@ const initialState: GameStateSliceState = {
   gameState: null,
   hands: handsAdapter.getInitialState(),
   lastGameAction: null,
+  upturnedCard: null,
 };
 
 const gameStateSlice = createSlice({

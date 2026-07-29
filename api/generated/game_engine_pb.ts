@@ -4,237 +4,263 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GamePhase } from "./game_phase_pb";
+import { file_game_phase } from "./game_phase_pb";
+import type { GameType } from "./game_type_pb";
+import { file_game_type } from "./game_type_pb";
+import type { Card, Deck } from "./playing_card_pb";
+import { file_playing_card } from "./playing_card_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file game_engine.proto.
  */
 export const file_game_engine: GenFile = /*@__PURE__*/
-  fileDesc("ChFnYW1lX2VuZ2luZS5wcm90bxITY29wYXJsb3IuZ2FtZWVuZ2luZSKFAQoJR2FtZVN0YXRlEhcKD2dhbWVfc2Vzc2lvbl9pZBgBIAEoCRINCgVwaGFzZRgCIAEoCRIWCg5jdXJyZW50X3BsYXllchgDIAEoBRISCgppbmZvX3N0YXRlGAQgASgJEhMKC2lzX3Rlcm1pbmFsGAYgASgIEg8KB3JldHVybnMYByADKAEiQgoRR2FtZVN0YXRlUmVzcG9uc2USLQoFc3RhdGUYASABKAsyHi5jb3Bhcmxvci5nYW1lZW5naW5lLkdhbWVTdGF0ZSJaChRJbml0R2FtZVN0YXRlUmVxdWVzdBIXCg9nYW1lX3Nlc3Npb25faWQYASABKAkSGQoRcmVxdWVzdGluZ19wbGF5ZXIYAiABKAUSDgoGZGVhbGVyGAMgASgFIkkKE0dldEdhbWVTdGF0ZVJlcXVlc3QSFwoPZ2FtZV9zZXNzaW9uX2lkGAEgASgJEhkKEXJlcXVlc3RpbmdfcGxheWVyGAIgASgFIlgKD01ha2VNb3ZlUmVxdWVzdBIXCg9nYW1lX3Nlc3Npb25faWQYASABKAkSEQoJYWN0aW9uX2lkGAIgASgFEhkKEXJlcXVlc3RpbmdfcGxheWVyGAMgASgFIjAKFUdldEdhbWVIaXN0b3J5UmVxdWVzdBIXCg9nYW1lX3Nlc3Npb25faWQYASABKAkiQgoWR2V0R2FtZUhpc3RvcnlSZXNwb25zZRIXCg9nYW1lX3Nlc3Npb25faWQYASABKAkSDwoHYWN0aW9ucxgCIAMoBTKeAwoRR2FtZUVuZ2luZVNlcnZpY2USYgoNSW5pdEdhbWVTdGF0ZRIpLmNvcGFybG9yLmdhbWVlbmdpbmUuSW5pdEdhbWVTdGF0ZVJlcXVlc3QaJi5jb3Bhcmxvci5nYW1lZW5naW5lLkdhbWVTdGF0ZVJlc3BvbnNlEmAKDEdldEdhbWVTdGF0ZRIoLmNvcGFybG9yLmdhbWVlbmdpbmUuR2V0R2FtZVN0YXRlUmVxdWVzdBomLmNvcGFybG9yLmdhbWVlbmdpbmUuR2FtZVN0YXRlUmVzcG9uc2USWAoITWFrZU1vdmUSJC5jb3Bhcmxvci5nYW1lZW5naW5lLk1ha2VNb3ZlUmVxdWVzdBomLmNvcGFybG9yLmdhbWVlbmdpbmUuR2FtZVN0YXRlUmVzcG9uc2USaQoOR2V0R2FtZUhpc3RvcnkSKi5jb3Bhcmxvci5nYW1lZW5naW5lLkdldEdhbWVIaXN0b3J5UmVxdWVzdBorLmNvcGFybG9yLmdhbWVlbmdpbmUuR2V0R2FtZUhpc3RvcnlSZXNwb25zZWIGcHJvdG8z");
+  fileDesc("ChFnYW1lX2VuZ2luZS5wcm90bxITY29wYXJsb3IuZ2FtZWVuZ2luZSK+AQoVSW5pdEdhbWVFbmdpbmVSZXF1ZXN0Ei0KCWdhbWVfdHlwZRgBIAEoDjIaLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVR5cGUSFwoPZ2FtZV9zZXNzaW9uX2lkGAIgASgJEg4KBmRlYWxlchgDIAEoBRIlCgVoYW5kcxgEIAMoCzIWLmNvbS5jb3Bhcmxvci5hcHAuRGVjaxImCgZ1cGNhcmQYBSABKAsyFi5jb20uY29wYXJsb3IuYXBwLkNhcmQiUgoWSW5pdEdhbWVFbmdpbmVSZXNwb25zZRI4CgpnYW1lX3N0YXRlGAEgASgLMiQuY29wYXJsb3IuZ2FtZWVuZ2luZS5FbmdpbmVHYW1lU3RhdGUiMAoVR2V0RW5naW5lU3RhdGVSZXF1ZXN0EhcKD2dhbWVfc2Vzc2lvbl9pZBgBIAEoCSJSChZHZXRFbmdpbmVTdGF0ZVJlc3BvbnNlEjgKCmdhbWVfc3RhdGUYASABKAsyJC5jb3Bhcmxvci5nYW1lZW5naW5lLkVuZ2luZUdhbWVTdGF0ZSJTChhBcHBseUVuZ2luZUFjdGlvblJlcXVlc3QSFwoPZ2FtZV9zZXNzaW9uX2lkGAEgASgJEg4KBnBsYXllchgCIAEoBRIOCgZhY3Rpb24YAyABKAUilQEKGUFwcGx5RW5naW5lQWN0aW9uUmVzcG9uc2USOAoKZ2FtZV9zdGF0ZRgBIAEoCzIkLmNvcGFybG9yLmdhbWVlbmdpbmUuRW5naW5lR2FtZVN0YXRlEj4KDmFwcGxpZWRfYWN0aW9uGAIgASgLMiYuY29wYXJsb3IuZ2FtZWVuZ2luZS5FbmdpbmVMZWdhbEFjdGlvbiLlAQoPRW5naW5lR2FtZVN0YXRlEi8KCmdhbWVfcGhhc2UYASABKA4yGy5jb20uY29wYXJsb3IuYXBwLkdhbWVQaGFzZRImCgZ1cGNhcmQYAiABKAsyFi5jb20uY29wYXJsb3IuYXBwLkNhcmQSJQoFaGFuZHMYAyADKAsyFi5jb20uY29wYXJsb3IuYXBwLkRlY2sSEwoLbmV4dF9wbGF5ZXIYBCABKAUSPQoNbGVnYWxfYWN0aW9ucxgFIAMoCzImLmNvcGFybG9yLmdhbWVlbmdpbmUuRW5naW5lTGVnYWxBY3Rpb24iMQoRRW5naW5lTGVnYWxBY3Rpb24SDgoGYWN0aW9uGAEgASgFEgwKBG5hbWUYAiABKAky3QIKEUdhbWVFbmdpbmVTZXJ2aWNlEmkKDkluaXRHYW1lRW5naW5lEiouY29wYXJsb3IuZ2FtZWVuZ2luZS5Jbml0R2FtZUVuZ2luZVJlcXVlc3QaKy5jb3Bhcmxvci5nYW1lZW5naW5lLkluaXRHYW1lRW5naW5lUmVzcG9uc2USaQoOR2V0RW5naW5lU3RhdGUSKi5jb3Bhcmxvci5nYW1lZW5naW5lLkdldEVuZ2luZVN0YXRlUmVxdWVzdBorLmNvcGFybG9yLmdhbWVlbmdpbmUuR2V0RW5naW5lU3RhdGVSZXNwb25zZRJyChFBcHBseUVuZ2luZUFjdGlvbhItLmNvcGFybG9yLmdhbWVlbmdpbmUuQXBwbHlFbmdpbmVBY3Rpb25SZXF1ZXN0Gi4uY29wYXJsb3IuZ2FtZWVuZ2luZS5BcHBseUVuZ2luZUFjdGlvblJlc3BvbnNlYgZwcm90bzM", [file_game_phase, file_game_type, file_playing_card]);
 
 /**
- * The full game state view for one player.
+ * request from api to game_engine
  *
- * @generated from message coparlor.gameengine.GameState
+ * @generated from message coparlor.gameengine.InitGameEngineRequest
  */
-export type GameState = Message<"coparlor.gameengine.GameState"> & {
+export type InitGameEngineRequest = Message<"coparlor.gameengine.InitGameEngineRequest"> & {
   /**
-   * @generated from field: string game_session_id = 1;
+   * @generated from field: com.coparlor.app.GameType game_type = 1;
+   */
+  gameType: GameType;
+
+  /**
+   * @generated from field: string game_session_id = 2;
    */
   gameSessionId: string;
 
   /**
-   * "bidding" | "go_alone" | "card_play" | "terminal"
-   *
-   * @generated from field: string phase = 2;
-   */
-  phase: string;
-
-  /**
-   * -1 if terminal
-   *
-   * @generated from field: int32 current_player = 3;
-   */
-  currentPlayer: number;
-
-  /**
-   * pretty_info_state() for the requesting player
-   *
-   * @generated from field: string info_state = 4;
-   */
-  infoState: string;
-
-  /**
-   *  repeated LegalAction legal_actions   = 5;  // empty unless it is this player's turn
-   *
-   * @generated from field: bool is_terminal = 6;
-   */
-  isTerminal: boolean;
-
-  /**
-   * populated only when is_terminal; indexed by player 0–3
-   *
-   * @generated from field: repeated double returns = 7;
-   */
-  returns: number[];
-};
-
-/**
- * Describes the message coparlor.gameengine.GameState.
- * Use `create(GameStateSchema)` to create a new message.
- */
-export const GameStateSchema: GenMessage<GameState> = /*@__PURE__*/
-  messageDesc(file_game_engine, 0);
-
-/**
- * @generated from message coparlor.gameengine.GameStateResponse
- */
-export type GameStateResponse = Message<"coparlor.gameengine.GameStateResponse"> & {
-  /**
-   * @generated from field: coparlor.gameengine.GameState state = 1;
-   */
-  state?: GameState;
-};
-
-/**
- * Describes the message coparlor.gameengine.GameStateResponse.
- * Use `create(GameStateResponseSchema)` to create a new message.
- */
-export const GameStateResponseSchema: GenMessage<GameStateResponse> = /*@__PURE__*/
-  messageDesc(file_game_engine, 1);
-
-/**
- * @generated from message coparlor.gameengine.InitGameStateRequest
- */
-export type InitGameStateRequest = Message<"coparlor.gameengine.InitGameStateRequest"> & {
-  /**
-   * @generated from field: string game_session_id = 1;
-   */
-  gameSessionId: string;
-
-  /**
-   * @generated from field: int32 requesting_player = 2;
-   */
-  requestingPlayer: number;
-
-  /**
-   * 0–3 to fix the dealer; -1 (default) picks randomly
+   * Player index of the dealer: 0=N, 1=E, 2=S, 3=W.
    *
    * @generated from field: int32 dealer = 3;
    */
   dealer: number;
+
+  /**
+   * Dealt hands ordered by player index (0=N, 1=E, 2=S, 3=W); exactly four
+   * five-card hands for Euchre. The engine owns the deal-order mechanics.
+   *
+   * @generated from field: repeated com.coparlor.app.Deck hands = 4;
+   */
+  hands: Deck[];
+
+  /**
+   * @generated from field: com.coparlor.app.Card upcard = 5;
+   */
+  upcard?: Card;
 };
 
 /**
- * Describes the message coparlor.gameengine.InitGameStateRequest.
- * Use `create(InitGameStateRequestSchema)` to create a new message.
+ * Describes the message coparlor.gameengine.InitGameEngineRequest.
+ * Use `create(InitGameEngineRequestSchema)` to create a new message.
  */
-export const InitGameStateRequestSchema: GenMessage<InitGameStateRequest> = /*@__PURE__*/
+export const InitGameEngineRequestSchema: GenMessage<InitGameEngineRequest> = /*@__PURE__*/
+  messageDesc(file_game_engine, 0);
+
+/**
+ * @generated from message coparlor.gameengine.InitGameEngineResponse
+ */
+export type InitGameEngineResponse = Message<"coparlor.gameengine.InitGameEngineResponse"> & {
+  /**
+   * @generated from field: coparlor.gameengine.EngineGameState game_state = 1;
+   */
+  gameState?: EngineGameState;
+};
+
+/**
+ * Describes the message coparlor.gameengine.InitGameEngineResponse.
+ * Use `create(InitGameEngineResponseSchema)` to create a new message.
+ */
+export const InitGameEngineResponseSchema: GenMessage<InitGameEngineResponse> = /*@__PURE__*/
+  messageDesc(file_game_engine, 1);
+
+/**
+ * @generated from message coparlor.gameengine.GetEngineStateRequest
+ */
+export type GetEngineStateRequest = Message<"coparlor.gameengine.GetEngineStateRequest"> & {
+  /**
+   * @generated from field: string game_session_id = 1;
+   */
+  gameSessionId: string;
+};
+
+/**
+ * Describes the message coparlor.gameengine.GetEngineStateRequest.
+ * Use `create(GetEngineStateRequestSchema)` to create a new message.
+ */
+export const GetEngineStateRequestSchema: GenMessage<GetEngineStateRequest> = /*@__PURE__*/
   messageDesc(file_game_engine, 2);
 
 /**
- * @generated from message coparlor.gameengine.GetGameStateRequest
+ * @generated from message coparlor.gameengine.GetEngineStateResponse
  */
-export type GetGameStateRequest = Message<"coparlor.gameengine.GetGameStateRequest"> & {
+export type GetEngineStateResponse = Message<"coparlor.gameengine.GetEngineStateResponse"> & {
   /**
-   * @generated from field: string game_session_id = 1;
+   * @generated from field: coparlor.gameengine.EngineGameState game_state = 1;
    */
-  gameSessionId: string;
-
-  /**
-   * @generated from field: int32 requesting_player = 2;
-   */
-  requestingPlayer: number;
+  gameState?: EngineGameState;
 };
 
 /**
- * Describes the message coparlor.gameengine.GetGameStateRequest.
- * Use `create(GetGameStateRequestSchema)` to create a new message.
+ * Describes the message coparlor.gameengine.GetEngineStateResponse.
+ * Use `create(GetEngineStateResponseSchema)` to create a new message.
  */
-export const GetGameStateRequestSchema: GenMessage<GetGameStateRequest> = /*@__PURE__*/
+export const GetEngineStateResponseSchema: GenMessage<GetEngineStateResponse> = /*@__PURE__*/
   messageDesc(file_game_engine, 3);
 
 /**
- * @generated from message coparlor.gameengine.MakeMoveRequest
+ * @generated from message coparlor.gameengine.ApplyEngineActionRequest
  */
-export type MakeMoveRequest = Message<"coparlor.gameengine.MakeMoveRequest"> & {
+export type ApplyEngineActionRequest = Message<"coparlor.gameengine.ApplyEngineActionRequest"> & {
   /**
    * @generated from field: string game_session_id = 1;
    */
   gameSessionId: string;
 
   /**
-   * @generated from field: int32 action_id = 2;
+   * Player index expected to own the current engine turn: 0=N, 1=E, 2=S, 3=W.
+   *
+   * @generated from field: int32 player = 2;
    */
-  actionId: number;
+  player: number;
 
   /**
-   * @generated from field: int32 requesting_player = 3;
+   * @generated from field: int32 action = 3;
    */
-  requestingPlayer: number;
+  action: number;
 };
 
 /**
- * Describes the message coparlor.gameengine.MakeMoveRequest.
- * Use `create(MakeMoveRequestSchema)` to create a new message.
+ * Describes the message coparlor.gameengine.ApplyEngineActionRequest.
+ * Use `create(ApplyEngineActionRequestSchema)` to create a new message.
  */
-export const MakeMoveRequestSchema: GenMessage<MakeMoveRequest> = /*@__PURE__*/
+export const ApplyEngineActionRequestSchema: GenMessage<ApplyEngineActionRequest> = /*@__PURE__*/
   messageDesc(file_game_engine, 4);
 
 /**
- * @generated from message coparlor.gameengine.GetGameHistoryRequest
+ * @generated from message coparlor.gameengine.ApplyEngineActionResponse
  */
-export type GetGameHistoryRequest = Message<"coparlor.gameengine.GetGameHistoryRequest"> & {
+export type ApplyEngineActionResponse = Message<"coparlor.gameengine.ApplyEngineActionResponse"> & {
   /**
-   * @generated from field: string game_session_id = 1;
+   * @generated from field: coparlor.gameengine.EngineGameState game_state = 1;
    */
-  gameSessionId: string;
+  gameState?: EngineGameState;
+
+  /**
+   * @generated from field: coparlor.gameengine.EngineLegalAction applied_action = 2;
+   */
+  appliedAction?: EngineLegalAction;
 };
 
 /**
- * Describes the message coparlor.gameengine.GetGameHistoryRequest.
- * Use `create(GetGameHistoryRequestSchema)` to create a new message.
+ * Describes the message coparlor.gameengine.ApplyEngineActionResponse.
+ * Use `create(ApplyEngineActionResponseSchema)` to create a new message.
  */
-export const GetGameHistoryRequestSchema: GenMessage<GetGameHistoryRequest> = /*@__PURE__*/
+export const ApplyEngineActionResponseSchema: GenMessage<ApplyEngineActionResponse> = /*@__PURE__*/
   messageDesc(file_game_engine, 5);
 
 /**
- * @generated from message coparlor.gameengine.GetGameHistoryResponse
+ * Engine-owned view of a game session. The raw OpenSpiel engine_state stays
+ * inside the game_engine service; the api only ever sees this projection.
+ *
+ * @generated from message coparlor.gameengine.EngineGameState
  */
-export type GetGameHistoryResponse = Message<"coparlor.gameengine.GetGameHistoryResponse"> & {
+export type EngineGameState = Message<"coparlor.gameengine.EngineGameState"> & {
   /**
-   * @generated from field: string game_session_id = 1;
+   * @generated from field: com.coparlor.app.GamePhase game_phase = 1;
    */
-  gameSessionId: string;
+  gamePhase: GamePhase;
 
   /**
-   * @generated from field: repeated int32 actions = 2;
+   * @generated from field: com.coparlor.app.Card upcard = 2;
    */
-  actions: number[];
+  upcard?: Card;
+
+  /**
+   * Current hands ordered by player index (0=N, 1=E, 2=S, 3=W).
+   *
+   * @generated from field: repeated com.coparlor.app.Deck hands = 3;
+   */
+  hands: Deck[];
+
+  /**
+   * Player index whose turn is next; -1 when no player is to act.
+   *
+   * @generated from field: int32 next_player = 4;
+   */
+  nextPlayer: number;
+
+  /**
+   * @generated from field: repeated coparlor.gameengine.EngineLegalAction legal_actions = 5;
+   */
+  legalActions: EngineLegalAction[];
 };
 
 /**
- * Describes the message coparlor.gameengine.GetGameHistoryResponse.
- * Use `create(GetGameHistoryResponseSchema)` to create a new message.
+ * Describes the message coparlor.gameengine.EngineGameState.
+ * Use `create(EngineGameStateSchema)` to create a new message.
  */
-export const GetGameHistoryResponseSchema: GenMessage<GetGameHistoryResponse> = /*@__PURE__*/
+export const EngineGameStateSchema: GenMessage<EngineGameState> = /*@__PURE__*/
   messageDesc(file_game_engine, 6);
+
+/**
+ * @generated from message coparlor.gameengine.EngineLegalAction
+ */
+export type EngineLegalAction = Message<"coparlor.gameengine.EngineLegalAction"> & {
+  /**
+   * OpenSpiel action id, echoed back when committing.
+   *
+   * @generated from field: int32 action = 1;
+   */
+  action: number;
+
+  /**
+   * OpenSpiel action name, e.g. "Pass" or "Clubs".
+   *
+   * @generated from field: string name = 2;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message coparlor.gameengine.EngineLegalAction.
+ * Use `create(EngineLegalActionSchema)` to create a new message.
+ */
+export const EngineLegalActionSchema: GenMessage<EngineLegalAction> = /*@__PURE__*/
+  messageDesc(file_game_engine, 7);
 
 /**
  * @generated from service coparlor.gameengine.GameEngineService
  */
 export const GameEngineService: GenService<{
   /**
-   * @generated from rpc coparlor.gameengine.GameEngineService.InitGameState
+   * @generated from rpc coparlor.gameengine.GameEngineService.InitGameEngine
    */
-  initGameState: {
+  initGameEngine: {
     methodKind: "unary";
-    input: typeof InitGameStateRequestSchema;
-    output: typeof GameStateResponseSchema;
+    input: typeof InitGameEngineRequestSchema;
+    output: typeof InitGameEngineResponseSchema;
   },
   /**
-   * @generated from rpc coparlor.gameengine.GameEngineService.GetGameState
+   * @generated from rpc coparlor.gameengine.GameEngineService.GetEngineState
    */
-  getGameState: {
+  getEngineState: {
     methodKind: "unary";
-    input: typeof GetGameStateRequestSchema;
-    output: typeof GameStateResponseSchema;
+    input: typeof GetEngineStateRequestSchema;
+    output: typeof GetEngineStateResponseSchema;
   },
   /**
-   * @generated from rpc coparlor.gameengine.GameEngineService.MakeMove
+   * @generated from rpc coparlor.gameengine.GameEngineService.ApplyEngineAction
    */
-  makeMove: {
+  applyEngineAction: {
     methodKind: "unary";
-    input: typeof MakeMoveRequestSchema;
-    output: typeof GameStateResponseSchema;
-  },
-  /**
-   * @generated from rpc coparlor.gameengine.GameEngineService.GetGameHistory
-   */
-  getGameHistory: {
-    methodKind: "unary";
-    input: typeof GetGameHistoryRequestSchema;
-    output: typeof GetGameHistoryResponseSchema;
+    input: typeof ApplyEngineActionRequestSchema;
+    output: typeof ApplyEngineActionResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_game_engine, 0);

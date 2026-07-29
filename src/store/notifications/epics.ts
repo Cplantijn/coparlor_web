@@ -5,6 +5,7 @@ import type { Action } from "@reduxjs/toolkit";
 import { authStateChanged } from "@store/auth";
 import { emitRoomOccupantsUpdated } from "@store/gameRoom";
 import { emitGameMessage } from "@store/gameMessage";
+import { emitGameSessionUpdated } from "@store/gameSession";
 import { emitGameStateUpdated } from "@store/gameState";
 import { emitAvailableLegalActions } from "@store/legalAction";
 import { subscribeToNotifications } from "@api/notificationClient";
@@ -43,6 +44,8 @@ const notificationSubscriptionEpic: Epic<Action> = (action$) =>
               return [emitGameMessage(notification.payload.value)];
             case "gameLegalActionsPayload":
               return [emitAvailableLegalActions(notification.payload.value)];
+            case "gameSessionUpdatedPayload":
+              return [emitGameSessionUpdated(notification.payload.value)];
             default:
               return EMPTY;
           }

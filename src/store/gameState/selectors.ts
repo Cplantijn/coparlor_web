@@ -5,12 +5,13 @@ import { gameHandsAdapter } from "./reducer";
 const selectGameStateSlice = (state: RootState) => state.gameState;
 const selectGameHandsState = (state: RootState) => state.gameState.hands;
 
-export const gameHandsSelectors = gameHandsAdapter.getSelectors(
-  selectGameHandsState,
-);
+export const gameHandsSelectors =
+  gameHandsAdapter.getSelectors(selectGameHandsState);
 
 export const selectGamePhase = (state: RootState) => state.gameState.gamePhase;
 export const selectGameState = (state: RootState) => state.gameState.gameState;
+export const selectUpturnedCard = (state: RootState) =>
+  state.gameState.upturnedCard;
 export const selectGameHands = gameHandsSelectors.selectAll;
 export const selectLastGameAction = (state: RootState) =>
   state.gameState.lastGameAction;

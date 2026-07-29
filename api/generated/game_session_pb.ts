@@ -4,26 +4,26 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GameAction } from "./game_action_pb";
+import { file_game_action } from "./game_action_pb";
 import type { GameType } from "./game_type_pb";
 import { file_game_type } from "./game_type_pb";
-import type { GameActionType } from "./game_action_pb";
-import { file_game_action } from "./game_action_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file game_session.proto.
  */
 export const file_game_session: GenFile = /*@__PURE__*/
-  fileDesc("ChJnYW1lX3Nlc3Npb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiSwoXQ29tbWl0R2FtZUFjdGlvblJlcXVlc3QSMAoGYWN0aW9uGAEgASgOMiAuY29tLmNvcGFybG9yLmFwcC5HYW1lQWN0aW9uVHlwZSIaChhDb21taXRHYW1lQWN0aW9uUmVzcG9uc2UiSQoYQ3JlYXRlR2FtZVNlc3Npb25SZXF1ZXN0Ei0KCWdhbWVfdHlwZRgBIAEoDjIaLmNvbS5jb3Bhcmxvci5hcHAuR2FtZVR5cGUiGwoZQ3JlYXRlR2FtZVNlc3Npb25SZXNwb25zZSI8CgtHYW1lU2Vzc2lvbhItCglnYW1lX3R5cGUYASABKA4yGi5jb20uY29wYXJsb3IuYXBwLkdhbWVUeXBlMukBChJHYW1lU2Vzc2lvblNlcnZpY2USbAoRQ3JlYXRlR2FtZVNlc3Npb24SKi5jb20uY29wYXJsb3IuYXBwLkNyZWF0ZUdhbWVTZXNzaW9uUmVxdWVzdBorLmNvbS5jb3Bhcmxvci5hcHAuQ3JlYXRlR2FtZVNlc3Npb25SZXNwb25zZRJlCgxDb21taXRBY3Rpb24SKS5jb20uY29wYXJsb3IuYXBwLkNvbW1pdEdhbWVBY3Rpb25SZXF1ZXN0GiouY29tLmNvcGFybG9yLmFwcC5Db21taXRHYW1lQWN0aW9uUmVzcG9uc2VCLAoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IQR2FtZVNlc3Npb25Qcm90b1ABYgZwcm90bzM", [file_game_type, file_game_action]);
+  fileDesc("ChJnYW1lX3Nlc3Npb24ucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiTAoXQ29tbWl0R2FtZUFjdGlvblJlcXVlc3QSMQoLZ2FtZV9hY3Rpb24YASABKAsyHC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb24iGgoYQ29tbWl0R2FtZUFjdGlvblJlc3BvbnNlIkkKGENyZWF0ZUdhbWVTZXNzaW9uUmVxdWVzdBItCglnYW1lX3R5cGUYASABKA4yGi5jb20uY29wYXJsb3IuYXBwLkdhbWVUeXBlIhsKGUNyZWF0ZUdhbWVTZXNzaW9uUmVzcG9uc2UiPAoLR2FtZVNlc3Npb24SLQoJZ2FtZV90eXBlGAEgASgOMhouY29tLmNvcGFybG9yLmFwcC5HYW1lVHlwZTLpAQoSR2FtZVNlc3Npb25TZXJ2aWNlEmwKEUNyZWF0ZUdhbWVTZXNzaW9uEiouY29tLmNvcGFybG9yLmFwcC5DcmVhdGVHYW1lU2Vzc2lvblJlcXVlc3QaKy5jb20uY29wYXJsb3IuYXBwLkNyZWF0ZUdhbWVTZXNzaW9uUmVzcG9uc2USZQoMQ29tbWl0QWN0aW9uEikuY29tLmNvcGFybG9yLmFwcC5Db21taXRHYW1lQWN0aW9uUmVxdWVzdBoqLmNvbS5jb3Bhcmxvci5hcHAuQ29tbWl0R2FtZUFjdGlvblJlc3BvbnNlQiwKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CEEdhbWVTZXNzaW9uUHJvdG9QAWIGcHJvdG8z", [file_game_action, file_game_type]);
 
 /**
  * @generated from message com.coparlor.app.CommitGameActionRequest
  */
 export type CommitGameActionRequest = Message<"com.coparlor.app.CommitGameActionRequest"> & {
   /**
-   * @generated from field: com.coparlor.app.GameActionType action = 1;
+   * @generated from field: com.coparlor.app.GameAction game_action = 1;
    */
-  action: GameActionType;
+  gameAction?: GameAction;
 };
 
 /**

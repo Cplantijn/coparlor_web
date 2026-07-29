@@ -10,16 +10,19 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file timestamp.proto.
  */
 export const file_timestamp: GenFile = /*@__PURE__*/
-  fileDesc("Cg90aW1lc3RhbXAucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiMQoJVGltZXN0YW1wEhUKDWVwb2NoX3NlY29uZHMYASABKAMSDQoFbmFub3MYAiABKAVCKgoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IOVGltZXN0YW1wUHJvdG9QAWIGcHJvdG8z");
+  fileDesc("Cg90aW1lc3RhbXAucHJvdG8SEGNvbS5jb3Bhcmxvci5hcHAiNQoJVGltZXN0YW1wEhkKDWVwb2NoX3NlY29uZHMYASABKANCAjABEg0KBW5hbm9zGAIgASgFQioKFmNvbS5jb3Bhcmxvci5hcHAucHJvdG9CDlRpbWVzdGFtcFByb3RvUAFiBnByb3RvMw");
 
 /**
  * @generated from message com.coparlor.app.Timestamp
  */
 export type Timestamp = Message<"com.coparlor.app.Timestamp"> & {
   /**
-   * @generated from field: int64 epoch_seconds = 1;
+   * JS_STRING keeps the TypeScript codegen from producing a BigInt, which
+   * cannot live in the Redux store; Kotlin/Python codegen is unaffected.
+   *
+   * @generated from field: int64 epoch_seconds = 1 [jstype = JS_STRING];
    */
-  epochSeconds: bigint;
+  epochSeconds: string;
 
   /**
    * @generated from field: int32 nanos = 2;

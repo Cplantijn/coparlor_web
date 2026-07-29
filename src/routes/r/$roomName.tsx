@@ -1,22 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useSelector, useDispatch } from "react-redux";
-import { GamePhase, GameType } from "@api";
+import { useSelector } from "react-redux";
 
-import { store, type AppDispatch } from "@store";
+import { store } from "@store";
 import {
   gameRoomActions,
   selectGameRoomError,
   selectGameRoomLoading,
   selectGameRoomName,
 } from "@store/gameRoom";
-import { gameSessionActions } from "@store/gameSession";
-import { selectGamePhase } from "@store/gameState";
 
-import {
-  selectIsSelfRoomOwner,
-  selectSpectatorPositions,
-} from "@store/occupants";
-import { MessageBanner } from "@components/MessageBanner";
+import { selectSpectatorPositions } from "@store/occupants";
 import ActionBar from "@components/gameActions/ActionBar";
 
 import { SeatPosition } from "@components/position/SeatPosition";
@@ -35,22 +28,11 @@ export const Route = createFileRoute("/r/$roomName")({
 });
 
 function GameRoomPage() {
-  const dispatch = useDispatch<AppDispatch>();
   const { roomName: roomNameParam } = Route.useParams();
   const loading = useSelector(selectGameRoomLoading);
   const error = useSelector(selectGameRoomError);
   const roomName = useSelector(selectGameRoomName);
-  const isSelfRoomOwner = useSelector(selectIsSelfRoomOwner);
   const spectators = useSelector(selectSpectatorPositions);
-  const gamePhase = useSelector(selectGamePhase);
-
-  const handleRequestStartSession = () => {
-    dispatch(
-      gameSessionActions.createGameSession.request({
-        gameType: GameType.EUCHRE,
-      }),
-    );
-  };
 
   if (loading) {
     return (
@@ -78,7 +60,6 @@ function GameRoomPage() {
 
   return (
     <div className="relative min-h-screen">
-      <MessageBanner />
       <div className="relative z-10 min-h-screen flex justify-center pt-4">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-center text-red-800 underline mb-4">
@@ -113,15 +94,6 @@ function GameRoomPage() {
               <SeatPosition seatNumber={2} />
             </div>
           </div>
-
-          {isSelfRoomOwner && gamePhase === GamePhase.GamePhaseNone && (
-            <button
-              className="mt-4 px-4 py-2 bg-amber-400 cursor-pointer rounded-sm hover:bg-amber-600 hover:text-white relative hover:bottom-1 hover:shadow"
-              onClick={handleRequestStartSession}
-            >
-              Start Session
-            </button>
-          )}
         </div>
       </div>
       <ActionBar />

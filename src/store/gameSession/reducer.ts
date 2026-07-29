@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { emitGameSessionStarted, gameSessionActions } from "./actions";
-import type { GameSession } from "@api";
+import { emitGameSessionUpdated, gameSessionActions } from "./actions";
+import { gameRoomActions } from "@store/gameRoom";
 
 export interface GameSessionState {
-  session: GameSession | null;
+  sessionId: string | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: GameSessionState = {
-  session: null,
+  sessionId: null,
   loading: false,
   error: null,
 };
@@ -24,12 +24,17 @@ const gameSessionSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
+      .addCase(gameRoomActions.joinGameRoom.fulfilled, (state, action) => {
+        state.sessionId = action.payload.activeGameSessionId ?? null;
+      })
+      .addCase(emitGameSessionUpdated, (state, action) => {
+        console.log({ action });
+        state.sessionId = action.payload.gameSessionId ?? null;
+        state.loading = false;
+        state.error = null;
+      })
       .addCase(gameSessionActions.createGameSession.fulfilled, (state) => {
         state.loading = false;
-      })
-      .addCase(emitGameSessionStarted, (state, action) => {
-        state.loading = false;
-        state.session = action.payload.gameSession;
       });
   },
 });

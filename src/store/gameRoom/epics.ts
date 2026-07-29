@@ -3,6 +3,8 @@ import { catchError, filter, switchMap } from "rxjs/operators";
 import type { Epic } from "redux-observable";
 import type { Action } from "@reduxjs/toolkit";
 import { createGameRoom, joinGameRoom, occupySeat } from "@api/grpcClient";
+import { GameMessageType } from "@api";
+import { emitGameMessage } from "../gameMessage/actions";
 import { gameRoomActions } from "./actions";
 import { router } from "../../router";
 
@@ -21,12 +23,11 @@ const joinGameRoomEpic: Epic<Action> = (action$) =>
             of(gameRoomActions.joinGameRoom.fulfilled(response, payload)),
           ),
           catchError((err: unknown) => {
-            alert(err instanceof Error ? err.message : "Unknown error");
+            const message = err instanceof Error ? err.message : "Unknown error";
+            router.navigate({ to: "/" });
             return of(
-              gameRoomActions.joinGameRoom.rejected(
-                err instanceof Error ? err.message : "Unknown error",
-                payload,
-              ),
+              emitGameMessage({ type: GameMessageType.EXCEPTION, message }),
+              gameRoomActions.joinGameRoom.rejected(message, payload),
             );
           }),
         ),
@@ -89,4 +90,8 @@ const occupySeatEpic: Epic<Action> = (action$) =>
     ),
   );
 
-export const gameRoomEpics = [joinGameRoomEpic, createGameRoomEpic, occupySeatEpic];
+export const gameRoomEpics = [
+  joinGameRoomEpic,
+  createGameRoomEpic,
+  occupySeatEpic,
+];

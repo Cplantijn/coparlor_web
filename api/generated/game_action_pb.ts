@@ -4,7 +4,7 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { Card } from "./playing_card_pb";
+import type { Card, Suit } from "./playing_card_pb";
 import { file_playing_card } from "./playing_card_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file game_action.proto.
  */
 export const file_game_action: GenFile = /*@__PURE__*/
-  fileDesc("ChFnYW1lX2FjdGlvbi5wcm90bxIQY29tLmNvcGFybG9yLmFwcCJyCgpHYW1lQWN0aW9uEi4KBHR5cGUYASABKA4yIC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25UeXBlEjQKB3BheWxvYWQYAiABKAsyIy5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25QYXlsb2FkIoQBChFHYW1lQWN0aW9uUGF5bG9hZBIiChphY3Rpbmdfb2NjdXBhbnRfc2Vzc2lvbl9pZBgBIAEoCRIkChxhZmZlY3RlZF9vY2N1cGFudF9zZXNzaW9uX2lkGAIgASgJEiUKBWNhcmRzGAMgAygLMhYuY29tLmNvcGFybG9yLmFwcC5DYXJkKjwKDkdhbWVBY3Rpb25UeXBlEhIKDkdhbWVBY3Rpb25Ob25lEAASFgoSR2FtZUFjdGlvbkNhcmREZWFsEAFCKwoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IPR2FtZUFjdGlvblByb3RvUAFiBnByb3RvMw", [file_playing_card]);
+  fileDesc("ChFnYW1lX2FjdGlvbi5wcm90bxIQY29tLmNvcGFybG9yLmFwcCJyCgpHYW1lQWN0aW9uEi4KBHR5cGUYASABKA4yIC5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25UeXBlEjQKB3BheWxvYWQYAiABKAsyIy5jb20uY29wYXJsb3IuYXBwLkdhbWVBY3Rpb25QYXlsb2FkIq8BChFHYW1lQWN0aW9uUGF5bG9hZBIiChphY3Rpbmdfb2NjdXBhbnRfc2Vzc2lvbl9pZBgBIAEoCRIkChxhZmZlY3RlZF9vY2N1cGFudF9zZXNzaW9uX2lkGAIgASgJEiUKBWNhcmRzGAMgAygLMhYuY29tLmNvcGFybG9yLmFwcC5DYXJkEikKCWNhcmRfc3VpdBgEIAEoDjIWLmNvbS5jb3Bhcmxvci5hcHAuU3VpdCraAgoOR2FtZUFjdGlvblR5cGUSEgoOR2FtZUFjdGlvbk5vbmUQABIaChZHYW1lQWN0aW9uU3RhcnRTZXNzaW9uEAESFgoSR2FtZUFjdGlvbkNhcmREZWFsEAISGQoVR2FtZUFjdGlvbkNhcmREZWFsQWxsEAMSHAoYR2FtZUFjdGlvbkNhcmREZWFsRmluaXNoEAQSGAoUR2FtZUFjdGlvbkV1Y2hyZVBhc3MQBRIbChdHYW1lQWN0aW9uRXVjaHJlT3JkZXJVcBAGEh0KGUdhbWVBY3Rpb25FdWNocmVDYWxsVHJ1bXAQBxIZChVHYW1lQWN0aW9uRXVjaHJlQWxvbmUQCBIbChdHYW1lQWN0aW9uRXVjaHJlUGFydG5lchAJEhwKGEdhbWVBY3Rpb25FdWNocmVQbGF5Q2FyZBAKEhsKF0dhbWVBY3Rpb25FdWNocmVEaXNjYXJkEAtCKwoWY29tLmNvcGFybG9yLmFwcC5wcm90b0IPR2FtZUFjdGlvblByb3RvUAFiBnByb3RvMw", [file_playing_card]);
 
 /**
  * @generated from message com.coparlor.app.GameAction
@@ -54,6 +54,11 @@ export type GameActionPayload = Message<"com.coparlor.app.GameActionPayload"> & 
    * @generated from field: repeated com.coparlor.app.Card cards = 3;
    */
   cards: Card[];
+
+  /**
+   * @generated from field: com.coparlor.app.Suit card_suit = 4;
+   */
+  cardSuit: Suit;
 };
 
 /**
@@ -64,8 +69,6 @@ export const GameActionPayloadSchema: GenMessage<GameActionPayload> = /*@__PURE_
   messageDesc(file_game_action, 1);
 
 /**
- * See Euchre Actions at https://github.com/google-deepmind/open_spiel/blob/master/open_spiel/games/euchre/euchre.h
- *
  * @generated from enum com.coparlor.app.GameActionType
  */
 export enum GameActionType {
@@ -75,9 +78,59 @@ export enum GameActionType {
   GameActionNone = 0,
 
   /**
-   * @generated from enum value: GameActionCardDeal = 1;
+   * @generated from enum value: GameActionStartSession = 1;
    */
-  GameActionCardDeal = 1,
+  GameActionStartSession = 1,
+
+  /**
+   * @generated from enum value: GameActionCardDeal = 2;
+   */
+  GameActionCardDeal = 2,
+
+  /**
+   * @generated from enum value: GameActionCardDealAll = 3;
+   */
+  GameActionCardDealAll = 3,
+
+  /**
+   * @generated from enum value: GameActionCardDealFinish = 4;
+   */
+  GameActionCardDealFinish = 4,
+
+  /**
+   * @generated from enum value: GameActionEuchrePass = 5;
+   */
+  GameActionEuchrePass = 5,
+
+  /**
+   * @generated from enum value: GameActionEuchreOrderUp = 6;
+   */
+  GameActionEuchreOrderUp = 6,
+
+  /**
+   * @generated from enum value: GameActionEuchreCallTrump = 7;
+   */
+  GameActionEuchreCallTrump = 7,
+
+  /**
+   * @generated from enum value: GameActionEuchreAlone = 8;
+   */
+  GameActionEuchreAlone = 8,
+
+  /**
+   * @generated from enum value: GameActionEuchrePartner = 9;
+   */
+  GameActionEuchrePartner = 9,
+
+  /**
+   * @generated from enum value: GameActionEuchrePlayCard = 10;
+   */
+  GameActionEuchrePlayCard = 10,
+
+  /**
+   * @generated from enum value: GameActionEuchreDiscard = 11;
+   */
+  GameActionEuchreDiscard = 11,
 }
 
 /**
