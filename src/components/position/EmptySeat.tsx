@@ -6,7 +6,7 @@ export function EmptySeat(props: {
   onAddBot: () => void;
 }) {
   return (
-    <div className="relative p-2 border rounded-sm w-48 flex flex-col items-center border-gray-200 hover:bg-gray-100 gap-1">
+    <div className="relative p-2 border rounded-sm w-72 flex flex-col items-center border-gray-200 hover:bg-gray-100 gap-1">
       <span className="text-4xl flex items-center gap-1">
         <span className="text-gray-300 text-sm">Seat</span> {props.seatNumber}
       </span>

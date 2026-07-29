@@ -20,7 +20,9 @@ export function PlayerCard(props: {
   return (
     <div
       className={cn(
-        "relative p-2 py-3 border rounded-sm min-w-48 max-w-105 flex flex-col items-center gap-2 cursor-pointer",
+        // Fixed width, matching EmptySeat: the seat ring's geometry depends on
+        // every seat being the same size whether it is occupied or not.
+        "relative p-2 py-3 border rounded-sm w-72 flex flex-col items-center gap-2 cursor-pointer",
         {
           "opacity-50": props.occupant.disconnectedAt !== undefined,
           "border-gray-200 hover:bg-gray-100 bg-gray-50": !isBot && !isDealer,

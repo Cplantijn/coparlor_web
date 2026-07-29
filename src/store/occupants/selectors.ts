@@ -100,6 +100,31 @@ export const selectPlayerOccupantsBySeat = createSelector(
   },
 );
 
+/**
+ * The seat number occupied by the local session, or null when the local session
+ * is a spectator, is unseated, or is not yet authenticated.
+ *
+ * Uses the same identity comparison as `selectSeatPosition`'s `isSelf` so the two
+ * can never disagree about who "me" is.
+ */
+export const selectSelfSeatNumber = createSelector(
+  selectPlayerOccupantsBySeat,
+  (state: RootState) => state.auth.sessionId,
+  (occupantsBySeat, selfSessionId): number | null => {
+    if (!selfSessionId) {
+      return null;
+    }
+
+    for (const [seatNumber, occupant] of Object.entries(occupantsBySeat)) {
+      if (occupant?.publicAccountSession.sessionAccountId === selfSessionId) {
+        return Number(seatNumber);
+      }
+    }
+
+    return null;
+  },
+);
+
 export const selectOccupantBySeat = createSelector(
   selectPlayerOccupantsBySeat,
   (_state: RootState, seatNumber: number) => seatNumber,

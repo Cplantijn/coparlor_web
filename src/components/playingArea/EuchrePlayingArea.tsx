@@ -5,12 +5,9 @@ import { PlayingCard } from "@components/PlayingCard";
 
 export default function EuchrePlayingArea() {
   const gamePhase = useSelector(selectGamePhase);
-  const gameState = useSelector(selectGameState);
-
-  console.log({ gameState });
 
   return (
-    <div className="flex flex-1 min-w-3xs items-center justify-center">
+    <div className="flex h-full w-full items-center justify-center">
       {gamePhase === GamePhase.GamePhaseBidding && <BiddingView />}
     </div>
   );
